@@ -13,35 +13,51 @@ class CreatePostsDb extends Migration
      */
     public function up()
     {
-        Schema::create('posts_data', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('content'); // md parsed by php
-            $table->unsignedInteger('index_image'); // X-ref to posts_images
-            $table->string('labels'); // X-ref to many from posts_labels
-            $table->unsignedInteger('author'); // X-ref to posts_authors
-            $table->timestamp('date');
-            $table->unsignedSmallInteger('type');
-        });
-        
         Schema::create('posts_labels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('color');
+        });
+
+        Schema::create('posts_images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('url');
         });
         
         Schema::create('posts_authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->unsignedInteger('image'); // X-ref to posts_images
+
+            $table->unsignedInteger('image_id');
+            $table->foreign('image_id')->references('id')->on('posts_images');
         });
-        
-        
-        Schema::create('posts_images', function (Blueprint $table) {
+
+        Schema::create('posts_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->string('content');
+
+            $table->unsignedInteger('index_image')->nullable();
+            $table->foreign('index_image')->references('id')->on('posts_images');
+
+            $table->unsignedInteger('images_id')->nullable();
+            $table->foreign('images_id')->references('id')->on('posts_images');
+
+            $table->unsignedInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('posts_authors');
+
+            $table->timestamp('date')->nullable();
+            $table->unsignedSmallInteger('type')->nullable();
+        });
+
+        Schema::create('posts_pivot_labels_data', function (Blueprint $table) {
+            $table->unsignedInteger('labels_id');
+            $table->foreign('labels_id')->references('id')->on('posts_labels');
+
+            $table->unsignedInteger('posts_id');
+            $table->foreign('posts_id')->references('id')->on('posts_data');
         });
         
     }
