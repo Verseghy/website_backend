@@ -19,7 +19,7 @@ class Posts extends Model
     }
 
     public function images() {
-        return $this->belongsTo('App\Models\Posts\Images');
+        return $this->hasMany('App\Models\Posts\Images');
     }
 
     public function labels() {
