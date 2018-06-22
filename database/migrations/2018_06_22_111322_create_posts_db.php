@@ -14,7 +14,7 @@ class CreatePostsDb extends Migration
     public function up()
     {
         Schema::create('posts_data', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('title');
             $table->string('description');
             $table->string('content'); // md parsed by php
@@ -26,13 +26,13 @@ class CreatePostsDb extends Migration
         });
         
         Schema::create('posts_labels', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('name');
             $table->string('color');
         });
         
         Schema::create('posts_authors', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('name');
             $table->string('description');
             $table->unsignedInteger('image'); // X-ref to posts_images
@@ -40,7 +40,7 @@ class CreatePostsDb extends Migration
         
         
         Schema::create('posts_images', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('url');
         });
         
