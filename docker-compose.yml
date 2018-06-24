@@ -29,5 +29,5 @@ services:
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: watchtower app mysql --interval 30
+      - ~/.docker/config.json:/config.json
     restart: unless-stopped
