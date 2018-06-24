@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: verseghy/website_backend:latest
+    ports:
+      - 80:80
+    depends_on:
+      - mysql
+    external_links:
+      - websitebackend_mysql_1
+    restart: unless-stopped
+    
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 33060:3306
+    environment:
+      MYSQL_DATABASE: website_backend
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    restart: unless-stopped
+
+  watchtower:
+    image: v2tec/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: watchtower app mysql --interval 30
+    restart: unless-stopped

@@ -23,7 +23,6 @@ class CreatePostsDb extends Migration
             $table->increments('id');
             $table->string('url');
             $table->unsignedInteger('post_id');
-            $table->foreign('post_id')->references('id')->on('posts_data');
         });
         
         Schema::create('posts_authors', function (Blueprint $table) {
@@ -57,6 +56,10 @@ class CreatePostsDb extends Migration
 
             $table->unsignedInteger('posts_id');
             $table->foreign('posts_id')->references('id')->on('posts_data');
+        });
+
+        Schema::table('posts_images', function(Blueprint $table) {
+            $table->foreign('post_id')->references('id')->on('posts_data');
         });
         
     }
