@@ -56,7 +56,6 @@ class CreatePostsDb extends Migration
 
             $table->unsignedInteger('posts_id');
             $table->foreign('posts_id')->references('id')->on('posts_data');
-        });
 
         Schema::table('posts_images', function(Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts_data');
