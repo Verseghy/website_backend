@@ -78,9 +78,12 @@ class CreatePostsDb extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts_data');
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('posts_labels');
-        Schema::dropIfExists('posts_authors');
         Schema::dropIfExists('posts_images');
+        Schema::dropIfExists('posts_authors');
+        Schema::dropIfExists('posts_data');
+        Schema::dropIfExists('posts_pivot_labels_data');
+        Schema::enableForeignKeyConstraints();
     }
 }
