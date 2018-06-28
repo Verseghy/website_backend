@@ -1,0 +1,12 @@
+language: php
+php:
+  - '7.2'
+services:
+  - mysql
+
+install: composer install
+before_script:
+  - cp .env.travis .env
+  - mysql -e 'CREATE DATABASE travis_test;'
+  - php artisan key:generate
+script: phpunit
