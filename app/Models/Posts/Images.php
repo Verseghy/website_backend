@@ -12,7 +12,7 @@ class Images extends Model
 
     public function post()
     {
-        return $this->belongsTo('App\Models\Posts');
+        return $this->belongsTo('App\Models\Posts', 'post_id');
     }
 
     public function author()
