@@ -11,7 +11,7 @@ class Images extends Model
     protected $fillable = ['url'];
 
     public function post() {
-        return $this->belongsTo('App\Models\Posts');
+        return $this->belongsTo('App\Models\Posts','post_id');
     }
 
     public function author() {
