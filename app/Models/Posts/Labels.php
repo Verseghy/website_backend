@@ -10,7 +10,8 @@ class Labels extends Model
     public $timestamps = false;
     protected $fillable = ['name', 'color'];
 
-    public function posts() {
+    public function posts()
+    {
         $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_posts');
     }
 }
