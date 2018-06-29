@@ -9,4 +9,6 @@ before_script:
   - cp .env.travis .env
   - mysql -e 'CREATE DATABASE travis_test;'
   - php artisan key:generate
-script: phpunit
+script:
+  - vendor/bin/php-cs-fixer fix --dry-run
+  - phpunit

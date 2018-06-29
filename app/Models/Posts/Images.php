@@ -10,11 +10,13 @@ class Images extends Model
     public $timestamps = false;
     protected $fillable = ['url'];
 
-    public function post() {
+    public function post()
+    {
         return $this->belongsTo('App\Models\Posts');
     }
 
-    public function author() {
+    public function author()
+    {
         return $this->hasOne('App\Models\Posts\Authors');
     }
 }
