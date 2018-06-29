@@ -56,19 +56,18 @@ class CreatePostsDb extends Migration
         /**
          * Foreign keys
          */
-        Schema::table('posts_images', function(Blueprint $table) {
+        Schema::table('posts_images', function (Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts_data');
         });
 
-        Schema::table('posts_authors', function(Blueprint $table) {
+        Schema::table('posts_authors', function (Blueprint $table) {
             $table->foreign('image_id')->references('id')->on('posts_images');
         });
 
-        Schema::table('posts_data', function(Blueprint $table) {
+        Schema::table('posts_data', function (Blueprint $table) {
             $table->foreign('index_image')->references('id')->on('posts_images');
             $table->foreign('author_id')->references('id')->on('posts_authors');
         });
-        
     }
 
     /**

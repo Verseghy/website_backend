@@ -10,11 +10,13 @@ class Authors extends Model
     public $timestamps = false;
     protected $fillable = ['name', 'description'];
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany('App\Models\Posts');
     }
 
-    public function image() {
+    public function image()
+    {
         return $this->belongsTo('App\Models\Posts\Images');
     }
 }

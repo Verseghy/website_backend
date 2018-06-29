@@ -10,19 +10,23 @@ class Posts extends Model
     public $timestamps = false;
     protected $fillable = ['title', 'description'];
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo('App\Models\Posts\Authors');
     }
 
-    public function index_image() {
+    public function index_image()
+    {
         return $this->belongsTo('App\Models\Posts\Images', 'index_image');
     }
 
-    public function images() {
-        return $this->hasMany('App\Models\Posts\Images','post_id');
+    public function images()
+    {
+        return $this->hasMany('App\Models\Posts\Images', 'post_id');
     }
 
-    public function labels() {
+    public function labels()
+    {
         return $this->belongsToMany('App\Models\Posts\Labels', 'posts_pivot_labels_posts');
     }
 }
