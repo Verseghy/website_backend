@@ -19,7 +19,7 @@ class PostsSeeder extends Seeder
         factory(Authors::class, 10)->create();
         factory(Labels::class, 20)->create();
         factory(Posts::class, 50)->create()->each(function ($post) {
-            $labels = Labels::inRandomOrder()->take(rand(2, 7));
+            $labels = Labels::inRandomOrder()->take(rand(2, 7))->get();
             foreach ($labels as $label) {
                 $post->labels()->attach($label);
             }
