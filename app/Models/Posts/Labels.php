@@ -12,6 +12,6 @@ class Labels extends Model
 
     public function posts()
     {
-        $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_posts');
+        $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_data');
     }
 }
