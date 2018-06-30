@@ -4,7 +4,6 @@ use Faker\Generator as Faker;
 use App\Models\Posts\Authors;
 use App\Models\Posts\Images;
 
-
 $factory->define(Authors::class, function (Faker $faker) {
     return [
         'name'=>$faker->name,

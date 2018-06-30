@@ -16,16 +16,15 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        factory(Authors::class,10)->create();
-        factory(Labels::class,20)->create();
-        factory(Posts::class,50)->create()->each(function ($post){
-            $labels = Labels::inRandomOrder()->take(rand(2,7));
-            foreach($labels as $label)
-            {
+        factory(Authors::class, 10)->create();
+        factory(Labels::class, 20)->create();
+        factory(Posts::class, 50)->create()->each(function ($post) {
+            $labels = Labels::inRandomOrder()->take(rand(2, 7));
+            foreach ($labels as $label) {
                 $post->labels()->attach($label);
             }
         });
         
-        factory(Images::class,'postImage',150)->create(); 
+        factory(Images::class, 'postImage', 150)->create();
     }
 }
