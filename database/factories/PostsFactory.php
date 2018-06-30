@@ -7,8 +7,6 @@ use App\Models\Posts\Authors;
 use App\Models\Posts\Images;
 use App\Models\Posts\Labels;
 
-
-
 $factory->define(Images::class, function (Faker $faker) {
     return [
         'url' => $faker->imageUrl,
