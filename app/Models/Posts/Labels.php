@@ -9,6 +9,7 @@ class Labels extends Model
     protected $table = 'posts_labels';
     public $timestamps = false;
     protected $fillable = ['name', 'color'];
+    protected $hidden = ['pivot'];
 
     public function posts()
     {

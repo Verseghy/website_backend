@@ -9,6 +9,7 @@ class Authors extends Model
     protected $table = 'posts_authors';
     public $timestamps = false;
     protected $fillable = ['name', 'description'];
+    protected $hidden = ['image_id'];
 
     public function posts()
     {
