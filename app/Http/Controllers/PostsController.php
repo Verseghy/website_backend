@@ -36,4 +36,13 @@ class PostsController extends Controller
         $posts=self::_resolvedPosts()->where('author_id', '=', $authorId)->paginate(self::PAGESIZE);
         return self::_makeThumbnail($posts);
     }
+    
+    public function byLabel(Request $request)
+    {
+        $labelId = $request->input('id');
+        $posts = self::_resolvedPosts()->whereHas('labels', function ($query) use ($labelId) {
+            $query->where('id', '=', $labelId);
+        })->paginate(self::PAGESIZE);
+        return self::_makeThumbnail($posts);
+    }
 }

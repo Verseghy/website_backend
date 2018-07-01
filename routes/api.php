@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('posts')->group(function () {
     Route::get('getPost', 'PostsController@byId');
     Route::get('getPostsByAuthor', 'PostsController@byAuthor');
+    Route::get('getPostsByLabel', 'PostsController@byLabel');
 });
