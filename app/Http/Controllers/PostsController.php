@@ -9,16 +9,6 @@ class PostsController extends Controller
 {
     const PAGESIZE = 20;
 
-    private static function _resolvedPosts()
-    {
-        return Posts::with(['index_image','author','author.image','images','labels'])->orderBy('date', 'desc');
-    }
-
-    private static function _makeThumbnail($posts)
-    {
-        return $posts->makeHidden(['images','content']);
-    }
-
     public function byId(Request $request)
     {
         $postId = $request->input('id');
@@ -44,5 +34,15 @@ class PostsController extends Controller
             $query->where('id', '=', $labelId);
         })->paginate(self::PAGESIZE);
         return self::_makeThumbnail($posts);
+    }
+
+    private static function _resolvedPosts()
+    {
+        return Posts::with(['index_image','author','author.image','images','labels'])->orderBy('date', 'desc');
+    }
+
+    private static function _makeThumbnail($posts)
+    {
+        return $posts->makeHidden(['images','content']);
     }
 }
