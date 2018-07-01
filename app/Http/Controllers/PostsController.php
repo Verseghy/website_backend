@@ -29,4 +29,11 @@ class PostsController extends Controller
             return $post;
         }
     }
+    
+    public function byAuthor(Request $request)
+    {
+        $authorId = $request->input('id');
+        $posts=self::_resolvedPosts()->where('author_id', '=', $authorId)->paginate(self::PAGESIZE);
+        return self::_makeThumbnail($posts);
+    }
 }
