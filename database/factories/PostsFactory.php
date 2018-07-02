@@ -44,8 +44,8 @@ $factory->define(Authors::class, function (Faker $faker) {
 $factory->define(Posts::class, function (Faker $faker) {
     return [
         'title'=>$faker->sentence(3, false),
-        'description'=>$faker->sentence,
-        'content'=>$faker->text,
+        'description'=>implode($faker->sentences($faker->numberBetween(1,5))),
+        'content'=>implode('\n\n',$faker->paragraphs($faker->numberBetween(3,7))),
         'author_id'=>Authors::inRandomOrder()->first()->id,
         'index_image'=>factory(Images::class)->create()->id,
         'date'=>$faker->dateTime,
