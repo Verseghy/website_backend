@@ -43,9 +43,9 @@ class CreateCanteenDb extends Migration
     {
         Schema::disableForeignKeyConstraints();
             
-            Schema::dropIfExists('canteen_data');
-            Schema::dropIfExists('canteen_menus');
-            Schema::dropIfExists('canteen_pivot_menus_data');
+        Schema::dropIfExists('canteen_data');
+        Schema::dropIfExists('canteen_menus');
+        Schema::dropIfExists('canteen_pivot_menus_data');
             
         Schema::enableForeignKeyConstraints();
     }
