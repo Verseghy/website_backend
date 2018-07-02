@@ -39,7 +39,7 @@ class CreatePostsDb extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->unsignedInteger('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
             $table->timestamp('date')->nullable();
