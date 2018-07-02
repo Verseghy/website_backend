@@ -18,8 +18,8 @@ class CreateEventsDb extends Migration
             $table->dateTime('date_from');
             $table->dateTime('date_to');
             $table->string('title');
-            $table->string('description');
-            $table->string('color');
+            $table->string('description')->nullable();
+            $table->string('color')->nullable();
         });
     }
 
