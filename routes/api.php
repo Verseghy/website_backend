@@ -21,4 +21,5 @@ Route::prefix('posts')->group(function () {
     Route::get('getPost', 'PostsController@byId');
     Route::get('getPostsByAuthor', 'PostsController@byAuthor');
     Route::get('getPostsByLabel', 'PostsController@byLabel');
+    Route::get('listPosts','PostsController@listPosts');
 });
