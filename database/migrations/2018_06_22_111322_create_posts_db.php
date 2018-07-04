@@ -31,14 +31,14 @@ class CreatePostsDb extends Migration
         Schema::create('posts_authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->longText('description');
             $table->unsignedInteger('image_id')->nullable();
         });
 
         Schema::create('posts_data', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->unsignedInteger('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
