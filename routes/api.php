@@ -24,6 +24,6 @@ Route::prefix('posts')->group(function () {
     Route::get('listPosts', 'PostsController@listPosts');
 });
 
-Route::prefix('events')->group(function (){
-    Route::get('getEventsByMonth','EventsController@byMonth');
+Route::prefix('events')->group(function () {
+    Route::get('getEventsByMonth', 'EventsController@byMonth');
 });
