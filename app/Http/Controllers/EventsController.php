@@ -14,7 +14,7 @@ class EventsController extends Controller
         $month = $request->input('month');
         
         $monthStart = mktime(0, 0, 0, $month, 1, $year);
-        $monthEnd = mktime(0, 0, 0, $month+1, 0, $year);
+        $monthEnd = mktime(0, 0, 0, $month+1, 1, $year);
 
         // Find overlap
         // https://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
