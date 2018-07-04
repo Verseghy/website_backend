@@ -11,7 +11,7 @@ $factory->define(Events::class, function (Faker $faker) {
         'date_from'=>$startDate,
         'date_to'=>$endDate,
         'title'=>$faker->sentence(3, false),
-        'description'=>$faker->sentences($faker->numberBetween(1, 5), true),
+        'description'=>$faker->sentence(3, false),
         'color'=>$faker->hexColor,
     ];
 });
