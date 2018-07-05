@@ -9,6 +9,7 @@ class Menus extends Model
     protected $table = 'canteen_menus';
     public $timestamps = false;
     protected $fillable = ['menu', 'type'];
+    protected $hidden = ['pivot'];
     
     public function canteens()
     {
