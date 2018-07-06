@@ -27,3 +27,7 @@ Route::prefix('posts')->group(function () {
 Route::prefix('events')->group(function () {
     Route::get('getEventsByMonth', 'EventsController@byMonth');
 });
+
+Route::prefix('canteen')->group(function () {
+    Route::get('getCanteenMenus', 'CanteensController@getMenus');
+});
