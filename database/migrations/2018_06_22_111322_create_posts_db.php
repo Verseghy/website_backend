@@ -38,6 +38,7 @@ class CreatePostsDb extends Migration
         Schema::create('posts_data', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
+            $table->string('color')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->unsignedInteger('index_image')->nullable();
