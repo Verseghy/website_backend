@@ -12,6 +12,6 @@ class CanteensController extends Controller
     public function getMenus(Request $request)
     {
         $type = $request->input('id');
-        return Menus::where('type','=',$type)->orderBy('menu')->get();
+        return Menus::where('type', '=', $type)->orderBy('menu')->get();
     }
 }
