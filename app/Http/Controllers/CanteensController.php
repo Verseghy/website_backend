@@ -24,9 +24,9 @@ class CanteensController extends Controller
         $date = new Carbon;
         $date->setIsoDate($year, $week);
         
-        $start = $date->startOfWeek()->toDateString();
-        $end = $date->endOfWeek()->toDateString();
+        $start = $date->startOfWeek()->toDateString() . ' 00:00:00';
+        $end = $date->endOfWeek()->toDateString() .' 00:00:00';
         
-        return Canteens::with('menus')->whereDate('date', '>=', $start)->whereDate('date', '<=', $end)->orderBy('date')->get();
+        return Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date')->get();
     }
 }
