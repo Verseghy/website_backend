@@ -8,7 +8,7 @@ class Posts extends Model
 {
     protected $table = 'posts_data';
     public $timestamps = false;
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'color'];
     protected $hidden = ['author_id'];
 
     public function author()

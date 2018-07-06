@@ -50,5 +50,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'index_image'=>factory(Images::class)->create()->id,
         'date'=>$faker->dateTime,
         'type'=>$faker->numberBetween(0, 2),
+        'color'=>$faker->hexColor,
     ];
 });
