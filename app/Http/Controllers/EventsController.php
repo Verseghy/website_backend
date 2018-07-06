@@ -13,13 +13,11 @@ class EventsController extends Controller
         $year = $request->input('year');
         $month = $request->input('month');
         
-        if (is_null($year) or is_null($month))
-        {
+        if (is_null($year) or is_null($month)) {
             return response()->json([], 400);
         }
         
-        if ($month>12 or $month<1)
-        {
+        if ($month>12 or $month<1) {
             return response()->json([], 400);
         }
         
@@ -32,8 +30,7 @@ class EventsController extends Controller
 
         $events = $overlap->orderBy('date_from')->get();
 
-        if ($events->isEmpty())
-        {
+        if ($events->isEmpty()) {
             return response()->json([], 404);
         }
         return $events;

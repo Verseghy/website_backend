@@ -12,14 +12,12 @@ class PostsController extends Controller
     public function byId(Request $request)
     {
         $postId = $request->input('id');
-        if (is_null($postId))
-        {
+        if (is_null($postId)) {
             return response()->json([], 400);
         }
         
         $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
-        if (is_null($post))
-        {
+        if (is_null($post)) {
             return response()->json([], 404);
         }
         return $post;
@@ -29,8 +27,7 @@ class PostsController extends Controller
     {
         $authorId = $request->input('id');
         
-        if (is_null($authorId))
-        {
+        if (is_null($authorId)) {
             return response()->json([], 400);
         }
         
@@ -52,8 +49,7 @@ class PostsController extends Controller
     {
         $labelId = $request->input('id');
         
-        if (is_null($labelId))
-        {
+        if (is_null($labelId)) {
             return response()->json([], 400);
         }
         
@@ -78,12 +74,10 @@ class PostsController extends Controller
     
     private static function _dataOr404($data)
     {
-        if ($data->isEmpty())
-        {
+        if ($data->isEmpty()) {
             return response()->json([], 404);
         } else {
             return $data;
         }
     }
-    
 }

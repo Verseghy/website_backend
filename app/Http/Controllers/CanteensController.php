@@ -14,18 +14,15 @@ class CanteensController extends Controller
     {
         $type = $request->input('id');
         
-        if (is_null($type))
-        {
+        if (is_null($type)) {
             return response()->json([], 400);
-        } elseif ($type<0 or $type>2)
-        {
+        } elseif ($type<0 or $type>2) {
             return response()->json([], 400);
         }
         
         $menus = Menus::where('type', '=', $type)->orderBy('menu')->get();
         
-        if ($menus->isEmpty())
-        {
+        if ($menus->isEmpty()) {
             return repsponse()->json([], 404);
         }
         
@@ -37,8 +34,7 @@ class CanteensController extends Controller
         $year = $request->input('year');
         $week = $request->input('week');
         
-        if (is_null($year) or is_null($week))
-        {
+        if (is_null($year) or is_null($week)) {
             return response()->json([], 400);
         }
         
@@ -50,8 +46,7 @@ class CanteensController extends Controller
         
         $canteens = Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date')->get();
         
-        if ($canteens->isEmpty())
-        {
+        if ($canteens->isEmpty()) {
             return response()->json([], 404);
         }
         
