@@ -41,7 +41,6 @@ class EventsController extends Controller
     
     private function _after($request, $result)
     {
-        
         if ($result->isEmpty()) {
             return response()->json([], 404);
         }
