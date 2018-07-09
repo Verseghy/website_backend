@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Events;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -30,9 +31,39 @@ class EventsController extends Controller
 
         $events = $overlap->orderBy('date_from')->get();
 
-        if ($events->isEmpty()) {
+        return self::_after($request, $events);
+    }
+    
+    private static function _modSince($request)
+    {
+        return new Carbon(str_replace(':', '', $request->header('If-modified-since', ': 1970-01-01')));
+    }
+    
+    private function _after($request, $result)
+    {
+        
+        if ($result->isEmpty()) {
             return response()->json([], 404);
         }
-        return $events;
+        
+        
+        $modSince = self::_modSince($request);
+        
+        
+        // Find max date
+        $maxDate = new Carbon('1970-01-01');
+        $result->each(function ($post) use ($maxDate) {
+            if ($maxDate->lt($post->updated_at)) {
+                // set the time
+                // Sadly, Carbon::setTimeFrom(Carbon $other) does not seem to exist, only in the docs
+                $maxDate->timestamp = $post->updated_at->timestamp;
+            }
+        });
+
+        if ($maxDate->lte($modSince)) {
+            return response()->json([], 304);
+        }
+        
+        return $result;
     }
 }
