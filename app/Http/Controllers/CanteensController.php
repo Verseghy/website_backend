@@ -22,11 +22,9 @@ class CanteensController extends Controller
         
         $menus = Menus::where('type', '=', $type)->orderBy('menu')->get();
         
-        if ($menus->isEmpty()) {
-            return repsponse()->json([], 404);
-        }
         
-        return $menus;
+        
+        return self::_after($request, $menus);
     }
 
     public function byWeek(Request $request)
@@ -46,10 +44,43 @@ class CanteensController extends Controller
         
         $canteens = Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date')->get();
         
-        if ($canteens->isEmpty()) {
+        
+        
+        return self::_after($request, $canteens);
+    }
+    
+    
+    private static function _modSince($request)
+    {
+        return new Carbon(str_replace(':', '', $request->header('If-modified-since', ': 1970-01-01')));
+    }
+    
+    private function _after($request, $result)
+    {
+        
+        if ($result->isEmpty()) {
             return response()->json([], 404);
         }
         
-        return $canteens;
+        
+        $modSince = self::_modSince($request);
+        
+        
+        // Find max date
+        $maxDate = new Carbon('1970-01-01');
+        $result->each(function ($post) use ($maxDate) {
+            if ($maxDate->lt($post->updated_at)) {
+                // set the time
+                // Sadly, Carbon::setTimeFrom(Carbon $other) does not seem to exist, only in the docs
+                $maxDate->timestamp = $post->updated_at->timestamp;
+            }
+        });
+
+        if ($maxDate->lte($modSince)) {
+            return response()->json([], 304);
+        }
+        
+        return $result;
     }
+    
 }
