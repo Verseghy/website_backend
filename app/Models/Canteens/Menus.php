@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Menus extends Model
 {
     protected $table = 'canteen_menus';
-    public $timestamps = false;
     protected $fillable = ['menu', 'type'];
-    protected $hidden = ['pivot'];
+    protected $hidden = ['pivot', 'created_at','updated_at'];
+    protected $touches = ['canteens'];
     
     public function canteens()
     {
