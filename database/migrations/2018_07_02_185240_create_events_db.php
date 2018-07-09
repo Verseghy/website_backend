@@ -20,6 +20,7 @@ class CreateEventsDb extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('color')->nullable();
+            $table->timestamps();
         });
     }
 
