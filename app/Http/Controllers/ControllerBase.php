@@ -10,11 +10,8 @@ class ControllerBase extends Controller
 {
     protected static function _after($request, $result, $maxDate)
     {
-    
-        if (is_null($maxDate))
-        {
-            if ($result instanceof \Illuminate\Database\Eloquent\Builder)
-            {
+        if (is_null($maxDate)) {
+            if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
                 $maxDate = $result->latest('updated_at')->first()->updated_at;
                 $result = $result->get();
             }
@@ -22,17 +19,14 @@ class ControllerBase extends Controller
     
     
         // check for null
-        if (is_null($result))
-        {
-                return response()->json([], 404);
+        if (is_null($result)) {
+            return response()->json([], 404);
         }
     
     
         // check for empty arrays
-        if ($result instanceof \Illuminate\Database\Eloquent\Collection)
-        {
-            if ($result->isEmpty())
-            {
+        if ($result instanceof \Illuminate\Database\Eloquent\Collection) {
+            if ($result->isEmpty()) {
                 return response()->json([], 404);
             }
         }
@@ -43,7 +37,6 @@ class ControllerBase extends Controller
             return response()->json([], 304);
         }
         return $result;
-        
     }
     
     protected static function _modSince($request)

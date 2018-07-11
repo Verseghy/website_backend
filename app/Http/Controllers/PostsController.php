@@ -60,10 +60,8 @@ class PostsController extends ControllerBase
 
     protected static function _after($request, $result, $maxDate = null)
     {
-        if (is_null($maxDate))
-        {
-            if ($result instanceof \Illuminate\Database\Eloquent\Builder)
-            {
+        if (is_null($maxDate)) {
+            if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
                 $maxDate = $result->latest('updated_at')->first()->updated_at;
                 $result = self::_makeThumbnail($result);
             }
