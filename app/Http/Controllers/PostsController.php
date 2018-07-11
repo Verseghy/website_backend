@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use Carbon\Carbon;
 
-class PostsController extends Controller
+class PostsController extends ControllerBase
 {
     const PAGESIZE = 20;
 
@@ -18,17 +18,8 @@ class PostsController extends Controller
         }
         
         $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
-        if (is_null($post)) {
-            return response()->json([], 404);
-        }
         
-        $checkDate = self::_modSince($request);
-        
-        if ($post->updated_at->lte($checkDate)) {
-            return response()->json([], 304);
-        }
-        
-        return $post;
+        return self::_after($request, $post, $post->updated_at);
     }
     
     public function byAuthor(Request $request)
@@ -40,8 +31,7 @@ class PostsController extends Controller
         }
         
         $posts=self::_resolvedPosts()->where('author_id', '=', $authorId);
-        
-        
+
         return self::_after($request, $posts);
     }
     
@@ -65,8 +55,21 @@ class PostsController extends Controller
         });
         
         
-        
         return self::_after($request, $posts);
+    }
+
+    protected static function _after($request, $result, $maxDate = null)
+    {
+        if (is_null($maxDate))
+        {
+            if ($result instanceof \Illuminate\Database\Eloquent\Builder)
+            {
+                $maxDate = $result->latest('updated_at')->first()->updated_at;
+                $result = self::_makeThumbnail($result);
+            }
+        }
+        
+        return parent::_after($request, $result, $maxDate);
     }
 
     private static function _resolvedPosts()
@@ -77,38 +80,5 @@ class PostsController extends Controller
     private static function _makeThumbnail($posts)
     {
         return $posts->paginate(self::PAGESIZE)->makeHidden(['images','content']);
-    }
-
-    private static function _modSince($request)
-    {
-        return new Carbon(str_replace(':', '', $request->header('If-modified-since', ': 1970-01-01')));
-    }
-    
-    private static function _after($request, $result)
-    {
-        $result = self::_makeThumbnail($result);
-        
-        if ($result->isEmpty()) {
-            return response()->json([], 404);
-        }
-    
-        $modSince = self::_modSince($request);
-        
-        
-        // Find max date
-        $maxDate = new Carbon('1970-01-01');
-        $result->each(function ($post) use ($maxDate) {
-            if ($maxDate->lt($post->updated_at)) {
-                // set the time
-                // Sadly, Carbon::setTimeFrom(Carbon $other) does not seem to exist, only in the docs
-                $maxDate->timestamp = $post->updated_at->timestamp;
-            }
-        });
-
-        if ($maxDate->lte($modSince)) {
-            return response()->json([], 304);
-        }
-        
-        return $result;
     }
 }
