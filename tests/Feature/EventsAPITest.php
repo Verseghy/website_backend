@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EventsAPITest extends TestsBase
 {
-    
     protected $api = '/api/events';
     
     public function testExample()

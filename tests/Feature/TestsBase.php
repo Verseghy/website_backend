@@ -11,21 +11,19 @@ class TestsBase extends TestCase
     protected function API($url, $params = '', $headers = array())
     {
         $root = $this->api;
-        if (substr($root,-1)!=='/')
-        {
+        if (substr($root, -1)!=='/') {
             $root = $root.'/';
         }
-        if (substr($params,-1)!=='?')
-        {
+        if (substr($params, -1)!=='?') {
             $params = '?'.$params;
         }
     
-        return $this->call('GET', $root.$url.$params , [], [], [], $headers);
+        return $this->call('GET', $root.$url.$params, [], [], [], $headers);
     }
     
     protected function checkResponseCode($response, $code)
     {
-        $this->assertEquals($response->status(),$code);
+        $this->assertEquals($response->status(), $code);
     }
     
     protected function assertValidResponse($response)
@@ -33,5 +31,4 @@ class TestsBase extends TestCase
         $response->assertOk();
         $response->assertJson([]);
     }
-    
 }

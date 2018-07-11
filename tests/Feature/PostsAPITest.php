@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostsAPITest extends TestsBase
 {
-    
     protected $api = '/api/posts';
     
     /**
@@ -31,7 +30,6 @@ class PostsAPITest extends TestsBase
      */
     public function listPosts()
     {
-    
         $endpoint = 'listPosts';
     
         // Valid request without parameter
@@ -47,7 +45,7 @@ class PostsAPITest extends TestsBase
         $response = $this->API($endpoint, 'page=-4');
         $this->assertValidResponse($response);
         
-        // Valid request for non-existent resource 
+        // Valid request for non-existent resource
         $response = $this->API($endpoint, 'page=5000000');
         $this->checkResponseCode($response, 404);
         
@@ -79,8 +77,6 @@ class PostsAPITest extends TestsBase
         // No resource
         $response = $this->API($endpoint, 'id=-6');
         $this->checkResponseCode($response, 404);
-        
-        
     }
     
     public function byLabel()

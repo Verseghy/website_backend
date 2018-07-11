@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CanteenAPITest extends TestsBase
 {
-
     protected $api = '/api/canteen';
 
     /**
@@ -47,5 +46,4 @@ class CanteenAPITest extends TestsBase
         $response = $this->API($endpoint);
         $this->checkResponseCode($response, 400);
     }
-    
 }
