@@ -23,7 +23,7 @@ class CanteensController extends Controller
         $menus = Menus::where('type', '=', $type)->orderBy('menu')->get();
         
         if ($menus->isEmpty()) {
-            return repsponse()->json([], 404);
+            return response()->json([], 404);
         }
         
         return $menus;
