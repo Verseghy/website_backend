@@ -6,6 +6,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\Models\Canteens;
+use App\Models\Canteens\Menus;
+use Carbon\Carbon;
+
 class CanteenAPITest extends TestsBase
 {
     protected $api = '/api/canteen';
@@ -17,6 +21,7 @@ class CanteenAPITest extends TestsBase
      */
     public function testExample()
     {
+        $this->setupDB();
         $this->getMenus();
         $this->getCanteen();
     }
@@ -25,9 +30,12 @@ class CanteenAPITest extends TestsBase
     {
         $endpoint = 'getCanteenMenus';
         
+        
+        $validResp = array($this->meal->toArray());
+        
         // Valid request
         $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response,$validResp);
         
         // Invalid request
         $response = $this->API($endpoint, 'id=6');
@@ -38,12 +46,45 @@ class CanteenAPITest extends TestsBase
     {
         $endpoint = 'getCanteenByWeek';
         
+        $year = Carbon::now()->year;
+        $week = Carbon::now()->weekOfYear;
+        
         // Valid request
-        $response = $this->API($endpoint, 'year=1999&week=5');
-        $this->assertContains($response->status(), array(404,200));
+        $response = $this->API($endpoint, 'year='.$year.'&week='.$week);
+        $this->assertValidResponse($response, array($this->canteen->toArray()));
         
         // Invalid request
         $response = $this->API($endpoint);
         $this->checkResponseCode($response, 400);
     }
+    
+    public function setupDB()
+    {
+        $this->soup = new Menus();
+        $this->meal = new Menus();
+        $this->dessert = new Menus();
+        
+        $this->soup->type = 0;
+        $this->meal->type = 1;
+        $this->dessert->type = 2;
+        
+        $this->soup->menu = 'Soup';
+        $this->meal->menu = 'Meal';
+        $this->dessert->menu = 'Nothing';
+        
+        $this->soup->save();
+        $this->meal->save();
+        $this->dessert->save();
+        
+        $this->canteen = new Canteens;
+        $this->canteen->date = Carbon::now();
+        
+        $this->canteen->menus()->attach($this->soup);
+        $this->canteen->menus()->attach($this->meal);
+        $this->canteen->menus()->attach($this->dessert);
+        
+        $this->canteen->save();
+    }   
+    
+    
 }
