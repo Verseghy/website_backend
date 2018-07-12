@@ -6,6 +6,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\Models\Posts;
+use App\Models\Posts\Labels;
+use App\Models\Posts\Images;
+use App\Models\Posts\Authors;
+
+
 class PostsAPITest extends TestsBase
 {
     protected $api = '/api/posts';
@@ -17,6 +23,8 @@ class PostsAPITest extends TestsBase
      */
     public function testExample()
     {
+        $this->setupDB();
+    
         $this->listPosts();
         $this->byId();
         $this->byLabel();
@@ -32,21 +40,24 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'listPosts';
     
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        
+        
         // Valid request without parameter
         $response = $this->API($endpoint);
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Valid request with optional parameter
         $response = $this->API($endpoint, 'page=1');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Valid request with invalid parameter
         // ( ignores it )
         $response = $this->API($endpoint, 'page=-4');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Valid request for non-existent resource
-        $response = $this->API($endpoint, 'page=5000000');
+        $response = $this->API($endpoint, 'page=2');
         $this->checkResponseCode($response, 404);
         
         
@@ -64,9 +75,11 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPost';
     
+        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray();
+    
         // Valid request
         $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Invalid request
         // ( missing parameter )
@@ -75,7 +88,7 @@ class PostsAPITest extends TestsBase
         
         // Valid request
         // No resource
-        $response = $this->API($endpoint, 'id=-6');
+        $response = $this->API($endpoint, 'id=2');
         $this->checkResponseCode($response, 404);
     }
     
@@ -83,9 +96,11 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPostsByLabel';
     
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+    
         // Valid request
         $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Invalid request
         // ( missing parameter )
@@ -94,7 +109,7 @@ class PostsAPITest extends TestsBase
         
         // Valid request
         // No resource
-        $response = $this->API($endpoint, 'id=-6');
+        $response = $this->API($endpoint, 'id=2');
         $this->checkResponseCode($response, 404);
     }
     
@@ -102,9 +117,11 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPostsByAuthor';
     
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+    
         // Valid request
         $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response);
+        $this->assertValidResponse($response, $validResponse);
         
         // Invalid request
         // ( missing parameter )
@@ -116,4 +133,20 @@ class PostsAPITest extends TestsBase
         $response = $this->API($endpoint, 'id=-6');
         $this->checkResponseCode($response, 404);
     }
+    
+    public function setupDB()
+    {
+        factory(Authors::class)->create();
+        $label = factory(Labels::class, 1)->create();
+        $this->post = factory(Posts::class, 1)->create()->first();
+        $this->post->labels()->attach($label);
+        $this->post->save();
+        factory(Images::class, 'postImage', 2)->create();
+        
+        $this->post->labels;
+        $this->post->author;
+        $this->post->index_image;
+        $this->post->iamges;
+    }
+    
 }
