@@ -56,6 +56,10 @@ class CanteenAPITest extends TestsBase
         // Invalid request
         $response = $this->API($endpoint);
         $this->checkResponseCode($response, 400);
+        
+        // Valid request, no data
+        $response = $this->API('year=1970&week=1');
+        $this->checkResponseCode($response, 404);
     }
     
     public function setupDB()
