@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TestsBase extends TestCase
 {
+    use RefreshDatabase;
     protected function API($url, $params = '', $headers = array())
     {
         $root = $this->api;
@@ -26,9 +27,9 @@ class TestsBase extends TestCase
         $this->assertEquals($response->status(), $code);
     }
     
-    protected function assertValidResponse($response)
+    protected function assertValidResponse($response, $content = array())
     {
         $response->assertOk();
-        $response->assertJson([]);
+        $response->assertJson($content);
     }
 }
