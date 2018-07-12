@@ -39,12 +39,11 @@ class EventsAPITest extends TestsBase
         // Valid request, no data
         $response = $this->API($endpoint, 'year=1970&month=1');
         $this->checkResponseCode($response, 404);
-        
     }
     
     public function setupDB()
     {
-        $this->event = factory(Events::class)->create();    
+        $this->event = factory(Events::class)->create();
         
         $this->date = new Carbon();
         $this->event->date_from = $this->date;

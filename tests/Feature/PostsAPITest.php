@@ -11,7 +11,6 @@ use App\Models\Posts\Labels;
 use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
-
 class PostsAPITest extends TestsBase
 {
     protected $api = '/api/posts';
@@ -148,5 +147,4 @@ class PostsAPITest extends TestsBase
         $this->post->index_image;
         $this->post->iamges;
     }
-    
 }

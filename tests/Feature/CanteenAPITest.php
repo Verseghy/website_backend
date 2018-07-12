@@ -35,7 +35,7 @@ class CanteenAPITest extends TestsBase
         
         // Valid request
         $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response,$validResp);
+        $this->assertValidResponse($response, $validResp);
         
         // Invalid request
         $response = $this->API($endpoint, 'id=6');
@@ -88,7 +88,5 @@ class CanteenAPITest extends TestsBase
         $this->canteen->menus()->attach($this->dessert);
         
         $this->canteen->save();
-    }   
-    
-    
+    }
 }
