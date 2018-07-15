@@ -70,7 +70,7 @@ class CanteenAPITest extends TestsBase
             $this->checkResponseCode($response, 400);
             
             // Valid request, no data
-            $response = $this->API('year=1970&week=1');
+            $response = $this->API($endpoint, 'year=1970&week=1');
             $this->checkResponseCode($response, 404);
         } else {
             $year = Carbon::now()->year;
