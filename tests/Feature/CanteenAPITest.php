@@ -14,6 +14,7 @@ class CanteenAPITest extends TestsBase
 {
     protected $api = '/api/canteen';
 
+    protected $dbSetUp = false;
     /**
      * A basic test example.
      *
@@ -31,35 +32,50 @@ class CanteenAPITest extends TestsBase
         $endpoint = 'getCanteenMenus';
         
         
-        $validResp = array($this->meal->toArray());
+        if (!$this->dbSetUp) {
+            // Invalid request
+            $response = $this->API($endpoint, 'id=6');
+            $this->checkResponseCode($response, 400);
+
+
+            // Invalid request
+            $response = $this->API($endpoint);
+            $this->checkResponseCode($response, 400);
+
+
+            // Valid request, no data alaviable
+            $response = $this->API($endpoint, 'id=1');
+            $this->checkResponseCode($response, 404);
+        } else {
+            $validResp = array($this->meal->toArray());
         
-        // Valid request
-        $response = $this->API($endpoint, 'id=1');
-        $this->assertValidResponse($response, $validResp);
-        
-        // Invalid request
-        $response = $this->API($endpoint, 'id=6');
-        $this->checkResponseCode($response, 400);
+            // Valid request
+            $response = $this->API($endpoint, 'id=1');
+            $this->assertValidResponse($response, $validResp);
+        }
     }
     
     public function getCanteen()
     {
         $endpoint = 'getCanteenByWeek';
         
-        $year = Carbon::now()->year;
-        $week = Carbon::now()->weekOfYear;
         
-        // Valid request
-        $response = $this->API($endpoint, 'year='.$year.'&week='.$week);
-        $this->assertValidResponse($response, array($this->canteen->toArray()));
-        
-        // Invalid request
-        $response = $this->API($endpoint);
-        $this->checkResponseCode($response, 400);
-        
-        // Valid request, no data
-        $response = $this->API('year=1970&week=1');
-        $this->checkResponseCode($response, 404);
+        if (!$this->dbSetUp) {
+            // Invalid request
+            $response = $this->API($endpoint);
+            $this->checkResponseCode($response, 400);
+            
+            // Valid request, no data
+            $response = $this->API('year=1970&week=1');
+            $this->checkResponseCode($response, 404);
+        } else {
+            $year = Carbon::now()->year;
+            $week = Carbon::now()->weekOfYear;
+            
+            // Valid request
+            $response = $this->API($endpoint, 'year='.$year.'&week='.$week);
+            $this->assertValidResponse($response, array($this->canteen->toArray()));
+        }
     }
     
     public function setupDB()
@@ -88,5 +104,7 @@ class CanteenAPITest extends TestsBase
         $this->canteen->menus()->attach($this->dessert);
         
         $this->canteen->save();
+        
+        $this->dbSetUp = true;
     }
 }
