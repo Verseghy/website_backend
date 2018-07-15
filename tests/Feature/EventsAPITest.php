@@ -36,6 +36,10 @@ class EventsAPITest extends TestsBase
         $response = $this->API($endpoint);
         $this->checkResponseCode($response, 400);
         
+        // Invalid request
+        $response = $this->API($endpoint, 'year=1999&month=13');
+        $this->checkResponseCode($response, 400);
+        
         // Valid request, no data
         $response = $this->API($endpoint, 'year=1970&month=1');
         $this->checkResponseCode($response, 404);
