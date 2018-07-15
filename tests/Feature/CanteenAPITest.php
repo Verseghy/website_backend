@@ -22,7 +22,11 @@ class CanteenAPITest extends TestsBase
      */
     public function testExample()
     {
+        $this->getMenus();
+        $this->getCanteen();
+        
         $this->setupDB();
+        
         $this->getMenus();
         $this->getCanteen();
     }
