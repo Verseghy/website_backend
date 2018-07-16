@@ -31,7 +31,7 @@ class TestsBase extends TestCase
     
     protected function checkResponseCode($response, $code)
     {
-        $this->assertEquals($response->status(), $code);
+        $this->assertEquals($code, $response->status());
     }
     
     protected function assertValidResponse($response, $content = array())
