@@ -62,12 +62,12 @@ class CanteenAPITest extends TestsBase
             $this->assertValidResponse($response, $validResp);
             
             // Valid request with if-mod-since header
-            // (new data)            
+            // (new data)
             $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
             $this->assertValidResponse($response, $validResp);
             
             // Valid request with if-mod-since header
-            // (not modified) 
+            // (not modified)
             $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
             $this->checkResponseCode($response, 304);
         }
@@ -100,12 +100,12 @@ class CanteenAPITest extends TestsBase
             $this->assertValidResponse($response, $validResponse);
             
             // Valid request with if-mod-since header
-            // (new data)            
+            // (new data)
             $response = $this->API($endpoint, 'year='.$year.'&week='.$week, ['If-modified-since'=>$oldDate]);
             $this->assertValidResponse($response, $validResponse);
             
             // Valid request with if-mod-since header
-            // (not modified) 
+            // (not modified)
             $response = $this->API($endpoint, 'year='.$year.'&week='.$week, ['If-modified-since'=>$farDate]);
             $this->checkResponseCode($response, 304);
         }

@@ -21,8 +21,7 @@ class TestsBase extends TestCase
         
         $actual_headers = array();
         
-        foreach($headers as $header => $value)
-        {
+        foreach ($headers as $header => $value) {
             $actual_headers['HTTP_'.$header] = $value;
         }
         

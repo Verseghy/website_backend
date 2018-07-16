@@ -20,8 +20,7 @@ class PostsController extends ControllerBase
         $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
         
         $maxDate = null;
-        if (!is_null($post))
-        {
+        if (!is_null($post)) {
             $maxDate=$post->updated_at;
         }
         
@@ -71,8 +70,7 @@ class PostsController extends ControllerBase
                 $query = $maxDate = $result->latest('updated_at')->first();
                 
                 $maxDate = null;
-                if (!is_null($query))
-                {
+                if (!is_null($query)) {
                     $maxDate = $query->updated_at;
                 }
                 

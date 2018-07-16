@@ -15,8 +15,7 @@ class ControllerBase extends Controller
                 $query = $result;
                 $result = $query->get();
                 
-                if (!$result->isEmpty())
-                {
+                if (!$result->isEmpty()) {
                     $maxDate = $query->latest('updated_at')->first()->updated_at;
                 }
             }
