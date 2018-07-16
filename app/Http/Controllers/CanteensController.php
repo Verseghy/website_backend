@@ -21,12 +21,9 @@ class CanteensController extends ControllerBase
         }
         
         $menus = Menus::where('type', '=', $type)->orderBy('menu');
+
         
-        if ($menus->isEmpty()) {
-            return response()->json([], 404);
-        }
-        
-        return self::_after($request, $menus);
+        return parent::_after($request, $menus, null);
     }
 
     public function byWeek(Request $request)
@@ -47,6 +44,6 @@ class CanteensController extends ControllerBase
         $canteens = Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date');
 
         
-        return parent::_after($request, $canteens);
+        return parent::_after($request, $canteens, null);
     }
 }
