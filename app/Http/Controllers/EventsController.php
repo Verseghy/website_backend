@@ -31,6 +31,6 @@ class EventsController extends ControllerBase
 
         $events = $overlap->orderBy('date_from');
 
-        return self::_after($request, $events);
+        return self::_after($request, $events, null);
     }
 }
