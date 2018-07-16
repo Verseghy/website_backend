@@ -35,6 +35,7 @@ class CanteenAPITest extends TestsBase
     {
         $endpoint = 'getCanteenMenus';
         
+        $farDate = new Carbon()
         
         if (!$this->dbSetUp) {
             // Invalid request
@@ -56,6 +57,9 @@ class CanteenAPITest extends TestsBase
             // Valid request
             $response = $this->API($endpoint, 'id=1');
             $this->assertValidResponse($response, $validResp);
+            
+            
+            
         }
     }
     
