@@ -12,8 +12,13 @@ class ControllerBase extends Controller
     {
         if (is_null($maxDate)) {
             if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
-                $maxDate = $result->latest('updated_at')->first()->updated_at;
-                $result = $result->get();
+                $query = $result;
+                $result = $query->get();
+                
+                if (!$result->isEmpty())
+                {
+                    $maxDate = $query->latest('updated_at')->first()->updated_at;
+                }
             }
         }
     
