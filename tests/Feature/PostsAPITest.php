@@ -39,7 +39,7 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'listPosts';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
         
         
         // Valid request without parameter
@@ -74,7 +74,7 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPost';
     
-        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray();
+        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -95,7 +95,7 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPostsByLabel';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -116,7 +116,7 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'getPostsByAuthor';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
