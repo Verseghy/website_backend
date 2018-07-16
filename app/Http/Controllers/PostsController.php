@@ -19,7 +19,13 @@ class PostsController extends ControllerBase
         
         $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
         
-        return self::_after($request, $post, $post->updated_at);
+        $maxDate = null;
+        if (!is_null($post))
+        {
+            $maxDate=$post->updated_at;
+        }
+        
+        return self::_after($request, $post, $maxDate);
     }
     
     public function byAuthor(Request $request)
@@ -62,7 +68,14 @@ class PostsController extends ControllerBase
     {
         if (is_null($maxDate)) {
             if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
-                $maxDate = $result->latest('updated_at')->first()->updated_at;
+                $query = $maxDate = $result->latest('updated_at')->first();
+                
+                $maxDate = null;
+                if (!is_null($query))
+                {
+                    $maxDate = $query->updated_at;
+                }
+                
                 $result = self::_makeThumbnail($result);
             }
         }
