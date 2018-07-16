@@ -22,7 +22,9 @@ class CanteensController extends ControllerBase
         
         $menus = Menus::where('type', '=', $type)->orderBy('menu');
         
-        
+        if ($menus->isEmpty()) {
+            return response()->json([], 404);
+        }
         
         return self::_after($request, $menus);
     }
@@ -40,7 +42,7 @@ class CanteensController extends ControllerBase
         $date->setIsoDate($year, $week);
         
         $start = $date->startOfWeek()->toDateString() . ' 00:00:00';
-        $end = $date->endOfWeek()->toDateString() .' 00:00:00';
+        $end = $date->endOfWeek()->addDay()->toDateString() .' 00:00:00';
         
         $canteens = Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date');
 
