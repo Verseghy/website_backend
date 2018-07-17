@@ -21,7 +21,7 @@ class ControllerBase extends Controller
             }
         }
     
-    
+        
         // check for null
         if (is_null($result)) {
             return response()->json([], 404);
@@ -40,7 +40,7 @@ class ControllerBase extends Controller
         if ($maxDate->lte($modSince)) {
             return response()->json([], 304);
         }
-        return $result;
+        return response()->json($result)->withHeaders(['Last-modified'=>$maxDate->toRfc7231String()]);
     }
     
     protected static function _modSince($request)
