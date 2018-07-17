@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use Carbon\Carbon;
 
-class PostsController extends ControllerBase
+class PostsController extends Controller
 {
+    use ControllerBase
+    {
+        _after as _after_original;
+    }
     const PAGESIZE = 20;
 
     public function byId(Request $request)
@@ -78,7 +82,7 @@ class PostsController extends ControllerBase
             }
         }
         
-        return parent::_after($request, $result, $maxDate);
+        return self::_after_original($request, $result, $maxDate);
     }
 
     private static function _resolvedPosts()

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Events;
 use Carbon\Carbon;
 
-class EventsController extends ControllerBase
+class EventsController extends Controller
 {
+    use ControllerBase;
     public function byMonth(Request $request)
     {
         $year = $request->input('year');
