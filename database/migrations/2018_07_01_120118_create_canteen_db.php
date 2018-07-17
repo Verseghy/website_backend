@@ -16,12 +16,14 @@ class CreateCanteenDb extends Migration
         Schema::create('canteen_data', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('date');
+            $table->timestamps();
         });
         
         Schema::create('canteen_menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('menu');
             $table->unsignedSmallInteger('type');
+            $table->timestamps();
         });
         
         

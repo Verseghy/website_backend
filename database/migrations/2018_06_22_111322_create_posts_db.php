@@ -45,6 +45,7 @@ class CreatePostsDb extends Migration
             $table->unsignedInteger('author_id')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('posts_pivot_labels_data', function (Blueprint $table) {

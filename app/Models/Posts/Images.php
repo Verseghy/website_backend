@@ -9,6 +9,7 @@ class Images extends Model
     protected $table = 'posts_images';
     public $timestamps = false;
     protected $fillable = ['url'];
+    protected $hidden = ['post_id'];
 
     public function post()
     {

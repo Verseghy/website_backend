@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Events;
+use Carbon\Carbon;
 
-class EventsController extends Controller
+class EventsController extends ControllerBase
 {
     public function byMonth(Request $request)
     {
@@ -28,11 +29,8 @@ class EventsController extends Controller
         // https://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
         $overlap = Events::whereDate('date_from', '<=', date('Y-m-d', $monthEnd))->whereDate('date_to', '>=', date('Y-m-d', $monthStart));
 
-        $events = $overlap->orderBy('date_from')->get();
+        $events = $overlap->orderBy('date_from');
 
-        if ($events->isEmpty()) {
-            return response()->json([], 404);
-        }
-        return $events;
+        return self::_after($request, $events, null);
     }
 }

@@ -18,13 +18,19 @@ class TestsBase extends TestCase
         if (substr($params, -1)!=='?') {
             $params = '?'.$params;
         }
-    
-        return $this->call('GET', $root.$url.$params, [], [], [], $headers);
+        
+        $actual_headers = array();
+        
+        foreach ($headers as $header => $value) {
+            $actual_headers['HTTP_'.$header] = $value;
+        }
+        
+        return $this->call('GET', $root.$url.$params, [], [], [], $actual_headers);
     }
     
     protected function checkResponseCode($response, $code)
     {
-        $this->assertEquals($response->status(), $code);
+        $this->assertEquals($code, $response->status());
     }
     
     protected function assertValidResponse($response, $content = array())

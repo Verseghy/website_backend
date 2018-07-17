@@ -39,7 +39,7 @@ class PostsAPITest extends TestsBase
     {
         $endpoint = 'listPosts';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
         
         
         // Valid request without parameter
@@ -60,21 +60,25 @@ class PostsAPITest extends TestsBase
         $this->checkResponseCode($response, 404);
         
         
-        // Valid request, use If-mod-since header
-        // ( Should return 304 not modified )
-        // implemented on antother branch
-        /*
-        $farDate = Carbon::now()->addYear()->toRfc7231String();
-        $response = $this->API($endpont, '', ['If-modified-since'=>$farDate]);
+        $farDate = 'Mon, 4 Jan 2100 00:00:00';
+        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
+        
+        // Valid request with if-mod-since header
+        // (new data)
+        $response = $this->API($endpoint, '', ['If-modified-since'=>$oldDate]);
+        $this->assertValidResponse($response, $validResponse);
+            
+        // Valid request with if-mod-since header
+        // (not modified)
+        $response = $this->API($endpoint, '', ['If-modified-since'=>$farDate]);
         $this->checkResponseCode($response, 304);
-        */
     }
     
     public function byId()
     {
         $endpoint = 'getPost';
     
-        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray();
+        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -89,13 +93,27 @@ class PostsAPITest extends TestsBase
         // No resource
         $response = $this->API($endpoint, 'id=2');
         $this->checkResponseCode($response, 404);
+        
+        
+        $farDate = 'Mon, 4 Jan 2100 00:00:00';
+        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
+        
+        // Valid request with if-mod-since header
+        // (new data)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
+        $this->assertValidResponse($response, $validResponse);
+            
+        // Valid request with if-mod-since header
+        // (not modified)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
+        $this->checkResponseCode($response, 304);
     }
     
     public function byLabel()
     {
         $endpoint = 'getPostsByLabel';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -110,13 +128,27 @@ class PostsAPITest extends TestsBase
         // No resource
         $response = $this->API($endpoint, 'id=2');
         $this->checkResponseCode($response, 404);
+        
+        
+        $farDate = 'Mon, 4 Jan 2100 00:00:00';
+        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
+        
+        // Valid request with if-mod-since header
+        // (new data)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
+        $this->assertValidResponse($response, $validResponse);
+            
+        // Valid request with if-mod-since header
+        // (not modified)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
+        $this->checkResponseCode($response, 304);
     }
     
     public function byAuthor()
     {
         $endpoint = 'getPostsByAuthor';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -131,6 +163,20 @@ class PostsAPITest extends TestsBase
         // No resource
         $response = $this->API($endpoint, 'id=-6');
         $this->checkResponseCode($response, 404);
+        
+        
+        $farDate = 'Mon, 4 Jan 2100 00:00:00';
+        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
+        
+        // Valid request with if-mod-since header
+        // (new data)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
+        $this->assertValidResponse($response, $validResponse);
+            
+        // Valid request with if-mod-since header
+        // (not modified)
+        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
+        $this->checkResponseCode($response, 304);
     }
     
     public function setupDB()

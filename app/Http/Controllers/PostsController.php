@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posts;
+use Carbon\Carbon;
 
-class PostsController extends Controller
+class PostsController extends ControllerBase
 {
     const PAGESIZE = 20;
 
@@ -17,10 +18,13 @@ class PostsController extends Controller
         }
         
         $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
-        if (is_null($post)) {
-            return response()->json([], 404);
+        
+        $maxDate = null;
+        if (!is_null($post)) {
+            $maxDate=$post->updated_at;
         }
-        return $post;
+        
+        return self::_after($request, $post, $maxDate);
     }
     
     public function byAuthor(Request $request)
@@ -32,17 +36,15 @@ class PostsController extends Controller
         }
         
         $posts=self::_resolvedPosts()->where('author_id', '=', $authorId);
-        $posts = self::_makeThumbnail($posts);
-        
-        return self::_dataOr404($posts);
+
+        return self::_after($request, $posts);
     }
     
     public function listPosts(Request $request)
     {
         $posts=self::_resolvedPosts();
-        $posts = self::_makeThumbnail($posts);
         
-        return self::_dataOr404($posts);
+        return self::_after($request, $posts);
     }
     
     public function byLabel(Request $request)
@@ -57,9 +59,26 @@ class PostsController extends Controller
             $query->where('id', '=', $labelId);
         });
         
-        $posts = self::_makeThumbnail($posts);
         
-        return self::_dataOr404($posts);
+        return self::_after($request, $posts);
+    }
+
+    protected static function _after($request, $result, $maxDate = null)
+    {
+        if (is_null($maxDate)) {
+            if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
+                $query = $maxDate = $result->latest('updated_at')->first();
+                
+                $maxDate = null;
+                if (!is_null($query)) {
+                    $maxDate = $query->updated_at;
+                }
+                
+                $result = self::_makeThumbnail($result);
+            }
+        }
+        
+        return parent::_after($request, $result, $maxDate);
     }
 
     private static function _resolvedPosts()
@@ -70,14 +89,5 @@ class PostsController extends Controller
     private static function _makeThumbnail($posts)
     {
         return $posts->paginate(self::PAGESIZE)->makeHidden(['images','content']);
-    }
-    
-    private static function _dataOr404($data)
-    {
-        if ($data->isEmpty()) {
-            return response()->json([], 404);
-        } else {
-            return $data;
-        }
     }
 }
