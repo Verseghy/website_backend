@@ -22,12 +22,12 @@ class EventsController extends ControllerBase
             return response()->json([], 400);
         }
         
-        $monthStart = mktime(0, 0, 0, $month, 1, $year);
-        $monthEnd = mktime(0, 0, 0, $month+1, 1, $year);
+        $monthStart = Carbon::create($year, $month, 1, 0, 0, 0);
+        $monthEnd = Carbon::create($year, $month+1, 1, 0, 0, 0);
 
         // Find overlap
         // https://stackoverflow.com/questions/3269434/whats-the-most-efficient-way-to-test-two-integer-ranges-for-overlap
-        $overlap = Events::whereDate('date_from', '<=', date('Y-m-d', $monthEnd))->whereDate('date_to', '>=', date('Y-m-d', $monthStart));
+        $overlap = Events::whereDate('date_from', '<=', $monthEnd->toDateString())->whereDate('date_to', '>=', $monthStart->toDateString());
 
         $events = $overlap->orderBy('date_from');
 
