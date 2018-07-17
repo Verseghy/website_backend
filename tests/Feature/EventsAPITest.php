@@ -9,8 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Events;
 use Carbon\Carbon;
 
-class EventsAPITest extends TestsBase
+class EventsAPITest extends TestCase
 {
+    use TestsBase;
     protected $api = '/api/events';
     
     public function testExample()

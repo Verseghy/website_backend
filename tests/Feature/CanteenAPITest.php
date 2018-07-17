@@ -10,8 +10,9 @@ use App\Models\Canteens;
 use App\Models\Canteens\Menus;
 use Carbon\Carbon;
 
-class CanteenAPITest extends TestsBase
+class CanteenAPITest extends TestCase
 {
+    use TestsBase;
     protected $api = '/api/canteen';
 
     protected $dbSetUp = false;

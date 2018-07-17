@@ -11,8 +11,9 @@ use App\Models\Posts\Labels;
 use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
-class PostsAPITest extends TestsBase
+class PostsAPITest extends TestCase
 {
+    use TestsBase;
     protected $api = '/api/posts';
     
     /**
