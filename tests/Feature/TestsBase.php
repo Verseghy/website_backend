@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TestsBase extends TestCase
+trait TestsBase
 {
     use RefreshDatabase;
     protected function API($url, $params = '', $headers = array())

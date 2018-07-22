@@ -8,8 +8,9 @@ use Carbon\Carbon;
 use App\Models\Canteens;
 use App\Models\Canteens\Menus;
 
-class CanteensController extends ControllerBase
+class CanteensController extends Controller
 {
+    use ControllerBase;
     public function getMenus(Request $request)
     {
         $type = $request->input('id');
@@ -23,7 +24,7 @@ class CanteensController extends ControllerBase
         $menus = Menus::where('type', '=', $type)->orderBy('menu');
 
         
-        return parent::_after($request, $menus, null);
+        return self::_after($request, $menus, null);
     }
 
     public function byWeek(Request $request)
@@ -44,6 +45,6 @@ class CanteensController extends ControllerBase
         $canteens = Canteens::with('menus')->whereBetween('date', [$start,$end])->orderBy('date');
 
         
-        return parent::_after($request, $canteens, null);
+        return self::_after($request, $canteens, null);
     }
 }
