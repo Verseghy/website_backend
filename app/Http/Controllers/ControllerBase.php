@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class ControllerBase extends Controller
+trait ControllerBase
 {
     protected static function _after($request, $result, $maxDate)
     {
