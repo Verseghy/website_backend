@@ -91,7 +91,7 @@ class CanteenAPITest extends TestCase
             $year = Carbon::now()->year;
             $week = Carbon::now()->weekOfYear;
             
-            $validResponse = array($this->canteen->setHidden(['date'*, 'created_at', 'updated_at'])->toArray());
+            $validResponse = array($this->canteen->setHidden(['date', 'created_at', 'updated_at'])->toArray());
             
             $farDate = 'Mon, 4 Jan 2100 00:00:00';
             $oldDate = 'Mon, 5 Jan 1970 00:00:00';
