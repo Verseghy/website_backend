@@ -71,8 +71,7 @@ class PostsController extends Controller
     {
         $searchTerm = $request->input('term');
         
-        if (is_null($searchTerm))
-        {
+        if (is_null($searchTerm)) {
             return response()->json([], 400);
         }
         $posts = self::_resolvedPosts()->where('content', 'like', '%'.$searchTerm.'%')->orWhere('description', 'like', '%'.$searchTerm.'%')->orWhere('title', 'LIKE', "%$searchTerm%");
