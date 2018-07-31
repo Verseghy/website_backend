@@ -24,7 +24,7 @@ Route::prefix('posts')->group(function () {
     Route::get('listPosts', 'PostsController@listPosts');
 });
 
-Route::prefix('newsletter')->group(function() {
+Route::prefix('newsletter')->group(function () {
     Route::get('subscribe', 'NewsletterController@subscribe');
     Route::get('unsubscribe', 'NewsletterController@unsubscribe');
 });

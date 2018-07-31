@@ -26,8 +26,9 @@ class NewsletterController extends Controller
 
         $newsletter->mldata = $request->input('mldata');
         
-        if(!Newsletter::where('email', $request->input('email'))->get()->isEmpty())
+        if (!Newsletter::where('email', $request->input('email'))->get()->isEmpty()) {
             return response()->json([], 409);
+        }
 
         //Generate random token
         //https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
@@ -43,10 +44,11 @@ class NewsletterController extends Controller
 
         $newsletter->token = $token;
 
-        if($newsletter->save())
+        if ($newsletter->save()) {
             return response()->json([], 200);
-        else
+        } else {
             return response()->json([], 500);
+        }
     }
 
     public function unsubscribe(Request $request)
@@ -58,21 +60,18 @@ class NewsletterController extends Controller
             return response()->json([], 400);
         }
         
-        if(Newsletter::where('email', $request->input('email'))->where('token', $request->input('token'))->delete())
+        if (Newsletter::where('email', $request->input('email'))->where('token', $request->input('token'))->delete()) {
             return response()->json([], 200);
-        else
-        {
-            if(Newsletter::where('email', $request->input('email'))->where('token', $request->input('token'))->get()->isEmpty())
-            {
-                if(Newsletter::where('email', $request->input('email'))->get()->isEmpty())
-                {
+        } else {
+            if (Newsletter::where('email', $request->input('email'))->where('token', $request->input('token'))->get()->isEmpty()) {
+                if (Newsletter::where('email', $request->input('email'))->get()->isEmpty()) {
                     return response()->json([], 400);
-                }
-                else
+                } else {
                     return response()->json([], 401);
-            }
-            else
+                }
+            } else {
                 return response()->json([], 500);
+            }
         }
     }
 }
