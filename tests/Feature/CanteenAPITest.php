@@ -55,22 +55,11 @@ class CanteenAPITest extends TestCase
         } else {
             $validResp = array($this->meal->setHidden(['canteens', 'created_at', 'updated_at'])->toArray());
         
-            $farDate = 'Mon, 4 Jan 2100 00:00:00 GMT';
-            $oldDate = 'Mon, 5 Jan 1970 00:00:00 GMT';
-        
-            // Valid request
+            // Valid request, no data alaviable
             $response = $this->API($endpoint, 'id=1');
             $this->assertValidResponse($response, $validResp);
-            
-            // Valid request with if-mod-since header
-            // (new data)
-            $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
-            $this->assertValidResponse($response, $validResp);
-            
-            // Valid request with if-mod-since header
-            // (not modified)
-            $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
-            $this->checkResponseCode($response, 304);
+        
+            $this->checkCaching($endpoint, 'id=1');
         }
     }
     
@@ -93,22 +82,12 @@ class CanteenAPITest extends TestCase
             
             $validResponse = array($this->canteen->setHidden(['date', 'created_at', 'updated_at'])->toArray());
             
-            $farDate = 'Mon, 4 Jan 2100 00:00:00';
-            $oldDate = 'Mon, 5 Jan 1970 00:00:00';
             
             // Valid request
-            $response = $this->API($endpoint, 'year='.$year.'&week='.$week);
+            $response = $this->API($endpoint, "year=$year&week=$week");
             $this->assertValidResponse($response, $validResponse);
             
-            // Valid request with if-mod-since header
-            // (new data)
-            $response = $this->API($endpoint, 'year='.$year.'&week='.$week, ['If-modified-since'=>$oldDate]);
-            $this->assertValidResponse($response, $validResponse);
-            
-            // Valid request with if-mod-since header
-            // (not modified)
-            $response = $this->API($endpoint, 'year='.$year.'&week='.$week, ['If-modified-since'=>$farDate]);
-            $this->checkResponseCode($response, 304);
+            $this->checkCaching($endpoint, "year=$year&week=$week");
         }
     }
     
