@@ -1442,16 +1442,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "70591cda56b4b47c55776ac78e157c4bb6c8b43f"
+                "reference": "5c31f6a97c1c240707f6d786e7e59bfacdbc0219"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/70591cda56b4b47c55776ac78e157c4bb6c8b43f",
-                "reference": "70591cda56b4b47c55776ac78e157c4bb6c8b43f",
+                "url": "https://api.github.com/repos/symfony/console/zipball/5c31f6a97c1c240707f6d786e7e59bfacdbc0219",
+                "reference": "5c31f6a97c1c240707f6d786e7e59bfacdbc0219",
                 "shasum": ""
             },
             "require": {
@@ -1506,7 +1506,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-31T10:17:53+00:00"
+            "time": "2018-07-16T14:05:40+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -2041,7 +2041,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -2888,16 +2888,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v7.12.0",
+            "version": "v7.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "393c4bdc4972af1355dc91b3c28b8a2f1bdbd349"
+                "reference": "c4bd3e5e36b128838c769dd34ae38eca4bff332b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/393c4bdc4972af1355dc91b3c28b8a2f1bdbd349",
-                "reference": "393c4bdc4972af1355dc91b3c28b8a2f1bdbd349",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/c4bd3e5e36b128838c769dd34ae38eca4bff332b",
+                "reference": "c4bd3e5e36b128838c769dd34ae38eca4bff332b",
                 "shasum": ""
             },
             "require": {
@@ -2935,7 +2935,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2018-07-14T01:02:53+00:00"
+            "time": "2018-07-28T17:14:34+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -4592,7 +4592,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
