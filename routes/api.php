@@ -23,6 +23,7 @@ Route::prefix('posts')->group(function () {
     Route::get('getPostsByLabel', 'PostsController@byLabel');
     Route::get('listPosts', 'PostsController@listPosts');
     Route::get('search', 'PostsController@search');
+    Route::get('getRecommends', 'PostsController@recommend');
 });
 
 Route::prefix('events')->group(function () {

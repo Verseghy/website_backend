@@ -79,6 +79,19 @@ class PostsController extends Controller
         return self::_after($request, $posts);
     }
 
+    public function recommend(Request $request)
+    {
+        $userRating = $request->input('mldata');
+
+        if (is_null($userRating)) {
+            return response()->json([], 400);
+        }
+        
+        //TODO: Function body!
+        return response()->json(['Not implemented :-('], 501);
+    }
+
+
     protected static function _after($request, $result, $maxDate = null)
     {
         if (is_null($maxDate)) {
