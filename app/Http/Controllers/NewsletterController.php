@@ -30,19 +30,7 @@ class NewsletterController extends Controller
             return response()->json([], 409);
         }
 
-        //Generate random token
-        //https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
-        $token = "";
-        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-        $codeAlphabet.= "0123456789";
-        $max = strlen($codeAlphabet);
-
-        for ($i=0; $i < 32; $i++) {
-            $token .= $codeAlphabet[random_int(0, $max-1)];
-        }
-
-        $newsletter->token = $token;
+        $newsletter->token = str_random(32);
 
         if ($newsletter->save()) {
             return response()->json([], 200);
