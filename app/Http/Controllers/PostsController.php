@@ -66,6 +66,18 @@ class PostsController extends Controller
         
         return self::_after($request, $posts);
     }
+    
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('term');
+        
+        if (is_null($searchTerm)) {
+            return response()->json([], 400);
+        }
+        $posts = self::_resolvedPosts()->where('content', 'like', '%'.$searchTerm.'%')->orWhere('description', 'like', '%'.$searchTerm.'%')->orWhere('title', 'LIKE', "%$searchTerm%");
+        
+        return self::_after($request, $posts);
+    }
 
     protected static function _after($request, $result, $maxDate = null)
     {
