@@ -22,6 +22,7 @@ Route::prefix('posts')->group(function () {
     Route::get('getPostsByAuthor', 'PostsController@byAuthor');
     Route::get('getPostsByLabel', 'PostsController@byLabel');
     Route::get('listPosts', 'PostsController@listPosts');
+    Route::get('search', 'PostsController@search');
 });
 
 Route::prefix('newsletter')->group(function () {

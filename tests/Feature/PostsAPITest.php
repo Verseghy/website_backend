@@ -29,6 +29,7 @@ class PostsAPITest extends TestCase
         $this->byId();
         $this->byLabel();
         $this->byAuthor();
+        $this->search();
     }
     
     /**
@@ -61,18 +62,7 @@ class PostsAPITest extends TestCase
         $this->checkResponseCode($response, 404);
         
         
-        $farDate = 'Mon, 4 Jan 2100 00:00:00';
-        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
-        
-        // Valid request with if-mod-since header
-        // (new data)
-        $response = $this->API($endpoint, '', ['If-modified-since'=>$oldDate]);
-        $this->assertValidResponse($response, $validResponse);
-            
-        // Valid request with if-mod-since header
-        // (not modified)
-        $response = $this->API($endpoint, '', ['If-modified-since'=>$farDate]);
-        $this->checkResponseCode($response, 304);
+        $this->checkCaching($endpoint);
     }
     
     public function byId()
@@ -96,18 +86,7 @@ class PostsAPITest extends TestCase
         $this->checkResponseCode($response, 404);
         
         
-        $farDate = 'Mon, 4 Jan 2100 00:00:00';
-        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
-        
-        // Valid request with if-mod-since header
-        // (new data)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
-        $this->assertValidResponse($response, $validResponse);
-            
-        // Valid request with if-mod-since header
-        // (not modified)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
-        $this->checkResponseCode($response, 304);
+        $this->checkCaching($endpoint, 'id=1');
     }
     
     public function byLabel()
@@ -131,18 +110,7 @@ class PostsAPITest extends TestCase
         $this->checkResponseCode($response, 404);
         
         
-        $farDate = 'Mon, 4 Jan 2100 00:00:00';
-        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
-        
-        // Valid request with if-mod-since header
-        // (new data)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
-        $this->assertValidResponse($response, $validResponse);
-            
-        // Valid request with if-mod-since header
-        // (not modified)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
-        $this->checkResponseCode($response, 304);
+        $this->checkCaching($endpoint, 'id=1');
     }
     
     public function byAuthor()
@@ -166,18 +134,33 @@ class PostsAPITest extends TestCase
         $this->checkResponseCode($response, 404);
         
         
-        $farDate = 'Mon, 4 Jan 2100 00:00:00';
-        $oldDate = 'Mon, 5 Jan 1970 00:00:00';
+        $this->checkCaching($endpoint, 'id=1');
+    }
+    
+    public function search()
+    {
+        $endpoint = 'search';
         
-        // Valid request with if-mod-since header
-        // (new data)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$oldDate]);
+        $searchTerm = str_word_count($this->post->title, 1)[0];
+        
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+    
+        // Valid request
+        $response = $this->API($endpoint, "term=$searchTerm");
         $this->assertValidResponse($response, $validResponse);
-            
-        // Valid request with if-mod-since header
-        // (not modified)
-        $response = $this->API($endpoint, 'id=1', ['If-modified-since'=>$farDate]);
-        $this->checkResponseCode($response, 304);
+        
+        // Invalid request
+        // ( missing parameter )
+        $response = $this->API($endpoint);
+        $this->checkResponseCode($response, 400);
+        
+        // Valid request
+        // No resource
+        $response = $this->API($endpoint, 'term=GARBAGE');
+        $this->checkResponseCode($response, 404);
+        
+        
+        $this->checkCaching($endpoint, "term=$searchTerm");
     }
     
     public function setupDB()
