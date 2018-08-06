@@ -58,6 +58,9 @@ class NewsletterAPITest extends TestCase
         $response = $this->API($endpoint, 'email=ghj@ghj.com'.'&token='.$this->newsletter->token);
         $this->checkResponseCode($response, 400);
 
+        $response = $this->API($endpoint, 'email='.$this->newsletter->email.'&token='.str_random(32));
+        $this->checkResponseCode($response, 401);
+
         $response = $this->API($endpoint, 'email='.$this->newsletter->email.'&token='.$this->newsletter->token);
         $this->checkResponseCode($response, 200);
     }

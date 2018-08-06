@@ -35,7 +35,9 @@ class NewsletterController extends Controller
         if ($newsletter->save()) {
             return response()->json([], 200);
         } else {
+            //@codeCoverageIgnoreStart
             return response()->json([], 500);
+            //@codeCoverageIgnoreEnd
         }
     }
 
@@ -58,7 +60,9 @@ class NewsletterController extends Controller
                     return response()->json([], 401);
                 }
             } else {
+                //@codeCoverageIgnoreStart
                 return response()->json([], 500);
+                //@codeCoverageIgnoreEnd
             }
         }
     }
