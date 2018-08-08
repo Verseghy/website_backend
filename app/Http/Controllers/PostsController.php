@@ -84,10 +84,30 @@ class PostsController extends Controller
         $userRating = $request->input('mldata');
 
         if (is_null($userRating)) {
-            return response()->json([], 400);
+            return self::_after($request,Posts::orderby('date','desc')->take(3));
         }
         
-        //TODO: Function body!
+        $everyPost = Posts::all()->getDictionary();
+        $jsonData = json_decode($userRating,true);
+        
+        $categoriesVector = array();
+        $ratingVector = array();
+
+        foreach (array_keys($jsonData) as $id)
+        {
+            $postId = intval($id);
+            array_push($categoriesVector, json_decode($everyPost[$postId]->mldata));
+            array_push($ratingVector, $jsonData[$id]);
+            unset($everyPost[$postId]);
+        }
+        
+        //TODO: Train neural network
+        //TODO: Do predictions
+        var_dump($categoriesVector);
+        var_dump($ratingVector);
+        return "";
+        
+        
         return response()->json(['Not implemented :-('], 501);
     }
 
