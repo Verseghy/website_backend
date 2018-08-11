@@ -9,7 +9,7 @@ class Posts extends Model
     protected $table = 'posts_data';
     
     protected $fillable = ['title', 'description', 'color'];
-    protected $hidden = ['author_id','created_at','updated_at'];
+    protected $hidden = ['author_id','created_at','updated_at', 'mldata'];
 
     public function author()
     {
