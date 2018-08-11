@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use Carbon\Carbon;
 
+use Phpml\Regression\SVR;
+use Phpml\SupportVectorMachine\Kernel;
+
 class PostsController extends Controller
 {
     use ControllerBase
@@ -111,13 +114,18 @@ class PostsController extends Controller
                     array_push($ratingVector, $userScore);
                     unset($everyPost[$postId]);                
                 }
-            }
+            } 
         }
         
-        //TODO: Train neural network
+        // At this point $categoriesVector and $ratingVectory should be prepared to feed into ML functions
+        
+        $regression = new SVR(Kernel::LINEAR);
+        $regression->train($categoriesVector, $ratingVector);
+
+
+        
         //TODO: Do predictions
-        var_dump($categoriesVector);
-        var_dump($ratingVector);
+        var_dump($regression);
         return "";
         
         
