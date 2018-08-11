@@ -51,5 +51,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'date'=>$faker->dateTime,
         'type'=>$faker->numberBetween(0, 2),
         'color'=>$faker->hexColor,
+        'mldata'=>json_encode(array($faker->randomFloat(3,0,5), $faker->randomFloat(3,0,5))),
     ];
 });
