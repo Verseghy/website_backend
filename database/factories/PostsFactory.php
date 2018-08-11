@@ -39,7 +39,22 @@ $factory->define(Authors::class, function (Faker $faker) {
     ];
 });
 
-
+function makeMLData($faker)
+{
+    // tweak these variables to configure this generator
+    $NUM_CATEGORIES = 2;
+    $MIN_VALUE = 0;
+    $MAX_VALUE =5;
+    
+    $data = array();
+    for ($i=0; $i<$NUM_CATEGORIES; $i++)
+    {
+        // generate random float with 3 digits precision
+        array_push($data, $faker->randomFloat(3,$MIN_VALUE,$MAX_VALUE));
+    }
+    
+    return json_encode($data);
+}
 
 $factory->define(Posts::class, function (Faker $faker) {
     return [
@@ -51,6 +66,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'date'=>$faker->dateTime,
         'type'=>$faker->numberBetween(0, 2),
         'color'=>$faker->hexColor,
-        'mldata'=>json_encode(array($faker->randomFloat(3,0,5), $faker->randomFloat(3,0,5))),
+        'mldata'=>makeMLData($faker),
     ];
 });
