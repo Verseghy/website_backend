@@ -96,9 +96,22 @@ class PostsController extends Controller
         foreach (array_keys($jsonData) as $id)
         {
             $postId = intval($id);
-            array_push($categoriesVector, json_decode($everyPost[$postId]->mldata));
-            array_push($ratingVector, $jsonData[$id]);
-            unset($everyPost[$postId]);
+            $post = $everyPost[$postId];
+            
+            // we can not be sure that the post even exists
+            if (isset($post))
+            {
+                $postCategoryVector = json_decode($post->mldata);
+                $userScore = $jsonData[$id];
+                
+                // and we can not be sure that the post has a valid 'mldata' field
+                if (isset($postCategoryVector) && isset($userScore))
+                {
+                    array_push($categoriesVector, $postCategoryVector);
+                    array_push($ratingVector, $userScore);
+                    unset($everyPost[$postId]);                
+                }
+            }
         }
         
         //TODO: Train neural network
