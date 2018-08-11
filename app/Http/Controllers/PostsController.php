@@ -123,13 +123,31 @@ class PostsController extends Controller
         $regression->train($categoriesVector, $ratingVector);
 
 
-        
-        //TODO: Do predictions
-        var_dump($regression);
-        return "";
-        
-        
-        return response()->json(['Not implemented :-('], 501);
+        $predicts = array();
+
+        foreach ($everyPost as $post)
+        {
+            $postCategoryVector = json_decode($post->mldata);
+            
+            // posts without a category vector won't get in
+            if (isset($postCategoryVector))
+            {
+                $prediction = $regression->predict($postCategoryVector);
+                array_push($predicts, array($post, $prediction));
+            }
+        }
+
+        usort($predicts, function($a, $b)
+        {
+            if ($a[1] == $b[1]) {
+                return ($a[0]->date > $b[0]->date) ? -1 : 1;
+            }
+            return ($a[1] > $b[1]) ? -1 : 1;
+        });
+  
+        $first3 = array_slice($predicts, 0, 3);
+  
+        return $first3;
     }
 
 
