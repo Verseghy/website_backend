@@ -47,10 +47,9 @@ function makeMLData($faker)
     $MAX_VALUE =5;
     
     $data = array();
-    for ($i=0; $i<$NUM_CATEGORIES; $i++)
-    {
+    for ($i=0; $i<$NUM_CATEGORIES; $i++) {
         // generate random float with 3 digits precision
-        array_push($data, $faker->randomFloat(3,$MIN_VALUE,$MAX_VALUE));
+        array_push($data, $faker->randomFloat(3, $MIN_VALUE, $MAX_VALUE));
     }
     
     return json_encode($data);
