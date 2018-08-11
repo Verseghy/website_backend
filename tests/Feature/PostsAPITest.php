@@ -30,6 +30,7 @@ class PostsAPITest extends TestCase
         $this->byLabel();
         $this->byAuthor();
         $this->search();
+        $this->recommend();
     }
     
     /**
@@ -163,6 +164,26 @@ class PostsAPITest extends TestCase
         $this->checkCaching($endpoint, "term=$searchTerm");
     }
     
+    public function recommend()
+    {
+        $endpoint = 'getRecommends';
+     
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        
+        
+        // Valid request
+        // No 'mldata'
+        $response = $this->API($endpoint);
+        $this->assertValidResponse($response, $validResponse);
+        
+        
+        $mldata = urlencode('{"1":4}');
+        
+        // Valid request
+        $response = $this->API($endpoint, "mldata=$mldata");
+        $this->assertValidResponse($response, $validResponse);
+    }
+    
     public function setupDB()
     {
         factory(Authors::class)->create();
@@ -175,6 +196,6 @@ class PostsAPITest extends TestCase
         $this->post->labels;
         $this->post->author;
         $this->post->index_image;
-        $this->post->iamges;
+        $this->post->images;
     }
 }
