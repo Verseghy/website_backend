@@ -128,6 +128,9 @@ class PostsController extends Controller
             // posts without a category vector won't get in
             if (isset($postCategoryVector)) {
                 $prediction = $regression->predict($postCategoryVector);
+                
+                $post->load(['index_image','author','author.image','images','labels']);
+                
                 array_push($predicts, array($post, $prediction));
             }
         }
