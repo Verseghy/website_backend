@@ -42,9 +42,7 @@ $factory->define(Authors::class, function (Faker $faker) {
 
 
 $factory->define(Posts::class, function (Faker $faker) {
-
-    if(!function_exists('makeMLData'))
-    {
+    if (!function_exists('makeMLData')) {
         // helper function
         function makeMLData($faker)
         {
