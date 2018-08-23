@@ -87,7 +87,7 @@ class PostsController extends Controller
         $userRating = $request->input('mldata');
 
         if (is_null($userRating)) {
-            return self::_after($request, Posts::orderby('date', 'desc')->take(3));
+            return self::_after($request, self::_resolvedPosts()->take(3));
         }
         
         $everyPost = self::_resolvedPosts()->getDictionary();
