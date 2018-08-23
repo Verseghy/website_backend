@@ -90,7 +90,7 @@ class PostsController extends Controller
             return self::_after($request, Posts::orderby('date', 'desc')->take(3));
         }
         
-        $everyPost = Posts::all()->getDictionary();
+        $everyPost = self::_resolvedPosts()->getDictionary();
         $jsonData = json_decode($userRating, true);
         
         $categoriesVector = array();
@@ -128,8 +128,6 @@ class PostsController extends Controller
             // posts without a category vector won't get in
             if (isset($postCategoryVector)) {
                 $prediction = $regression->predict($postCategoryVector);
-                
-                $post->load(['index_image','author','author.image','images','labels']);
                 
                 array_push($predicts, array($post, $prediction));
             }
