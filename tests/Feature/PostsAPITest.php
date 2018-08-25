@@ -11,6 +11,8 @@ use App\Models\Posts\Labels;
 use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
+use Carbon\Carbon;
+
 class PostsAPITest extends TestCase
 {
     use TestsBase;
@@ -168,7 +170,28 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getRecommends';
      
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        // Generate another post
+        factory(Authors::class)->create();
+        $label = factory(Labels::class, 1)->create();
+        $post = factory(Posts::class, 1)->create()->first();
+        $post->labels()->attach($label);
+        $post->save();
+        factory(Images::class, 'postImage', 2)->create();
+     
+        $date1 = new Carbon($post->date->format('Y-m-d H:i:s.u'));
+        
+        $date2 = new Carbon($this->post->date->format('Y-m-d H:i:s.u'));
+     
+        if ($date1->gt($date2))
+        {
+            $validResponse = array($post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(),$this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        }
+        else
+        {
+            $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(), $post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        }
+     
+        
         
         
         // Valid request
@@ -179,10 +202,13 @@ class PostsAPITest extends TestCase
         
         $mldata = urlencode('{"1":4}');
         
+        
+        
+        
+        $validResponse = array($post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
         // Valid request
-        // As no other post is alaviable, we get an empty array
         $response = $this->API($endpoint, "mldata=$mldata");
-        $this->assertValidResponse($response, []);
+        $this->assertValidResponse($response, $validResponse);
     }
     
     public function setupDB()
