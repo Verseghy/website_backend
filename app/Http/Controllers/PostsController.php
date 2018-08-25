@@ -90,20 +90,17 @@ class PostsController extends Controller
             return self::_after($request, self::_resolvedPosts()->take(3));
         }
         
-        $everyPost = self::_resolvedPosts()->getDictionary();
+        $everyPost = self::_resolvedPosts()->get()->getDictionary();
         $jsonData = json_decode($userRating, true);
-        
         $categoriesVector = array();
         $ratingVector = array();
+        foreach (array_keys($jsonData) as $postId) {
 
-        foreach (array_keys($jsonData) as $id) {
-            $postId = intval($id);
-            $post = $everyPost[$postId];
-            
             // we can not be sure that the post even exists
-            if (isset($post)) {
+            if (array_key_exists($postId, $everyPost)) {
+                $post = $everyPost[$postId];
                 $postCategoryVector = json_decode($post->mldata);
-                $userScore = $jsonData[$id];
+                $userScore = $jsonData["$postId"];
                 
                 // and we can not be sure that the post has a valid 'mldata' field
                 if (isset($postCategoryVector) && isset($userScore)) {
@@ -113,6 +110,8 @@ class PostsController extends Controller
                 }
             }
         }
+
+
         
         // At this point $categoriesVector and $ratingVectory should be prepared to feed into ML functions
         

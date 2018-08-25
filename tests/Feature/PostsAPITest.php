@@ -180,8 +180,9 @@ class PostsAPITest extends TestCase
         $mldata = urlencode('{"1":4}');
         
         // Valid request
+        // As no other post is alaviable, we get an empty array
         $response = $this->API($endpoint, "mldata=$mldata");
-        $this->assertValidResponse($response, $validResponse);
+        $this->assertValidResponse($response, []);
     }
     
     public function setupDB()
