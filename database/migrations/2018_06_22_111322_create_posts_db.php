@@ -45,6 +45,7 @@ class CreatePostsDb extends Migration
             $table->unsignedInteger('author_id')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
+            $table->string('mldata')->nullable();
             $table->timestamps();
         });
 

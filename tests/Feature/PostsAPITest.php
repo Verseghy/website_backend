@@ -11,6 +11,8 @@ use App\Models\Posts\Labels;
 use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
+use Carbon\Carbon;
+
 class PostsAPITest extends TestCase
 {
     use TestsBase;
@@ -30,6 +32,7 @@ class PostsAPITest extends TestCase
         $this->byLabel();
         $this->byAuthor();
         $this->search();
+        $this->recommend();
     }
     
     /**
@@ -41,7 +44,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'listPosts';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
         
         
         // Valid request without parameter
@@ -69,7 +72,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPost';
     
-        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
+        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray();
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -93,7 +96,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByLabel';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -117,7 +120,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByAuthor';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -143,7 +146,7 @@ class PostsAPITest extends TestCase
         
         $searchTerm = str_word_count($this->post->title, 1)[0];
         
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, "term=$searchTerm");
@@ -163,6 +166,48 @@ class PostsAPITest extends TestCase
         $this->checkCaching($endpoint, "term=$searchTerm");
     }
     
+    public function recommend()
+    {
+        $endpoint = 'getRecommends';
+     
+        // Generate another post
+        factory(Authors::class)->create();
+        $label = factory(Labels::class, 1)->create();
+        $post = factory(Posts::class, 1)->create()->first();
+        $post->labels()->attach($label);
+        $post->save();
+        factory(Images::class, 'postImage', 2)->create();
+     
+        $date1 = new Carbon($post->date->format('Y-m-d H:i:s.u'));
+        
+        $date2 = new Carbon($this->post->date->format('Y-m-d H:i:s.u'));
+     
+        if ($date1->gt($date2)) {
+            $validResponse = array($post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(),$this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        } else {
+            $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(), $post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        }
+     
+        
+        
+        
+        // Valid request
+        // No 'mldata'
+        $response = $this->API($endpoint);
+        $this->assertValidResponse($response, $validResponse);
+        
+        
+        $mldata = urlencode('{"1":4}');
+        
+        
+        
+        
+        $validResponse = array($post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
+        // Valid request
+        $response = $this->API($endpoint, "mldata=$mldata");
+        $this->assertValidResponse($response, $validResponse);
+    }
+    
     public function setupDB()
     {
         factory(Authors::class)->create();
@@ -175,6 +220,6 @@ class PostsAPITest extends TestCase
         $this->post->labels;
         $this->post->author;
         $this->post->index_image;
-        $this->post->iamges;
+        $this->post->images;
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use Carbon\Carbon;
 
+use Phpml\Regression\SVR;
+use Phpml\SupportVectorMachine\Kernel;
+
 class PostsController extends Controller
 {
     use ControllerBase
@@ -78,6 +81,73 @@ class PostsController extends Controller
         
         return self::_after($request, $posts);
     }
+
+    public function recommend(Request $request)
+    {
+        $userRating = $request->input('mldata');
+
+        if (is_null($userRating)) {
+            return self::_after($request, self::_resolvedPosts()->take(3));
+        }
+        
+        $everyPost = self::_resolvedPosts()->get()->getDictionary();
+        $jsonData = json_decode($userRating, true);
+        $categoriesVector = array();
+        $ratingVector = array();
+        foreach (array_keys($jsonData) as $postId) {
+
+            // we can not be sure that the post even exists
+            if (array_key_exists($postId, $everyPost)) {
+                $post = $everyPost[$postId];
+                $postCategoryVector = json_decode($post->mldata);
+                $userScore = $jsonData["$postId"];
+                
+                // and we can not be sure that the post has a valid 'mldata' field
+                if (isset($postCategoryVector) && isset($userScore)) {
+                    array_push($categoriesVector, $postCategoryVector);
+                    array_push($ratingVector, $userScore);
+                    unset($everyPost[$postId]);
+                }
+            }
+        }
+
+
+        
+        // At this point $categoriesVector and $ratingVectory should be prepared to feed into ML functions
+        
+        $regression = new SVR(Kernel::LINEAR);
+        $regression->train($categoriesVector, $ratingVector);
+
+
+        $predicts = array();
+
+        foreach ($everyPost as $post) {
+            $postCategoryVector = json_decode($post->mldata);
+            
+            // posts without a category vector won't get in
+            if (isset($postCategoryVector)) {
+                $prediction = $regression->predict($postCategoryVector);
+                
+                array_push($predicts, array($post, $prediction));
+            }
+        }
+
+        usort($predicts, function ($a, $b) {
+            if ($a[1] == $b[1]) {
+                return ($a[0]->date > $b[0]->date) ? -1 : 1;
+            }
+            return ($a[1] > $b[1]) ? -1 : 1;
+        });
+  
+        $first3 = array_slice($predicts, 0, 3);
+
+        
+        $ret = array_map(function ($obj) {
+            return $obj[0];
+        }, $first3);
+        return $ret;
+    }
+
 
     protected static function _after($request, $result, $maxDate = null)
     {
