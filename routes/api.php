@@ -26,6 +26,11 @@ Route::prefix('posts')->group(function () {
     Route::get('getRecommends', 'PostsController@recommend');
 });
 
+Route::prefix('newsletter')->group(function () {
+    Route::get('subscribe', 'NewsletterController@subscribe');
+    Route::get('unsubscribe', 'NewsletterController@unsubscribe');
+});
+
 Route::prefix('events')->group(function () {
     Route::get('getEventsByMonth', 'EventsController@byMonth');
 });
