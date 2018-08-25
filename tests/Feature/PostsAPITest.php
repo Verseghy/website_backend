@@ -182,12 +182,9 @@ class PostsAPITest extends TestCase
         
         $date2 = new Carbon($this->post->date->format('Y-m-d H:i:s.u'));
      
-        if ($date1->gt($date2))
-        {
+        if ($date1->gt($date2)) {
             $validResponse = array($post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(),$this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
-        }
-        else
-        {
+        } else {
             $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray(), $post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at', 'mldata'])->toArray());
         }
      

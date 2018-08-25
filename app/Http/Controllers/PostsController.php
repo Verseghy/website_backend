@@ -142,10 +142,9 @@ class PostsController extends Controller
         $first3 = array_slice($predicts, 0, 3);
 
         
-        $ret = array_map(function($obj)
-            {
-                return $obj[0];
-            },$first3);
+        $ret = array_map(function ($obj) {
+            return $obj[0];
+        }, $first3);
         return $ret;
     }
 
