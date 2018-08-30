@@ -12,6 +12,3 @@ npm-debug.log
 yarn-error.log
 .env
 .php_cs.cache
-/public/vendor
-/resources/lang/vendor
-/resources/views/vendor
