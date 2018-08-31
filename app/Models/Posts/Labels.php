@@ -3,9 +3,11 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 class Labels extends Model
 {
+    use CrudTrait;
     protected $table = 'posts_labels';
     public $timestamps = false;
     protected $fillable = ['name', 'color'];
