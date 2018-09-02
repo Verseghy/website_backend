@@ -170,7 +170,7 @@ class PostsAPITest extends TestCase
         $this->post = factory(Posts::class, 1)->create()->first();
         $this->post->labels()->attach($label);
         $this->post->save();
-        factory(Images::class, 'postImage', 2)->create();
+        factory(Images::class, 2)->create();
         
         $this->post->labels;
         $this->post->author;

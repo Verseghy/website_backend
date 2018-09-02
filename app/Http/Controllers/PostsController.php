@@ -99,7 +99,7 @@ class PostsController extends Controller
 
     private static function _resolvedPosts()
     {
-        return Posts::with(['index_image','author','author.image','images','labels'])->orderBy('date', 'desc');
+        return Posts::with(['author','images','labels'])->orderBy('date', 'desc');
     }
 
     private static function _makeThumbnail($posts)

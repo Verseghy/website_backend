@@ -32,7 +32,7 @@ class CreatePostsDb extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('description');
-            $table->unsignedInteger('image_id')->nullable();
+            $table->string('image')->nullable();
         });
 
         Schema::create('posts_data', function (Blueprint $table) {
@@ -41,7 +41,7 @@ class CreatePostsDb extends Migration
             $table->string('color')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
-            $table->unsignedInteger('index_image')->nullable();
+            $table->string('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
@@ -62,12 +62,8 @@ class CreatePostsDb extends Migration
             $table->foreign('post_id')->references('id')->on('posts_data');
         });
 
-        Schema::table('posts_authors', function (Blueprint $table) {
-            $table->foreign('image_id')->references('id')->on('posts_images');
-        });
 
         Schema::table('posts_data', function (Blueprint $table) {
-            $table->foreign('index_image')->references('id')->on('posts_images');
             $table->foreign('author_id')->references('id')->on('posts_authors');
         });
     }

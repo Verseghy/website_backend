@@ -25,6 +25,6 @@ class PostsSeeder extends Seeder
             }
         });
         
-        factory(Images::class, 'postImage', 150)->create();
+        factory(Images::class, 150)->create();
     }
 }

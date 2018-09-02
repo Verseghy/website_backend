@@ -8,17 +8,12 @@ class Posts extends Model
 {
     protected $table = 'posts_data';
     
-    protected $fillable = ['title', 'description', 'color'];
+    protected $fillable = ['title', 'description', 'color', 'index_image'];
     protected $hidden = ['author_id','created_at','updated_at'];
 
     public function author()
     {
         return $this->belongsTo('App\Models\Posts\Authors');
-    }
-
-    public function index_image()
-    {
-        return $this->belongsTo('App\Models\Posts\Images', 'index_image');
     }
 
     public function images()
