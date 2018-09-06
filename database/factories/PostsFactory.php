@@ -7,7 +7,6 @@ use App\Models\Posts\Authors;
 use App\Models\Posts\Images;
 use App\Models\Posts\Labels;
 
-
 $factory->define(Images::class, function (Faker $faker) use ($factory) {
     return [
         'url'=>$faker->imageUrl,
@@ -30,7 +29,6 @@ $factory->define(Authors::class, function (Faker $faker) {
     return [
         'name'=>$faker->name,
         'description'=>$faker->sentence,
-        'image'=>$faker->imageUrl,
     ];
 });
 

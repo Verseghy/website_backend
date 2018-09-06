@@ -32,7 +32,7 @@ class CreatePostsDb extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('description');
-            $table->longText('image')->nullable();
+            $table->string('image')->nullable();
         });
 
         Schema::create('posts_data', function (Blueprint $table) {
@@ -41,7 +41,7 @@ class CreatePostsDb extends Migration
             $table->string('color')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
-            $table->longText('index_image')->nullable();
+            $table->string('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
