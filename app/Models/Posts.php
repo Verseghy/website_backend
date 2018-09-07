@@ -86,14 +86,14 @@ class Posts extends Model
     // 'Custom' serializer to use accessor for image attribute
     public function toJson($options=0)
     {
-        $this->append('url');
+        $this->append('index_image');
         return parent::toJson($options);
     }
     
     // 'Custom' serializer to use accessor for image attribute
     public function toArray($options=0)
     {
-        $this->append('url');
+        $this->append('index_image');
         return parent::toArray($options);
     }
 }
