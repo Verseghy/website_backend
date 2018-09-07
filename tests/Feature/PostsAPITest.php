@@ -174,7 +174,6 @@ class PostsAPITest extends TestCase
         
         $this->post->labels;
         $this->post->author;
-        $this->post->index_image;
         $this->post->iamges;
     }
 }
