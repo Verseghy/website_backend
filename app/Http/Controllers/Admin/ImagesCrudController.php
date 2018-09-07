@@ -40,11 +40,30 @@ class ImagesCrudController extends CrudController
             'width'=>'100px',
         ]);
         
+        $this->crud->addColumn([
+            'label' => "Post",
+            'type' => 'select',
+            'name' => 'post_id', // the db column for the foreign key
+            'entity' => 'post', // the method that defines the relationship in your Model
+            'attribute' => 'title', // foreign key attribute that is shown to user
+            'model' => "App\Models\Posts" // foreign key model
+        ]);
+        
+        
         $this->crud->addField([
             'name'=>'url',
             'label'=>'Image',
             'type'=>'image',
             'upload'=>true,
+        ]);
+        
+        $this->crud->addField([
+            'label' => "Post",
+            'type' => 'select2',
+            'name' => 'post_id', // the db column for the foreign key
+            'entity' => 'post', // the method that defines the relationship in your Model
+            'attribute' => 'title', // foreign key attribute that is shown to user
+            'model' => "App\Models\Posts" // foreign key model
         ]);
 
         // add asterisk for fields that are required in ImagesRequest
