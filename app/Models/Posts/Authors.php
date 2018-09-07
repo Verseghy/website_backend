@@ -79,4 +79,11 @@ class Authors extends Model
         $this->append('image');
         return parent::toJson($options);
     }
+    
+    // 'Custom' serializer to use accessor for image attribute
+    public function toArray($options=0)
+    {
+        $this->append('image');
+        return parent::toArray($options);
+    }
 }
