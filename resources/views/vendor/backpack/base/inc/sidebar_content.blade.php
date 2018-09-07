@@ -5,3 +5,4 @@
 <li><a href="{{ backpack_url('labels') }}"><i class="fa fa-tag"></i> <span>Manage Labels</span></a></li>
 <li><a href="{{ backpack_url('authors') }}"><i class="fa fa-tag"></i> <span>Manage Authors</span></a></li>
 <li><a href="{{ backpack_url('images') }}"><i class="fa fa-tag"></i> <span>Manage Images</span></a></li>
+<li><a href="{{ backpack_url('posts') }}"><i class="fa fa-tag"></i> <span>Manage Posts</span></a></li>
