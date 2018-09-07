@@ -69,8 +69,6 @@ class AuthorsCrudController extends CrudController
             'label'=>'Profile image',
             'type'=>'image',
             'upload'=>true,
-            'disk'=>'images',
-            //'prefix'=>'storage/images/'
         ]);
         
         // add asterisk for fields that are required in AuthorsRequest
