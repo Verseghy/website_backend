@@ -13,6 +13,8 @@ class Images extends Model
     protected $fillable = ['url'];
     protected $hidden = ['post_id'];
 
+    protected $attributes = ['url'=>'default/noimage.png'];
+
     public function post()
     {
         return $this->belongsTo('App\Models\Posts', 'post_id');
