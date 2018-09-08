@@ -12,6 +12,7 @@ use App\Http\Requests\LabelsRequest as UpdateRequest;
  * Class LabelsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
+ * @codeCoverageIgnore
  */
 class LabelsCrudController extends CrudController
 {

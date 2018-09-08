@@ -12,6 +12,7 @@ use App\Http\Requests\ImagesRequest as UpdateRequest;
  * Class ImagesCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
+ * @codeCoverageIgnore
  */
 class ImagesCrudController extends CrudController
 {

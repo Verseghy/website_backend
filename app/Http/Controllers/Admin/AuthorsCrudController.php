@@ -12,6 +12,7 @@ use App\Http\Requests\AuthorsRequest as UpdateRequest;
  * Class AuthorsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
+ * @codeCoverageIgnore
  */
 class AuthorsCrudController extends CrudController
 {
