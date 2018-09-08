@@ -29,6 +29,8 @@ class Posts extends Model
     }
     
     
+    // @codeCoverageIgnoreStart
+    
     // Accessor to get full URL of image
     public function getIndexImageAttribute()
     {
@@ -96,4 +98,5 @@ class Posts extends Model
         $this->append('index_image');
         return parent::toArray($options);
     }
+    // @codeCoverageIgnoreEnd
 }

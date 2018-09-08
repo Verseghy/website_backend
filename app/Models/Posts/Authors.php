@@ -18,6 +18,9 @@ class Authors extends Model
         return $this->hasMany('App\Models\Posts');
     }
     
+    
+    // @codeCoverageIgnoreStart
+    
     // Accessor to get full URL of image
     public function getImageAttribute()
     {
@@ -86,4 +89,6 @@ class Authors extends Model
         $this->append('image');
         return parent::toArray($options);
     }
+    
+    // @codeCoverageIgnoreEnd
 }

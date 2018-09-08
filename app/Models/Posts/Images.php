@@ -26,6 +26,8 @@ class Images extends Model
     }
     
     
+    // @codeCoverageIgnoreStart
+    
     // Accessor to get full URL of image
     public function getUrlAttribute()
     {
@@ -94,4 +96,6 @@ class Images extends Model
         $this->append('url');
         return parent::toArray($options);
     }
+    
+    // @codeCoverageIgnoreEnd
 }
