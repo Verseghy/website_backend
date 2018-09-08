@@ -4,7 +4,9 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
-
+/**
+ * @codeCoverageIgnore
+ */
 class NewsletterRequest extends FormRequest
 {
     /**
