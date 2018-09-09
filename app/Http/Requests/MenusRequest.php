@@ -26,7 +26,8 @@ class MenusRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'menu' => 'required|max:64',
+            'type' => 'integer|min:0|max:2',
         ];
     }
 

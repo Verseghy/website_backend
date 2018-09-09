@@ -26,7 +26,8 @@ class CanteensRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+           'date' => 'required|date',
+           'menus'=>'required|min:2|max:3',
         ];
     }
 
