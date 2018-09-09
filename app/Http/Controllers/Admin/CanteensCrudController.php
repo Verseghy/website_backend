@@ -12,6 +12,7 @@ use App\Http\Requests\CanteensRequest as UpdateRequest;
  * Class CanteensCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
+ * @codeCoverageIgnore
  */
 class CanteensCrudController extends CrudController
 {
