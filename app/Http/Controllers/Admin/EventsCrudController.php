@@ -83,9 +83,9 @@ class EventsCrudController extends CrudController
         ]);
         
         $this->crud->addField([
-			'name'=>'color',
-			'label'=>'color',
-			'type'=>'color',
+            'name'=>'color',
+            'label'=>'color',
+            'type'=>'color',
         ]);
         
 
