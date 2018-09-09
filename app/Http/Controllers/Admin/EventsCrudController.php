@@ -82,6 +82,12 @@ class EventsCrudController extends CrudController
             'end_default' => '2018-01-01 00:00', // default value for end_date
         ]);
         
+        $this->crud->addField([
+			'name'=>'color',
+			'label'=>'color',
+			'type'=>'color',
+        ]);
+        
 
         // add asterisk for fields that are required in EventsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
