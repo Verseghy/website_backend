@@ -29,7 +29,11 @@ class EventsRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+            'title'=>'required|max:255|string',
+            'description'=>'nullable|string',
+            'color' => 'string|max:16|nullable',
         ];
     }
 
