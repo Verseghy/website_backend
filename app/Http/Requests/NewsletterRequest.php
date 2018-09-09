@@ -29,7 +29,9 @@ class NewsletterRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'email' => 'required|email|max:255',
+            'token' => 'required|string|max:64|min:8',
+            'mldata' => 'nullable',
         ];
     }
 
