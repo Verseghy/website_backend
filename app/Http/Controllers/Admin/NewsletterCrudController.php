@@ -42,7 +42,7 @@ class NewsletterCrudController extends CrudController
         $this->crud->addField([
             'name'=>'token',
             'label'=>'Token',
-            'type'=>'email',
+            'type'=>'text',
         ]);
         
         $this->crud->addColumn([
