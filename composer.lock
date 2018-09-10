@@ -103,23 +103,23 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.9.7",
+            "version": "0.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "42524202d789a3f0e63324c5327d70bcba428de7"
+                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/42524202d789a3f0e63324c5327d70bcba428de7",
-                "reference": "42524202d789a3f0e63324c5327d70bcba428de7",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/21cfdc88caeb39677ec20ed0549a020aba84dd52",
+                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52",
                 "shasum": ""
             },
             "require": {
                 "almasaeed2010/adminlte": "2.4.*",
                 "creativeorange/gravatar": "~1.0",
                 "jenssegers/date": "^3.2",
-                "laravel/framework": "5.5.*|5.6.*",
+                "laravel/framework": "5.5.*|5.6.*|5.7.*",
                 "prologue/alerts": "^0.4.1"
             },
             "require-dev": {
@@ -163,20 +163,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2018-08-06T07:39:18+00:00"
+            "time": "2018-09-05T04:52:23+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.31",
+            "version": "3.4.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "9bad48116b6d3ba99a1d197bc6588941ba5036ea"
+                "reference": "15f070060858686af8018a7570f99c95527ad589"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/9bad48116b6d3ba99a1d197bc6588941ba5036ea",
-                "reference": "9bad48116b6d3ba99a1d197bc6588941ba5036ea",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/15f070060858686af8018a7570f99c95527ad589",
+                "reference": "15f070060858686af8018a7570f99c95527ad589",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-08-28T06:35:48+00:00"
+            "time": "2018-09-05T04:52:56+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -359,7 +359,7 @@
         },
         {
             "name": "barryvdh/laravel-elfinder",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-elfinder.git",
@@ -1581,16 +1581,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.35",
+            "version": "v5.6.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe"
+                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/02abbe2091404ebe032a6d5a83075031b7072ebe",
-                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/38d838bab9434af79e8ab274ae63f52f7ed45d6e",
+                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e",
                 "shasum": ""
             },
             "require": {
@@ -1716,7 +1716,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-08-27T13:18:24+00:00"
+            "time": "2018-09-04T13:15:09+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4019,16 +4019,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a"
+                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/181c4502d8f34db7aed7bfe88d4f87875b8e947a",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/e79cd403fb77fc8963a99ecc30e80ddd885b3311",
+                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311",
                 "shasum": ""
             },
             "require": {
@@ -4047,7 +4047,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -4076,7 +4076,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-03-03T17:56:25+00:00"
+            "time": "2018-06-30T13:14:06+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -4325,16 +4325,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v7.15.1",
+            "version": "v7.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "068814af93aced781d33b4712f211c1c55cedfbc"
+                "reference": "0a29bebaf0c5dae1502c5169dc5ec02ee7847736"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/068814af93aced781d33b4712f211c1c55cedfbc",
-                "reference": "068814af93aced781d33b4712f211c1c55cedfbc",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/0a29bebaf0c5dae1502c5169dc5ec02ee7847736",
+                "reference": "0a29bebaf0c5dae1502c5169dc5ec02ee7847736",
                 "shasum": ""
             },
             "require": {
@@ -4372,7 +4372,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2018-08-23T16:14:12+00:00"
+            "time": "2018-09-09T15:17:06+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -5170,16 +5170,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.3.2",
+            "version": "7.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8"
+                "reference": "7b331efabbb628c518c408fdfcaf571156775de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
-                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7b331efabbb628c518c408fdfcaf571156775de2",
+                "reference": "7b331efabbb628c518c408fdfcaf571156775de2",
                 "shasum": ""
             },
             "require": {
@@ -5250,7 +5250,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-08-22T06:39:21+00:00"
+            "time": "2018-09-08T15:14:29+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
