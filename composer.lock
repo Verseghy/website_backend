@@ -359,7 +359,7 @@
         },
         {
             "name": "barryvdh/laravel-elfinder",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-elfinder.git",
