@@ -103,23 +103,23 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.9.7",
+            "version": "0.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "42524202d789a3f0e63324c5327d70bcba428de7"
+                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/42524202d789a3f0e63324c5327d70bcba428de7",
-                "reference": "42524202d789a3f0e63324c5327d70bcba428de7",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/21cfdc88caeb39677ec20ed0549a020aba84dd52",
+                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52",
                 "shasum": ""
             },
             "require": {
                 "almasaeed2010/adminlte": "2.4.*",
                 "creativeorange/gravatar": "~1.0",
                 "jenssegers/date": "^3.2",
-                "laravel/framework": "5.5.*|5.6.*",
+                "laravel/framework": "5.5.*|5.6.*|5.7.*",
                 "prologue/alerts": "^0.4.1"
             },
             "require-dev": {
@@ -163,20 +163,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2018-08-06T07:39:18+00:00"
+            "time": "2018-09-05T04:52:23+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.31",
+            "version": "3.4.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "9bad48116b6d3ba99a1d197bc6588941ba5036ea"
+                "reference": "15f070060858686af8018a7570f99c95527ad589"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/9bad48116b6d3ba99a1d197bc6588941ba5036ea",
-                "reference": "9bad48116b6d3ba99a1d197bc6588941ba5036ea",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/15f070060858686af8018a7570f99c95527ad589",
+                "reference": "15f070060858686af8018a7570f99c95527ad589",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-08-28T06:35:48+00:00"
+            "time": "2018-09-05T04:52:56+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
