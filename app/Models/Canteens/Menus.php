@@ -17,4 +17,13 @@ class Menus extends Model
     {
         return $this->belongsToMany('App\Models\Canteens', 'canteen_pivot_menus_data', 'menu_id', 'data_id');
     }*/
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::deleting(function (Menus $menu) {
+            $menu->belongsToMany('App\Models\Canteens', 'canteen_pivot_menus_data', 'menu_id', 'data_id')->detach();
+        });
+    }
 }
