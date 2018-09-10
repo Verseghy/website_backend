@@ -18,12 +18,12 @@ class Canteens extends Model
         return $this->belongsToMany('App\Models\Canteens\Menus', 'canteen_pivot_menus_data', 'data_id', 'menu_id');
     }
     
-    protected static function boot() {
-		parent::boot();
-		
-		static::deleting(function(Canteens $canteen) {
-			$canteen->menus()->detach();
-	});
-}
-
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::deleting(function (Canteens $canteen) {
+            $canteen->menus()->detach();
+        });
+    }
 }
