@@ -26,6 +26,6 @@ class Canteens extends Model
         static::deleting(function (Canteens $canteen) {
             $canteen->menus()->detach();
         });
-		// @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
     }
 }
