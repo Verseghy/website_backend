@@ -15,4 +15,6 @@ Route::group([
     CRUD::resource('authors', 'AuthorsCrudController');
     CRUD::resource('images', 'ImagesCrudController');
     CRUD::resource('posts', 'PostsCrudController');
+    CRUD::resource('newsletter', 'NewsletterCrudController');
+    CRUD::resource('events', 'EventsCrudController');
 }); // this should be the absolute last line of this file
