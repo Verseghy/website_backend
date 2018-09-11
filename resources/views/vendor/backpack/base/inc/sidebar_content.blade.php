@@ -4,3 +4,4 @@
 <li><a href="{{ backpack_url('menus') }}"><i class="fa fa-tag"></i> <span>Menus</span></a></li>
 <li><a href="{{ backpack_url('canteens') }}"><i class="fa fa-tag"></i> <span>Canteens</span></a></li>
 <li><a href="{{ backpack_url('events') }}"><i class="fa fa-tag"></i> <span>Events</span></a></li>
+<li><a href="{{ backpack_url('newsletter') }}"><i class="fa fa-tag"></i> <span>Manage Newsletter</span></a></li>

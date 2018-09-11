@@ -16,7 +16,7 @@ class CreateNewsletterDb extends Migration
         Schema::create('newsletter', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email');
-            $table->string('mldata');
+            $table->string('mldata')->nullable();
             $table->string('token');
             $table->timestamps();
         });
