@@ -21,9 +21,13 @@ class Menus extends Model
     protected static function boot()
     {
         parent::boot();
-        
+	
+		
+		
+		// @codeCoverageIgnoreStart
         static::deleting(function (Menus $menu) {
             $menu->belongsToMany('App\Models\Canteens', 'canteen_pivot_menus_data', 'menu_id', 'data_id')->detach();
         });
+        // @codeCoverageIgnoreEnd
     }
 }

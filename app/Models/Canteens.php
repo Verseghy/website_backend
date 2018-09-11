@@ -22,8 +22,10 @@ class Canteens extends Model
     {
         parent::boot();
         
+        // @codeCoverageIgnoreStart
         static::deleting(function (Canteens $canteen) {
             $canteen->menus()->detach();
         });
+		// @codeCoverageIgnoreEnd
     }
 }
