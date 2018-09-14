@@ -18,11 +18,6 @@ class Posts extends Model
         return $this->belongsTo('App\Models\Posts\Authors');
     }
 
-    public function images()
-    {
-        return $this->hasMany('App\Models\Posts\Images', 'post_id');
-    }
-
     public function labels()
     {
         return $this->belongsToMany('App\Models\Posts\Labels', 'posts_pivot_labels_data');

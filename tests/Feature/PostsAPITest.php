@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Posts;
 use App\Models\Posts\Labels;
-use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
 class PostsAPITest extends TestCase
@@ -41,7 +40,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'listPosts';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
         
         
         // Valid request without parameter
@@ -69,7 +68,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPost';
     
-        $validResponse = $this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
+        $validResponse = $this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -93,7 +92,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByLabel';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -117,7 +116,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByAuthor';
     
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -143,7 +142,7 @@ class PostsAPITest extends TestCase
         
         $searchTerm = str_word_count($this->post->title, 1)[0];
         
-        $validResponse = array($this->post->setHidden(['content','images','author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
     
         // Valid request
         $response = $this->API($endpoint, "term=$searchTerm");
@@ -170,10 +169,8 @@ class PostsAPITest extends TestCase
         $this->post = factory(Posts::class, 1)->create()->first();
         $this->post->labels()->attach($label);
         $this->post->save();
-        factory(Images::class, 2)->create();
         
         $this->post->labels;
         $this->post->author;
-        $this->post->iamges;
     }
 }

@@ -4,14 +4,7 @@ use Faker\Generator as Faker;
 
 use App\Models\Posts;
 use App\Models\Posts\Authors;
-use App\Models\Posts\Images;
 use App\Models\Posts\Labels;
-
-$factory->define(Images::class, function (Faker $faker) use ($factory) {
-    return [
-        'post_id'=>App\Models\Posts::inRandomOrder()->first()->id,
-    ];
-});
 
 
 

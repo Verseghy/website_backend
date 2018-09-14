@@ -99,11 +99,11 @@ class PostsController extends Controller
 
     private static function _resolvedPosts()
     {
-        return Posts::with(['author','images','labels'])->orderBy('date', 'desc');
+        return Posts::with(['author', 'labels'])->orderBy('date', 'desc');
     }
 
     private static function _makeThumbnail($posts)
     {
-        return $posts->paginate(self::PAGESIZE)->makeHidden(['images','content']);
+        return $posts->paginate(self::PAGESIZE)->makeHidden(['content']);
     }
 }
