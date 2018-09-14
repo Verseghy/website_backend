@@ -71,6 +71,14 @@ return [
             'visibility' => 'public',
             'url_type'  => 'publicURL',
         ],
+        
+        'posts_images' => [
+            'driver' => 'local',
+            'root' =>storage_path('app/public/posts_images'),
+            'url' => 'storage/posts_images',
+            'visibility' => 'public',
+            'url_type'  => 'publicURL',
+        ],
     ],
 
 ];

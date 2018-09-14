@@ -10,8 +10,13 @@ class Posts extends Model
     use crudTrait;
     protected $table = 'posts_data';
     
-    protected $fillable = ['title', 'description', 'color', 'index_image'];
+    protected $fillable = ['title', 'description', 'color', 'index_image', 'images'];
     protected $hidden = ['author_id','created_at','updated_at'];
+
+	protected $casts = [
+        'images' => 'array'
+	];
+
 
     public function author()
     {
@@ -64,7 +69,14 @@ class Posts extends Model
         }
     }
     
-    
+    public function setImagesAttribute($value)
+	{
+		$attribute_name = 'images';
+		$disk = 'posts_images';
+		$destination_path = "";
+
+		$this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+	}
     
     // Get a public URL from a path
     // Stolen from https://stackoverflow.com/questions/37017880/laravel-filesystem-storage-local-public-file-urls-not-working#comment61589587_37018544
@@ -94,4 +106,17 @@ class Posts extends Model
         return parent::toArray($options);
     }
     // @codeCoverageIgnoreEnd
+    
+    
+	public static function boot()
+    {
+        parent::boot();
+        static::deleting(function(Posts $post) {
+            if (count((array)$post->images)) {
+                foreach ($post->images as $file_path) {
+                    \Storage::disk('posts_images')->delete($file_path);
+                }
+            }
+        });
+    }
 }

@@ -116,7 +116,15 @@ class PostsCrudController extends CrudController
             'entity'=>'author',
             'attribute'=>'name',
         ]);
-           
+        
+        
+        $this->crud->addField([
+			'name'=>'images',
+			'type'=>'upload_multiple',
+			'label'=>'Images',
+			'upload'=>true,
+			'disk'=>'posts_images',
+        ]);
         
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
