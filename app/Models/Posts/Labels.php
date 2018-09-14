@@ -15,6 +15,19 @@ class Labels extends Model
 
     public function posts()
     {
-        $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_data');
+        return $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_data');
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+    
+        
+        
+        // @codeCoverageIgnoreStart
+        static::deleting(function (Labels $label) {
+            $label->posts()->detach();
+        });
+        // @codeCoverageIgnoreEnd
     }
 }

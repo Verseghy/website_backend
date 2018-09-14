@@ -15,7 +15,7 @@ class Authors extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Posts');
+        return $this->hasMany('App\Models\Posts','id', 'author_id');
     }
     
     
@@ -34,8 +34,10 @@ class Authors extends Model
         static::deleting(function(Authors $author) {
             if (isset($author->image))
             {
-				\Storage::disk('authors_images')->delete($author->image);
+				\Storage::disk('authors_images')->detach($author->image);
 			}
+			//does not work
+			$author->posts()->delete();
         });
     }
 }
