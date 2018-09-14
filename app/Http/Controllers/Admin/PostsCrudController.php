@@ -49,6 +49,8 @@ class PostsCrudController extends CrudController
             'name'=>'index_image',
             'type'=>'image',
             'label'=>'Index image',
+            'disk'=>'posts_images',
+            'prefix'=>'storage/posts_images/',
         ]);
         
         $this->crud->addColumn([
@@ -93,10 +95,11 @@ class PostsCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'=>'index_image',
-            'type'=>'image',
-            'label'=>'Index image',
-            'upload'=>true,
+			'name'=>'index_image',
+			'type'=>'upload',
+			'label'=>'Index image',
+			'upload'=>true,
+			'disk'=>'posts_images',
         ]);
         
         $this->crud->addField([   // SelectMultiple = n-n relationship (with pivot table)

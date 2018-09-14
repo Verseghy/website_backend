@@ -29,44 +29,13 @@ class Posts extends Model
     }
     
     
-    // @codeCoverageIgnoreStart
-    
-    // Accessor to get full URL of image
-    public function getIndexImageAttribute()
-    {
-        $disk = 'images';
-        $filename = $this->attributes['index_image'];
-        return $filename ? self::public_url($disk, $filename) : null;
-    }
-    
-    // Mutator to upload an image
     public function setIndexImageAttribute($value)
     {
-        $attribute_name = "index_image";
-        $disk = "images";
-        $destination_path = "images/postImages/indexes";
-        $path_prefix = 'postImages/indexes';
+        $attribute_name = 'index_image';
+        $disk = 'posts_images';
+        $destination_path = 'index';
 
-        // if the image was erased
-        if ($value==null) {
-            // delete the image from disk
-            \Storage::disk($disk)->delete($this->{$attribute_name});
-
-            // set null in the database column
-            $this->attributes[$attribute_name] = null;
-        }
-
-        // if a base64 was sent, store it in the db
-        if (starts_with($value, 'data:image')) {
-            // 0. Make the image
-            $image = \Image::make($value);
-            // 1. Generate a filename.
-            $filename = md5($value.time()).'.jpg';
-            // 2. Store the image on disk.
-            \Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
-            // 3. Save the path to the database
-            $this->attributes[$attribute_name] = $path_prefix.'/'.$filename;
-        }
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
     
     public function setImagesAttribute($value)
@@ -117,6 +86,10 @@ class Posts extends Model
                     \Storage::disk('posts_images')->delete($file_path);
                 }
             }
+            if (isset($post->index_image))
+            {
+				\Storage::disk('posts_images')->delete($post->index_image);
+			}
         });
     }
 }

@@ -64,13 +64,6 @@ return [
             'url' => env('AWS_URL'),
         ],
         
-        'images' => [
-            'driver' => 'local',
-            'root' =>storage_path('app/public'),
-            'url' => 'storage/images',
-            'visibility' => 'public',
-            'url_type'  => 'publicURL',
-        ],
         
         'posts_images' => [
             'driver' => 'local',
