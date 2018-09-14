@@ -37,6 +37,7 @@ class CreatePostsDb extends Migration
             $table->longText('content')->nullable();
             $table->string('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
+            $table->longText('images')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
             $table->timestamps();
