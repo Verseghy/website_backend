@@ -50,6 +50,7 @@ class AuthorsCrudController extends CrudController
             'name'=>'image',
             'label'=>'Profile image',
             'type'=>'image',
+            'prefix'=>'storage/authors_images/'
         ]);
 
 
@@ -68,8 +69,9 @@ class AuthorsCrudController extends CrudController
         $this->crud->addField([
             'name'=>'image',
             'label'=>'Profile image',
-            'type'=>'image',
+            'type'=>'upload',
             'upload'=>true,
+            'disk'=>'authors_images',
         ]);
         
         // add asterisk for fields that are required in AuthorsRequest

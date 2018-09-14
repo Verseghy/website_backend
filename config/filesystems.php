@@ -72,6 +72,14 @@ return [
             'visibility' => 'public',
             'url_type'  => 'publicURL',
         ],
+        
+        'authors_images' => [
+            'driver' => 'local',
+            'root' =>storage_path('app/public/authors_images'),
+            'url' => 'storage/authors_images',
+            'visibility' => 'public',
+            'url_type'  => 'publicURL',
+        ],
     ],
 
 ];
