@@ -13,9 +13,9 @@ class Posts extends Model
     protected $fillable = ['title', 'description', 'color', 'index_image', 'images'];
     protected $hidden = ['author_id','created_at','updated_at'];
 
-	protected $casts = [
+    protected $casts = [
         'images' => 'array'
-	];
+    ];
 
 
     public function author()
@@ -39,31 +39,29 @@ class Posts extends Model
     }
     
     public function setImagesAttribute($value)
-	{
-		$attribute_name = 'images';
-		$disk = 'posts_images';
-		$destination_path = "";
+    {
+        $attribute_name = 'images';
+        $disk = 'posts_images';
+        $destination_path = "";
 
-		$this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
-	}
+        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
     
-	public static function boot()
+    public static function boot()
     {
         parent::boot();
-        static::deleting(function(Posts $post) {
+        static::deleting(function (Posts $post) {
             if (count((array)$post->images)) {
                 foreach ($post->images as $file_path) {
                     \Storage::disk('posts_images')->delete($file_path);
                 }
             }
-            if (isset($post->index_image))
-            {
-				\Storage::disk('posts_images')->delete($post->index_image);
-			}
-			
-			$post->author()->associate(null);
+            if (isset($post->index_image)) {
+                \Storage::disk('posts_images')->delete($post->index_image);
+            }
+            
+            $post->author()->associate(null);
             $post->labels()->detach();
-			
         });
     }
 }

@@ -33,31 +33,26 @@ trait ControllerBase
             if ($result->isEmpty()) {
                 return response()->json([], 404);
             }
-        }
-        else if (is_array($result))
-        {
-			if (count($result)===0)
-			{
+        } elseif (is_array($result)) {
+            if (count($result)===0) {
                 return response()->json([], 404);
-			}
-		}
+            }
+        }
         
-        if (isset($mutator))
-		{
-			$result = $mutator($result);
-		}
+        if (isset($mutator)) {
+            $result = $mutator($result);
+        }
         
         $modSince = self::_modSince($request);
-        if (isset($maxDate))
-		{
-			if ($maxDate->lte($modSince)) {
-				return response()->json([], 304);
-			}
-			
-			return response()->json($result)->withHeaders(['Last-modified'=>$maxDate->toRfc7231String()]);
-		}
-		
-		return response()->json($result);
+        if (isset($maxDate)) {
+            if ($maxDate->lte($modSince)) {
+                return response()->json([], 304);
+            }
+            
+            return response()->json($result)->withHeaders(['Last-modified'=>$maxDate->toRfc7231String()]);
+        }
+        
+        return response()->json($result);
     }
     
     protected static function _modSince($request)

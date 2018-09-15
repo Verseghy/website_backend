@@ -94,14 +94,11 @@ class PostsController extends Controller
             }
         }
         //var_dump($result);
-        if ($result instanceof \Illuminate\Database\Eloquent\Collection)
-        {
-			$result = array_map("self::_expandUrls",$result->toArray());
-		}
-		else if ($result instanceof Posts)
-		{
-			$result = self::_expandUrls($result);
-		}
+        if ($result instanceof \Illuminate\Database\Eloquent\Collection) {
+            $result = array_map("self::_expandUrls", $result->toArray());
+        } elseif ($result instanceof Posts) {
+            $result = self::_expandUrls($result);
+        }
 
         return self::_after_original($request, $result, $maxDate, $mutator);
     }
@@ -111,30 +108,28 @@ class PostsController extends Controller
         return Posts::with(['author', 'labels'])->orderBy('date', 'desc');
     }
 
-	private static function _expandUrls($post)
-	{
-			if ($post instanceof Posts)
-			{
-				$post = $post->toArray();
-			}
-			assert(is_array($post));
-			
-			
-			$post['index_image'] = isset($post['index_image']) ? self::_publicUrl($post['index_image']) : null;
-			$post['author']['image'] = isset($post['author']['image']) ? self::_publicUrl($post['author']['image'], 'authors_images') : null;
-			if (isset($post['images']))
-			{
-				$post['images'] = array_map(function($f){
-						return self::_publicUrl($f);
-					},$post['images']);
-			}
-			return $post;
-	}
-	
-	private static function _publicUrl($file,$disk='posts_images')
-	{
-		return asset(\Storage::disk($disk)->url($file));
-	}
+    private static function _expandUrls($post)
+    {
+        if ($post instanceof Posts) {
+            $post = $post->toArray();
+        }
+        assert(is_array($post));
+            
+            
+        $post['index_image'] = isset($post['index_image']) ? self::_publicUrl($post['index_image']) : null;
+        $post['author']['image'] = isset($post['author']['image']) ? self::_publicUrl($post['author']['image'], 'authors_images') : null;
+        if (isset($post['images'])) {
+            $post['images'] = array_map(function ($f) {
+                return self::_publicUrl($f);
+            }, $post['images']);
+        }
+        return $post;
+    }
+    
+    private static function _publicUrl($file, $disk='posts_images')
+    {
+        return asset(\Storage::disk($disk)->url($file));
+    }
 
     private static function _makeThumbnail($posts)
     {
