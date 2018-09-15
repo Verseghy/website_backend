@@ -34,11 +34,11 @@ class Authors extends Model
         parent::boot();
         static::deleting(function (Authors $author) {
             if (isset($author->image)) {
-                \Storage::disk('authors_images')->detach($author->image);
+                \Storage::disk('authors_images')->delete($author->image);
             }
 
             Posts::where('author_id', '=', $author->id)->get()->each(function (Posts $p) {
-                $p->author()->associate(null);
+                $p->author()->dissociate();
                 $p->save();
             });
         });

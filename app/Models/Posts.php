@@ -60,7 +60,7 @@ class Posts extends Model
                 \Storage::disk('posts_images')->delete($post->index_image);
             }
             
-            $post->author()->associate(null);
+            $post->author()->dissociate();
             $post->labels()->detach();
         });
     }
