@@ -29,7 +29,15 @@ class PostsRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'title' => 'required|string|max:255',
+            'color'=> 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
+            'description' => 'string|nullable|max:1024',
+            'content'=> 'string|nullable',
+            'index_image'=>'image|nullable',
+            'author_id'=>'integer|min:1|nullable',
+            'date'=>'date|nullable',
+            'type'=>'integer|min:0|max:2|nullable',
+            'images'=>'nullable',
         ];
     }
 
