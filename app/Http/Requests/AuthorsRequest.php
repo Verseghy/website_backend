@@ -30,8 +30,8 @@ class AuthorsRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description'=>'max:1024',
-            'image'=>'image',
+            'description'=>'string|max:1024|nullable',
+            'image'=>'image|nullable',
         ];
     }
 
