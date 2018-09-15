@@ -32,7 +32,6 @@ class AuthorsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->addColumn([
             'name'=>'name',
             'label'=>'Name',
