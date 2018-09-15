@@ -12,7 +12,6 @@ use App\Http\Requests\PostsRequest as UpdateRequest;
  * Class PostsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @codeCoverageIgnore
  */
 class PostsCrudController extends CrudController
 {

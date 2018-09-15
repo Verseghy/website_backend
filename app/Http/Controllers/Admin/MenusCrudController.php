@@ -12,7 +12,6 @@ use App\Http\Requests\MenusRequest as UpdateRequest;
  * Class MenusCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @codeCoverageIgnore
  */
 class MenusCrudController extends CrudController
 {
