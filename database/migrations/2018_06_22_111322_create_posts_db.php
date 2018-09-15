@@ -25,7 +25,7 @@ class CreatePostsDb extends Migration
         Schema::create('posts_authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->string('image')->nullable();
         });
 
