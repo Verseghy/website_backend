@@ -88,10 +88,10 @@ class PostsCrudController extends CrudController
             ],
         ]);
         
-        $this->crud->addField([
-            'name'=>'color',
-            'type'=>'color',
-            'label'=>'Color',
+		$this->crud->addField([
+			'name'=>'date',
+			'type'=>'date',
+			'label'=>'Date',
         ]);
 
         $this->crud->addField([
@@ -129,6 +129,24 @@ class PostsCrudController extends CrudController
 			'disk'=>'posts_images',
         ]);
         
+		$this->crud->addField([
+            'name'=>'color',
+            'type'=>'color',
+            'label'=>'Color',
+        ]);
+        
+        $this->crud->addField([
+			'name'=>'type',
+			'type'=>'select2_from_array',
+			'label'=>'Type',
+			'options'=>[
+				1=>'No image',
+				2=>'With image',
+				3=>'Only image',
+			],
+			'allows_null' => false,
+        ]);
+
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
