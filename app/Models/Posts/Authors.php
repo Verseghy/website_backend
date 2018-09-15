@@ -4,6 +4,7 @@ namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use App\Models\Posts;
 
 class Authors extends Model
 {
@@ -36,8 +37,11 @@ class Authors extends Model
             {
 				\Storage::disk('authors_images')->detach($author->image);
 			}
-			//does not work
-			$author->posts()->delete();
+
+			Posts::where('author_id','=', $author->id)->get()->each(function (Posts $p){
+					$p->author()->associate(null);
+					$p->save();
+				});
         });
     }
 }
