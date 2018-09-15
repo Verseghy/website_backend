@@ -29,7 +29,9 @@ class AuthorsRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|string|max:255',
+            'description'=>'max:1024',
+            'image'=>'image',
         ];
     }
 
