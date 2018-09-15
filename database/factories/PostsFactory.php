@@ -6,8 +6,6 @@ use App\Models\Posts;
 use App\Models\Posts\Authors;
 use App\Models\Posts\Labels;
 
-
-
 $factory->define(Labels::class, function (Faker $faker) {
     return [
         'name'=>$faker->word,

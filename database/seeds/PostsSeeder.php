@@ -23,5 +23,5 @@ class PostsSeeder extends Seeder
                 $post->labels()->attach($label);
             }
         });
-	}
+    }
 }

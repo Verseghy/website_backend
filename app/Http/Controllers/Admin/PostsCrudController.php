@@ -88,18 +88,18 @@ class PostsCrudController extends CrudController
             ],
         ]);
         
-		$this->crud->addField([
-			'name'=>'date',
-			'type'=>'date',
-			'label'=>'Date',
+        $this->crud->addField([
+            'name'=>'date',
+            'type'=>'date',
+            'label'=>'Date',
         ]);
 
         $this->crud->addField([
-			'name'=>'index_image',
-			'type'=>'upload',
-			'label'=>'Index image',
-			'upload'=>true,
-			'disk'=>'posts_images',
+            'name'=>'index_image',
+            'type'=>'upload',
+            'label'=>'Index image',
+            'upload'=>true,
+            'disk'=>'posts_images',
         ]);
         
         $this->crud->addField([   // SelectMultiple = n-n relationship (with pivot table)
@@ -122,29 +122,29 @@ class PostsCrudController extends CrudController
         
         
         $this->crud->addField([
-			'name'=>'images',
-			'type'=>'upload_multiple',
-			'label'=>'Images',
-			'upload'=>true,
-			'disk'=>'posts_images',
+            'name'=>'images',
+            'type'=>'upload_multiple',
+            'label'=>'Images',
+            'upload'=>true,
+            'disk'=>'posts_images',
         ]);
         
-		$this->crud->addField([
+        $this->crud->addField([
             'name'=>'color',
             'type'=>'color',
             'label'=>'Color',
         ]);
         
         $this->crud->addField([
-			'name'=>'type',
-			'type'=>'select2_from_array',
-			'label'=>'Type',
-			'options'=>[
-				1=>'No image',
-				2=>'With image',
-				3=>'Only image',
-			],
-			'allows_null' => false,
+            'name'=>'type',
+            'type'=>'select2_from_array',
+            'label'=>'Type',
+            'options'=>[
+                1=>'No image',
+                2=>'With image',
+                3=>'Only image',
+            ],
+            'allows_null' => false,
         ]);
 
         // add asterisk for fields that are required in PostsRequest

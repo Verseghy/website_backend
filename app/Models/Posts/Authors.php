@@ -16,7 +16,7 @@ class Authors extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Posts','id', 'author_id');
+        return $this->hasMany('App\Models\Posts', 'id', 'author_id');
     }
     
     
@@ -32,16 +32,15 @@ class Authors extends Model
     public static function boot()
     {
         parent::boot();
-        static::deleting(function(Authors $author) {
-            if (isset($author->image))
-            {
-				\Storage::disk('authors_images')->detach($author->image);
-			}
+        static::deleting(function (Authors $author) {
+            if (isset($author->image)) {
+                \Storage::disk('authors_images')->detach($author->image);
+            }
 
-			Posts::where('author_id','=', $author->id)->get()->each(function (Posts $p){
-					$p->author()->associate(null);
-					$p->save();
-				});
+            Posts::where('author_id', '=', $author->id)->get()->each(function (Posts $p) {
+                $p->author()->associate(null);
+                $p->save();
+            });
         });
     }
 }
