@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 trait ControllerBase
 {
-    protected static function _after($request, $result, $maxDate)
+    protected static function _after($request, $result, $maxDate, $mutator = null)
     {
         if (is_null($maxDate)) {
             if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
@@ -34,13 +34,30 @@ trait ControllerBase
                 return response()->json([], 404);
             }
         }
+        else if (is_array($result))
+        {
+			if (count($result)===0)
+			{
+                return response()->json([], 404);
+			}
+		}
         
+        if (isset($mutator))
+		{
+			$result = $mutator($result);
+		}
         
         $modSince = self::_modSince($request);
-        if ($maxDate->lte($modSince)) {
-            return response()->json([], 304);
-        }
-        return response()->json($result)->withHeaders(['Last-modified'=>$maxDate->toRfc7231String()]);
+        if (isset($maxDate))
+		{
+			if ($maxDate->lte($modSince)) {
+				return response()->json([], 304);
+			}
+			
+			return response()->json($result)->withHeaders(['Last-modified'=>$maxDate->toRfc7231String()]);
+		}
+		
+		return response()->json($result);
     }
     
     protected static function _modSince($request)
