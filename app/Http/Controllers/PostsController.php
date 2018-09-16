@@ -79,7 +79,7 @@ class PostsController extends Controller
         return self::_after($request, $posts);
     }
 
-    protected static function _after($request, $result, $maxDate = null, $mutator=null)
+    protected static function _after($request, $result, $maxDate = null)
     {
         if (is_null($maxDate)) {
             if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
@@ -100,7 +100,7 @@ class PostsController extends Controller
             $result = self::_expandUrls($result);
         }
 
-        return self::_after_original($request, $result, $maxDate, $mutator);
+        return self::_after_original($request, $result, $maxDate);
     }
 
     private static function _resolvedPosts()

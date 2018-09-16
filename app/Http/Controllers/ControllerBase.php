@@ -39,9 +39,6 @@ trait ControllerBase
             }
         }
         
-        if (isset($mutator)) {
-            $result = $mutator($result);
-        }
         
         $modSince = self::_modSince($request);
         if (isset($maxDate)) {

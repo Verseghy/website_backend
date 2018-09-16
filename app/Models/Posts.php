@@ -28,7 +28,9 @@ class Posts extends Model
         return $this->belongsToMany('App\Models\Posts\Labels', 'posts_pivot_labels_data');
     }
     
-    
+    /**
+	 * @codeCoverageIgnore
+	 */
     public function setIndexImageAttribute($value)
     {
         $attribute_name = 'index_image';
@@ -38,6 +40,9 @@ class Posts extends Model
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
     
+    /**
+	 * @codeCoverageIgnore
+	 */
     public function setImagesAttribute($value)
     {
         $attribute_name = 'images';
@@ -47,9 +52,12 @@ class Posts extends Model
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
     }
     
+    
     public static function boot()
     {
         parent::boot();
+		
+		// codeCoverageIgnoreStart
         static::deleting(function (Posts $post) {
             if (count((array)$post->images)) {
                 foreach ($post->images as $file_path) {
@@ -63,5 +71,6 @@ class Posts extends Model
             $post->author()->dissociate();
             $post->labels()->detach();
         });
+        // codeCoverageIgnoreEnd
     }
 }

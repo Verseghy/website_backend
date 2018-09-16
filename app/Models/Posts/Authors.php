@@ -14,12 +14,15 @@ class Authors extends Model
     protected $fillable = ['name', 'description', 'image'];
     protected $hidden = [];
 
+	// should be tested via getPostsByAuthor
     public function posts()
     {
         return $this->hasMany('App\Models\Posts', 'id', 'author_id');
     }
     
-    
+	/**
+	 * @codeCoverageIgnore
+	 */
     public function setImageAttribute($value)
     {
         $attribute_name = 'image';
@@ -32,6 +35,8 @@ class Authors extends Model
     public static function boot()
     {
         parent::boot();
+        
+        // codeCoverageIgnoreStart
         static::deleting(function (Authors $author) {
             if (isset($author->image)) {
                 \Storage::disk('authors_images')->delete($author->image);
@@ -42,5 +47,6 @@ class Authors extends Model
                 $p->save();
             });
         });
+        // codeCoverageIgnoreEnd
     }
 }
