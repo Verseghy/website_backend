@@ -29,8 +29,8 @@ class Posts extends Model
     }
     
     /**
-	 * @codeCoverageIgnore
-	 */
+     * @codeCoverageIgnore
+     */
     public function setIndexImageAttribute($value)
     {
         $attribute_name = 'index_image';
@@ -41,8 +41,8 @@ class Posts extends Model
     }
     
     /**
-	 * @codeCoverageIgnore
-	 */
+     * @codeCoverageIgnore
+     */
     public function setImagesAttribute($value)
     {
         $attribute_name = 'images';
@@ -56,8 +56,8 @@ class Posts extends Model
     public static function boot()
     {
         parent::boot();
-		
-		// codeCoverageIgnoreStart
+        
+        // codeCoverageIgnoreStart
         static::deleting(function (Posts $post) {
             if (count((array)$post->images)) {
                 foreach ($post->images as $file_path) {

@@ -14,15 +14,15 @@ class Authors extends Model
     protected $fillable = ['name', 'description', 'image'];
     protected $hidden = [];
 
-	// should be tested via getPostsByAuthor
+    // should be tested via getPostsByAuthor
     public function posts()
     {
         return $this->hasMany('App\Models\Posts', 'id', 'author_id');
     }
     
-	/**
-	 * @codeCoverageIgnore
-	 */
+    /**
+     * @codeCoverageIgnore
+     */
     public function setImageAttribute($value)
     {
         $attribute_name = 'image';
