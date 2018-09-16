@@ -57,7 +57,7 @@ class Posts extends Model
     {
         parent::boot();
         
-        // codeCoverageIgnoreStart
+        // @codeCoverageIgnoreStart
         static::deleting(function (Posts $post) {
             if (count((array)$post->images)) {
                 foreach ($post->images as $file_path) {
@@ -71,6 +71,6 @@ class Posts extends Model
             $post->author()->dissociate();
             $post->labels()->detach();
         });
-        // codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
     }
 }

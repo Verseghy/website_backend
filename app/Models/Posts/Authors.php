@@ -36,7 +36,7 @@ class Authors extends Model
     {
         parent::boot();
         
-        // codeCoverageIgnoreStart
+        // @codeCoverageIgnoreStart
         static::deleting(function (Authors $author) {
             if (isset($author->image)) {
                 \Storage::disk('authors_images')->delete($author->image);
@@ -47,6 +47,6 @@ class Authors extends Model
                 $p->save();
             });
         });
-        // codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
     }
 }
