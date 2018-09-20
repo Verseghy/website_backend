@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\MenusRequest as StoreRequest;
-use App\Http\Requests\MenusRequest as UpdateRequest;
+use App\Http\Requests\LabelsRequest as StoreRequest;
+use App\Http\Requests\LabelsRequest as UpdateRequest;
 
 /**
- * Class MenusCrudController
+ * Class LabelsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class MenusCrudController extends CrudController
+class LabelsCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class MenusCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Canteens\Menus');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/menus');
-        $this->crud->setEntityNameStrings('menu', 'menus');
+        $this->crud->setModel('App\Models\Posts\Labels');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/labels');
+        $this->crud->setEntityNameStrings('labels', 'labels');
 
         /*
         |--------------------------------------------------------------------------
@@ -32,39 +32,32 @@ class MenusCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn([
-            'name'=>'menu',
-            'label'=>'Name',
-            'type'=>'text',
-        ]);
-
-        $this->crud->addColumn([   // select_from_array
-            'name' => 'type',
-            'label' => 'Type',
-            'type' => 'select_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
-            'allows_null' => false,
-        ]);
-        
-        
-        
-        
+        // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->addField([
-            'name'=>'menu',
-            'label'=>'Name',
+            'name'=>'name',
             'type'=>'text',
+            'label'=>'Label name'
+        ]);
+        
+        $this->crud->addColumn([
+            'name'=>'name',
+            'type'=>'text',
+            'label'=>'Label name'
         ]);
 
-        $this->crud->addField([   // select_from_array
-            'name' => 'type',
-            'label' => 'Type',
-            'type' => 'select2_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
-            'allows_null' => false,
+        $this->crud->addField([
+            'name'=>'color',
+            'type'=>'color',
+            'label'=>'Label color'
+        ]);
+        
+        $this->crud->addColumn([
+            'name'=>'color',
+            'type'=>'color',
+            'label'=>'Label color'
         ]);
 
-
-        // add asterisk for fields that are required in MenusRequest
+        // add asterisk for fields that are required in LabelsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

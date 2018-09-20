@@ -63,7 +63,23 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
-
+        
+        
+        'posts_images' => [
+            'driver' => 'local',
+            'root' =>storage_path('app/public/posts_images'),
+            'url' => 'storage/posts_images',
+            'visibility' => 'public',
+            'url_type'  => 'publicURL',
+        ],
+        
+        'authors_images' => [
+            'driver' => 'local',
+            'root' =>storage_path('app/public/authors_images'),
+            'url' => 'storage/authors_images',
+            'visibility' => 'public',
+            'url_type'  => 'publicURL',
+        ],
     ],
 
 ];

@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Posts;
 use App\Models\Posts\Labels;
-use App\Models\Posts\Images;
 use App\Models\Posts\Authors;
 
 class PostsSeeder extends Seeder
@@ -24,7 +23,5 @@ class PostsSeeder extends Seeder
                 $post->labels()->attach($label);
             }
         });
-        
-        factory(Images::class, 'postImage', 150)->create();
     }
 }

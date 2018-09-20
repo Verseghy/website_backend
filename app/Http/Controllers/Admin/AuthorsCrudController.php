@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\MenusRequest as StoreRequest;
-use App\Http\Requests\MenusRequest as UpdateRequest;
+use App\Http\Requests\AuthorsRequest as StoreRequest;
+use App\Http\Requests\AuthorsRequest as UpdateRequest;
 
 /**
- * Class MenusCrudController
+ * Class AuthorsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class MenusCrudController extends CrudController
+class AuthorsCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,9 +22,9 @@ class MenusCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Canteens\Menus');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/menus');
-        $this->crud->setEntityNameStrings('menu', 'menus');
+        $this->crud->setModel('App\Models\Posts\Authors');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/authors');
+        $this->crud->setEntityNameStrings('authors', 'authors');
 
         /*
         |--------------------------------------------------------------------------
@@ -33,38 +33,46 @@ class MenusCrudController extends CrudController
         */
 
         $this->crud->addColumn([
-            'name'=>'menu',
+            'name'=>'name',
             'label'=>'Name',
             'type'=>'text',
         ]);
-
-        $this->crud->addColumn([   // select_from_array
-            'name' => 'type',
-            'label' => 'Type',
-            'type' => 'select_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
-            'allows_null' => false,
+        
+        $this->crud->addColumn([
+            'name'=>'description',
+            'label'=>'Description',
+            'type'=>'text',
         ]);
         
-        
-        
+        $this->crud->addColumn([
+            'name'=>'image',
+            'label'=>'Profile image',
+            'type'=>'image',
+            'prefix'=>'storage/authors_images/'
+        ]);
+
+
+        $this->crud->addField([
+            'name'=>'name',
+            'label'=>'Name',
+            'type'=>'text',
+        ]);
         
         $this->crud->addField([
-            'name'=>'menu',
-            'label'=>'Name',
-            'type'=>'text',
+            'name'=>'description',
+            'label'=>'Description',
+            'type'=>'textarea',
         ]);
-
-        $this->crud->addField([   // select_from_array
-            'name' => 'type',
-            'label' => 'Type',
-            'type' => 'select2_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
-            'allows_null' => false,
+        
+        $this->crud->addField([
+            'name'=>'image',
+            'label'=>'Profile image',
+            'type'=>'upload',
+            'upload'=>true,
+            'disk'=>'authors_images',
         ]);
-
-
-        // add asterisk for fields that are required in MenusRequest
+        
+        // add asterisk for fields that are required in AuthorsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }

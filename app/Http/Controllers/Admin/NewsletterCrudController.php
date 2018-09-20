@@ -12,7 +12,6 @@ use App\Http\Requests\NewsletterRequest as UpdateRequest;
  * Class NewsletterCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @codeCoverageIgnore
  */
 class NewsletterCrudController extends CrudController
 {

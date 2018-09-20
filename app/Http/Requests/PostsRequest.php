@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EventsRequest extends FormRequest
+class PostsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,15 @@ class EventsRequest extends FormRequest
     public function rules()
     {
         return [
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
-            'title'=>'required|max:255|string',
-            'description'=>'nullable|string',
-            'color' => 'string|max:16|nullable',
+            'title' => 'required|string|max:255',
+            'color'=> 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
+            'description' => 'string|nullable|max:1024',
+            'content'=> 'string|nullable',
+            'index_image'=>'image|nullable',
+            'author_id'=>'integer|min:1|nullable',
+            'date'=>'date|nullable',
+            'type'=>'integer|min:0|max:2|nullable',
+            'images'=>'nullable',
         ];
     }
 

@@ -12,7 +12,6 @@ use App\Http\Requests\EventsRequest as UpdateRequest;
  * Class EventsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
- * @codeCoverageIgnore
  */
 class EventsCrudController extends CrudController
 {

@@ -21,18 +21,12 @@ class CreatePostsDb extends Migration
             $table->string('name');
             $table->string('color');
         });
-
-        Schema::create('posts_images', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('url');
-            $table->unsignedInteger('post_id')->nullable();
-        });
         
         Schema::create('posts_authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->longText('description');
-            $table->unsignedInteger('image_id')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('image')->nullable();
         });
 
         Schema::create('posts_data', function (Blueprint $table) {
@@ -41,8 +35,9 @@ class CreatePostsDb extends Migration
             $table->string('color')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
-            $table->unsignedInteger('index_image')->nullable();
+            $table->string('index_image')->nullable();
             $table->unsignedInteger('author_id')->nullable();
+            $table->longText('images')->nullable();
             $table->timestamp('date')->nullable();
             $table->unsignedSmallInteger('type')->nullable();
             $table->timestamps();
@@ -55,19 +50,12 @@ class CreatePostsDb extends Migration
             $table->unsignedInteger('posts_id')->nullable();
             $table->foreign('posts_id')->references('id')->on('posts_data');
         });
+        
         /**
          * Foreign keys
          */
-        Schema::table('posts_images', function (Blueprint $table) {
-            $table->foreign('post_id')->references('id')->on('posts_data');
-        });
-
-        Schema::table('posts_authors', function (Blueprint $table) {
-            $table->foreign('image_id')->references('id')->on('posts_images');
-        });
 
         Schema::table('posts_data', function (Blueprint $table) {
-            $table->foreign('index_image')->references('id')->on('posts_images');
             $table->foreign('author_id')->references('id')->on('posts_authors');
         });
     }

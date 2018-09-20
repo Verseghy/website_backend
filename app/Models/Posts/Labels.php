@@ -3,9 +3,11 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
 class Labels extends Model
 {
+    use CrudTrait;
     protected $table = 'posts_labels';
     public $timestamps = false;
     protected $fillable = ['name', 'color'];
@@ -13,6 +15,19 @@ class Labels extends Model
 
     public function posts()
     {
-        $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_data');
+        return $this->belongsToMany('App\Models\Posts', 'posts_pivot_labels_data');
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+    
+        
+        
+        // @codeCoverageIgnoreStart
+        static::deleting(function (Labels $label) {
+            $label->posts()->detach();
+        });
+        // @codeCoverageIgnoreEnd
     }
 }
