@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use Carbon\Carbon;
+use Parsedown;
 
 class PostsController extends Controller
 {
@@ -114,8 +115,10 @@ class PostsController extends Controller
             $post = $post->toArray();
         }
         assert(is_array($post));
-            
-            
+
+        $parser = Parsedown::instance()->setBreaksEnabled(true)->setMarkupEscaped(true)->setUrlsLinked(false);
+		$post['content'] = isset($post['content']) ? $parser->text($post['content']) : "";
+        
         $post['index_image'] = isset($post['index_image']) ? self::_publicUrl($post['index_image']) : null;
         $post['author']['image'] = isset($post['author']['image']) ? self::_publicUrl($post['author']['image'], 'authors_images') : null;
         if (isset($post['images'])) {
