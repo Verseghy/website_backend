@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.1.3",
         "backpack/crud": "^3.4",
+        "backpack/permissionmanager": "^3.12",
         "barryvdh/laravel-cors": "^0.11.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
