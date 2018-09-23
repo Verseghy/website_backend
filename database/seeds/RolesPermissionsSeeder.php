@@ -45,6 +45,8 @@ class RolesPermissionsSeeder extends Seeder
 
     private function seedUsers()
     {
-        User::where('name', 'LIKE', 'test')->first()->assignRole('admin');
+        $u = User::where('name', 'LIKE', 'test')->first();
+        $u->assignRole('admin');
+        $u->save();
     }
 }
