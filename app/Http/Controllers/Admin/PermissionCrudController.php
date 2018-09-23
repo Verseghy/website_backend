@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\PermissionManager\app\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION
