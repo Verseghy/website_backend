@@ -7,6 +7,31 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Docker usage
+Run this docker command to install all of the dependencies
+```
+docker run --rm -v $(pwd):/app composer install
+```
+
+Run this docker command to build the docker containers
+```
+docker-compose build
+```
+
+Run this docker command to start up the docker containers
+```
+docker-compose up
+```
+
+Run this docker command to destroy the whole network of containers
+```
+docker-compose down
+```
+
+If you want to execute commands inside the docker container use it like this (this command should be run on first installation)
+```
+docker-compose exec app php artisan key:generate
+```
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:

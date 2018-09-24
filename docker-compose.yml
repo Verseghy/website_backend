@@ -1,33 +1,43 @@
 version: '3'
 services:
+
+  # The Laravel Application
   app:
     build:
-      context: .
-      dockerfile: .docker/Dockerfile
-    image: verseghy/website_backend:latest
-    ports:
-      - 80:80
-    depends_on:
-      - mysql
-    external_links:
-      - websitebackend_mysql_1
-    restart: unless-stopped
-    
-  mysql:
-    image: mysql:5.7
-    ports:
-      - 33060:3306
-    environment:
-      MYSQL_DATABASE: website_backend
-      MYSQL_USER: app
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
-    restart: unless-stopped
-
-  watchtower:
-    image: v2tec/watchtower
-    container_name: watchtower
+      context: ./
+      dockerfile: .docker/app.dockerfile
+    working_dir: /var/www
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ~/.docker/config.json:/config.json
-    restart: unless-stopped
+      - ./:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+    links:
+      - database
+
+  # The Web Server
+  web:
+    build:
+      context: ./
+      dockerfile: .docker/web.dockerfile
+    working_dir: /var/www
+    links:
+      - app
+    ports:
+      - 8080:80
+
+  # The Database
+  database:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=homestead"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+        - "33061:3306"
+
+volumes:
+  dbdata:
