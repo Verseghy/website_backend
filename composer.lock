@@ -103,16 +103,16 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.9.8",
+            "version": "0.9.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52"
+                "reference": "4405fd7d0a538a4b4d8b27066f80fbf920ca087c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/21cfdc88caeb39677ec20ed0549a020aba84dd52",
-                "reference": "21cfdc88caeb39677ec20ed0549a020aba84dd52",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/4405fd7d0a538a4b4d8b27066f80fbf920ca087c",
+                "reference": "4405fd7d0a538a4b4d8b27066f80fbf920ca087c",
                 "shasum": ""
             },
             "require": {
@@ -163,20 +163,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2018-09-05T04:52:23+00:00"
+            "time": "2018-09-20T07:38:10+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.33",
+            "version": "3.4.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "15f070060858686af8018a7570f99c95527ad589"
+                "reference": "828bc52caabfa487b294813fc2699691ca672537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/15f070060858686af8018a7570f99c95527ad589",
-                "reference": "15f070060858686af8018a7570f99c95527ad589",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/828bc52caabfa487b294813fc2699691ca672537",
+                "reference": "828bc52caabfa487b294813fc2699691ca672537",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-09-05T04:52:56+00:00"
+            "time": "2018-09-26T14:32:04+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -304,16 +304,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "049797d727261bf27f2690430d935067710049c2"
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/049797d727261bf27f2690430d935067710049c2",
-                "reference": "049797d727261bf27f2690430d935067710049c2",
+                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +420,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-12-29T09:13:20+00:00"
+            "time": "2018-08-27T06:10:37+00:00"
         },
         {
             "name": "creativeorange/gravatar",
@@ -3177,16 +3177,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v4.1.4",
+            "version": "v4.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "fa2182669f7983b7aa5f1a770d053f79f0ef144f"
+                "reference": "6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/fa2182669f7983b7aa5f1a770d053f79f0ef144f",
-                "reference": "fa2182669f7983b7aa5f1a770d053f79f0ef144f",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b",
+                "reference": "6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b",
                 "shasum": ""
             },
             "require": {
@@ -3242,7 +3242,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-08-07T12:45:11+00:00"
+            "time": "2018-09-21T12:49:42+00:00"
         },
         {
             "name": "symfony/var-dumper",
