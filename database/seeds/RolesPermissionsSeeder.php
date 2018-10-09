@@ -5,6 +5,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 
+
 class RolesPermissionsSeeder extends Seeder
 {
     /**
@@ -45,6 +46,6 @@ class RolesPermissionsSeeder extends Seeder
 
     private function seedUsers()
     {
-        User::where('name', 'LIKE', 'test')->first()->assignRole('admin');
+        User::where('name','LIKE','test')->first()->assignRole('admin');
     }
 }
