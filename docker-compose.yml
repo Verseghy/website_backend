@@ -21,7 +21,7 @@ services:
       context: ./
       dockerfile: .docker/web.dockerfile
     working_dir: /var/www
-    volumes:<<<<<<< VHD-4
+    volumes:
       - ./:/var/www
     links:
       - app
