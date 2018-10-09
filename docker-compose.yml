@@ -21,6 +21,8 @@ services:
       context: ./
       dockerfile: .docker/web.dockerfile
     working_dir: /var/www
+    volumes:
+      - ./:/var/www
     links:
       - app
     ports:
