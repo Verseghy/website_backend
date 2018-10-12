@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\AuthorsRequest as StoreRequest;
 use App\Http\Requests\AuthorsRequest as UpdateRequest;
+
 /**
  * Class AuthorsCrudController
  * @package App\Http\Controllers\Admin
