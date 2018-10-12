@@ -27,6 +27,7 @@ class RolesPermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit events']);
         Permission::create(['name' => 'edit canteens']);
         Permission::create(['name' => 'edit users']);
+        Permission::create(['name' => 'edit newsletter']);
     }
 
     private function seedRoles()
@@ -35,7 +36,7 @@ class RolesPermissionsSeeder extends Seeder
         $role->givePermissionTo('edit posts');
 
         $role = Role::create(['name' => 'secretary']);
-        $role->givePermissionTo(['edit canteens', 'edit events']);
+        $role->givePermissionTo(['edit canteens', 'edit events', 'edit newsletter']);
 
         $role = Role::create(['name' => 'supervisor']);
         $role->givePermissionTo(['edit posts']);
