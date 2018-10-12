@@ -7,7 +7,6 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\AuthorsRequest as StoreRequest;
 use App\Http\Requests\AuthorsRequest as UpdateRequest;
-
 /**
  * Class AuthorsCrudController
  * @package App\Http\Controllers\Admin
@@ -15,6 +14,8 @@ use App\Http\Requests\AuthorsRequest as UpdateRequest;
  */
 class AuthorsCrudController extends CrudController
 {
+    use AuthDestroy;
+    protected $destroyRequestClass = UpdateRequest::class;
     public function setup()
     {
         /*
