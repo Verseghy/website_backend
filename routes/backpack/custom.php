@@ -14,6 +14,7 @@ Route::group([
     CRUD::resource('labels', 'LabelsCrudController');
     CRUD::resource('authors', 'AuthorsCrudController');
     CRUD::resource('posts', 'PostsCrudController');
+    CRUD::resource('colleagues', 'ColleaguesCrudController');
     CRUD::resource('menus', 'MenusCrudController');
     CRUD::resource('canteens', 'CanteensCrudController');
     CRUD::resource('newsletter', 'NewsletterCrudController');
