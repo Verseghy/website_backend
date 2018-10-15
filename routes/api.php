@@ -38,3 +38,7 @@ Route::prefix('canteen')->group(function () {
     Route::get('getCanteenMenus', 'CanteensController@getMenus');
     Route::get('getCanteenByWeek', 'CanteensController@byWeek');
 });
+
+Route::prefix('colleagues')->group(function () {
+    Route::get('listColleagues', 'ColleaguesController@listColleagues');
+});

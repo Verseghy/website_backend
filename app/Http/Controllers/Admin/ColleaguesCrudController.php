@@ -32,17 +32,12 @@ class ColleaguesCrudController extends CrudController
             'label'=>'Jobs',
             'type'=>'textarea',
         ]);
-
+        
         $this->crud->addColumn([
-            'name'=>'subjects',
-            'label'=>'Subjects',
-            'type'=>'textarea',
-        ]);
-
-        $this->crud->addColumn([
-            'name'=>'roles',
-            'label'=>'Roles',
-            'type'=>'textarea',
+            'name'=>'image',
+            'label'=>'Image',
+            'type'=>'image',
+            'prefix'=>'storage/authors_images/'
         ]);
 
         $this->crud->addColumn([
