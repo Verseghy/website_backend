@@ -33,11 +33,11 @@ class ColleaguesRequest extends FormRequest
             'image'=>'image|nullable',
         ];
     }
-     /**
-     * Get the validation attributes that apply to the request.
-     *
-     * @return array
-     */
+    /**
+    * Get the validation attributes that apply to the request.
+    *
+    * @return array
+    */
     public function attributes()
     {
         return [
