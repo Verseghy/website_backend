@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostsRequest extends FormRequest
@@ -27,14 +26,14 @@ class PostsRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'color'=> 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
+            'color' => 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
             'description' => 'string|nullable|max:1024',
-            'content'=> 'string|nullable',
-            'index_image'=>'image|nullable',
-            'author_id'=>'integer|min:1|nullable',
-            'date'=>'date|nullable',
-            'type'=>'integer|min:0|max:2|nullable',
-            'images'=>'nullable',
+            'content' => 'string|nullable',
+            'index_image' => 'image|nullable',
+            'author_id' => 'integer|min:1|nullable',
+            'date' => 'date|nullable',
+            'type' => 'integer|min:0|max:2|nullable',
+            'images' => 'nullable',
         ];
     }
 
@@ -46,7 +45,6 @@ class PostsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -58,7 +56,6 @@ class PostsRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

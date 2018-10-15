@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MenusRequest extends FormRequest
@@ -39,7 +38,6 @@ class MenusRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -51,7 +49,6 @@ class MenusRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

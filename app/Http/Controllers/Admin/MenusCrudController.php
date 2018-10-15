@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\MenusRequest as StoreRequest;
 use App\Http\Requests\MenusRequest as UpdateRequest;
 
 /**
- * Class MenusCrudController
- * @package App\Http\Controllers\Admin
- * @property-read CrudPanel $crud
+ * Class MenusCrudController.
+ *
+ * @property CrudPanel $crud
  */
 class MenusCrudController extends CrudController
 {
@@ -23,7 +22,7 @@ class MenusCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Canteens\Menus');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/menus');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/menus');
         $this->crud->setEntityNameStrings('menu', 'menus');
 
         /*
@@ -33,36 +32,32 @@ class MenusCrudController extends CrudController
         */
 
         $this->crud->addColumn([
-            'name'=>'menu',
-            'label'=>'Name',
-            'type'=>'text',
+            'name' => 'menu',
+            'label' => 'Name',
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([   // select_from_array
             'name' => 'type',
             'label' => 'Type',
             'type' => 'select_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
+            'options' => [0 => 'Soup', 1 => 'Main dish', 2 => 'Dessert'],
             'allows_null' => false,
         ]);
-        
-        
-        
-        
+
         $this->crud->addField([
-            'name'=>'menu',
-            'label'=>'Name',
-            'type'=>'text',
+            'name' => 'menu',
+            'label' => 'Name',
+            'type' => 'text',
         ]);
 
         $this->crud->addField([   // select_from_array
             'name' => 'type',
             'label' => 'Type',
             'type' => 'select2_from_array',
-            'options' => [0 => 'Soup', 1 => 'Main dish', 2=>'Dessert'],
+            'options' => [0 => 'Soup', 1 => 'Main dish', 2 => 'Dessert'],
             'allows_null' => false,
         ]);
-
 
         // add asterisk for fields that are required in MenusRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');

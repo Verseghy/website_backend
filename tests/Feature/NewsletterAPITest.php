@@ -3,9 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Models\Newsletter;
 
 class NewsletterAPITest extends TestCase
@@ -14,10 +11,9 @@ class NewsletterAPITest extends TestCase
     protected $api = '/api/newsletter';
 
     protected $dbSetUp = false;
+
     /**
      * A basic test example.
-     *
-     * @return void
      */
     public function testExample()
     {
@@ -26,7 +22,7 @@ class NewsletterAPITest extends TestCase
         $this->subscribe();
         $this->unsubscribe();
     }
-    
+
     public function subscribe()
     {
         $endpoint = 'subscribe';
