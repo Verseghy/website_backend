@@ -32,6 +32,40 @@ class PostsController extends Controller
         return self::_after($request, $post, $maxDate);
     }
     
+    public function listFeaturedPosts(Request $request)
+    {
+        $selected_number=0;
+        $selected= array();
+        $posts = self::_resolvedPosts()->orderBy('date','desc')->get();
+        foreach ($posts as $post) {
+            if($post->featured == true and $selected_number<3)
+            {
+                $selected[$selected_number] = $post;
+                $selected_number++;
+            }
+            if($selected_number==3)
+            {
+                break;
+            }
+        }
+        if($selected_number<3)
+        {
+            foreach ($posts as $post) {
+                if($post->featured == false and $selected_number<3)
+                {
+                    $selected[$selected_number] = $post;
+                    $selected_number++;
+                }
+                if($selected_number==3)
+                {
+                    break;
+                }
+            }
+        }
+        return $selected;
+
+    }
+
     public function byAuthor(Request $request)
     {
         $authorId = $request->input('id');

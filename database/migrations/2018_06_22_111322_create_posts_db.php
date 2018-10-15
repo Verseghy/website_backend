@@ -33,6 +33,7 @@ class CreatePostsDb extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('color')->nullable();
+            $table->string('featured')->nullable();
             $table->longText('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('index_image')->nullable();

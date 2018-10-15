@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Validator;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PostsRequest as StoreRequest;
@@ -60,9 +61,12 @@ class PostsCrudController extends CrudController
             'attribute'=>'name',
         ]);
         
-        
-        
-        
+        $this->crud->addColumn([
+            'name'=>'featured',
+            'type'=>'boolean',
+            'label'=>'Featurable',
+        ]);
+
         $this->crud->addField([
             'name'=>'title',
             'type'=>'text',
@@ -75,6 +79,12 @@ class PostsCrudController extends CrudController
             'label'=>'Description',
         ]);
         
+        $this->crud->addField([
+            'name'=>'featured',
+            'type'=>'checkbox',
+            'label'=>'Featurable',
+        ]);
+
         $this->crud->addField([
             'name'=>'content',
             'type'=>'simplemde',
@@ -153,6 +163,17 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'index_image=' => 'required',
+        ]);
+        if($request->featured==true and $request->index_image==NULL)
+        {
+            if ($validator->fails()) {
+                //return redirect('post/create')->withErrors($validator)->withInput();
+                return "You have to add an index picture if you have selected the post to be featured";
+            }
+            //return 400;
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
