@@ -1,8 +1,8 @@
-##Canteen API
+## Canteen API
 
-###Common structures:
+### Common structures:
 
-####Menu
+#### Menu
 
 ```
 {
@@ -12,12 +12,12 @@
 }
 ```
 
-###Get menus by type
-####Path:
+### Get menus by type
+#### Path:
 `GET  /canteen/getCanteenMenus?id={type}`
-####Paramters:
+#### Paramters:
 - type - the type of the canteen, 0-2
-####Returns:
+#### Returns:
 ```json
 menu[]
 ```
@@ -26,13 +26,13 @@ Returns `404: Not found` if result is empty
 
 ***
 
-###Get menus by week
-####Path:
+### Get menus by week
+#### Path:
 `GET  /canteen/getCanteenByWeek?year={year}&week={week}`
-####Paramters:
+#### Paramters:
 - year
 - week
-####Returns:
+#### Returns:
 ```json
 {
 	"id": number

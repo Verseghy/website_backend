@@ -1,12 +1,12 @@
-##Newsletter API
+## Newsletter API
 
-###Subscribe
-####Path:
+### Subscribe
+#### Path:
 `GET  /events/getEventsByMonth?year={year}&month={month}`
-####Paramters:
+#### Paramters:
 - year
 - month
-####Returns:
+#### Returns:
 ```json
 {
 	"id": number

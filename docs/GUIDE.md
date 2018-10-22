@@ -1,4 +1,4 @@
-##Notation
+## Notation
 API endpoints are descripbed by their access path, parameters and their response. 
 
 Paths are relative, their prefix on your local development server is `/api/`, e.g  a valid full path will be something like `localhost:8080/api/posts/listPosts`

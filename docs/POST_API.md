@@ -1,8 +1,8 @@
-##Posts API
+## Posts API
 
-###Common structures:
+### Common structures:
 
-####Label
+#### Label
 
 ```
 {
@@ -12,7 +12,7 @@
 }
 ```
 
-####Author
+#### Author
 ```
 {
 	"id": number
@@ -21,7 +21,7 @@
 	"image": url
 }
 ```
-####Post
+#### Post
 ```json
 {
 	"id": number
@@ -38,14 +38,14 @@
 }
 ```
 
-###List Posts
-####Path:
+### List Posts
+#### Path:
 `GET  /posts/listPosts` - defaults to first page
 `GET  /posts/listPosts?page={pagenum}`
 
-####Paramters:
+#### Paramters:
 - pagenum - the number of the page to show
-####Returns:
+#### Returns:
 ```json
 post[]
 ```
@@ -55,13 +55,13 @@ Returns `404: Not found` on empty
 
 ***
 
-###Get post
-####Path:
+### Get post
+#### Path:
 `GET  /posts/getPost?id={id}`
 
-####Paramters:
+#### Paramters:
 - id - the id of the post to get
-####Returns:
+#### Returns:
 ```json
 post
 ```
@@ -71,14 +71,14 @@ Returns `400: Invalid request` if id is missing
 
 ***
 
-###Get posts **by label**
-####Path:
+### Get posts **by label**
+#### Path:
 `GET  /posts/getPostsByLabel?id={labelid}&page={pagenum}`
 `GET  /posts/getPostsByLabel?id={labelid}`
-####Paramters:
+#### Paramters:
 - id - the id of the label to filter by
 - page - the page to show
-####Returns:
+#### Returns:
 ```json
 post[]
 ```
@@ -88,14 +88,14 @@ Returns `404: Not found` on empty
 Returns `400: Invalid request` if id is missing
 ***
 
-###Get posts **by author**
-####Path:
+### Get posts **by author**
+#### Path:
 `GET  /posts/getPostsByAuthor?id={labelid}&page={pagenum}`
 `GET  /posts/getPostsByAuthor?id={labelid}`
-####Paramters:
+#### Paramters:
 - id - the id of the author to filter by
 - page - the page to show
-####Returns:
+#### Returns:
 ```json
 post[]
 ```
@@ -104,13 +104,13 @@ Cacheable
 Returns `404: Not found` on empty
 Returns `400: Invalid request` if id is missing
 
-###Get posts **by search term**
-####Path:
+### Get posts **by search term**
+#### Path:
 `GET  /posts/search?term={tern}`
-####Paramters:
+#### Paramters:
 - term - the search term to filter by. Searches in title, description and content
 - page - the page to show
-####Returns:
+#### Returns:
 ```json
 post[]
 ```

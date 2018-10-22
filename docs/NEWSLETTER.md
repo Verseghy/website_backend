@@ -1,12 +1,12 @@
-##Newsletter API
+## Newsletter API
 
-###Subscribe
-####Path:
+### Subscribe
+#### Path:
 `GET  /newsletter/subscribe?email={email}&mldata={mldata}`
-####Paramters:
+#### Paramters:
 - email - the email to subscribe
 - mldata - the machine learning data associated with the email
-####Returns:
+#### Returns:
 ```json
 {}
 ```
@@ -14,13 +14,13 @@ Returns `400: Invalid request` if any of the parameters is missing
 Returns `409: Conflict` if the email is already subscribed
 Returns `500: Internal server error` on error
 ***
-###Unsubscribe
-####Path:
+### Unsubscribe
+#### Path:
 `GET  /newsletter/unsubscribe?email={email}&token={token}`
-####Paramters:
+#### Paramters:
 - email - the email to unsubscribe
 - token - the secret verification token of the email
-####Returns:
+#### Returns:
 ```json
 {}
 ```
