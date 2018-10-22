@@ -7,7 +7,7 @@
 - email - the email to subscribe
 - mldata - the machine learning data associated with the email
 #### Returns:
-```json
+```
 {}
 ```
 Returns `400: Invalid request` if any of the parameters is missing
@@ -21,7 +21,7 @@ Returns `500: Internal server error` on error
 - email - the email to unsubscribe
 - token - the secret verification token of the email
 #### Returns:
-```json
+```
 {}
 ```
 Returns `400: Invalid request` if any of the parameters is missing

@@ -22,7 +22,7 @@
 }
 ```
 #### Post
-```json
+```
 {
 	"id": number
 	"title": string
@@ -46,7 +46,7 @@
 #### Paramters:
 - pagenum - the number of the page to show
 #### Returns:
-```json
+```
 post[]
 ```
 Sorted by date(descending), 20 posts/page
@@ -62,7 +62,7 @@ Returns `404: Not found` on empty
 #### Paramters:
 - id - the id of the post to get
 #### Returns:
-```json
+```
 post
 ```
 Cacheable
@@ -79,7 +79,7 @@ Returns `400: Invalid request` if id is missing
 - id - the id of the label to filter by
 - page - the page to show
 #### Returns:
-```json
+```
 post[]
 ```
 Sorted by date(descending), 20 posts/page
@@ -96,7 +96,7 @@ Returns `400: Invalid request` if id is missing
 - id - the id of the author to filter by
 - page - the page to show
 #### Returns:
-```json
+```
 post[]
 ```
 Sorted by date(descending), 20 posts/page
@@ -111,7 +111,7 @@ Returns `400: Invalid request` if id is missing
 - term - the search term to filter by. Searches in title, description and content
 - page - the page to show
 #### Returns:
-```json
+```
 post[]
 ```
 Sorted by date(descending), 20 posts/page

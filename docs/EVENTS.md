@@ -7,7 +7,7 @@
 - year
 - month
 #### Returns:
-```json
+```
 {
 	"id": number
 	"date_from": string(date)

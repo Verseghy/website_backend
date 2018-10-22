@@ -18,7 +18,7 @@
 #### Paramters:
 - type - the type of the canteen, 0-2
 #### Returns:
-```json
+```
 menu[]
 ```
 Returns `400: Invalid request` if type is missing, or not in 0-2
@@ -33,7 +33,7 @@ Returns `404: Not found` if result is empty
 - year
 - week
 #### Returns:
-```json
+```
 {
 	"id": number
 	"date": string (date)
