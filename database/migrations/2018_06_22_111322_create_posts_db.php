@@ -8,12 +8,10 @@ class CreatePostsDb extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        /**
+        /*
          * Table creation
          */
         Schema::create('posts_labels', function (Blueprint $table) {
@@ -21,7 +19,7 @@ class CreatePostsDb extends Migration
             $table->string('name');
             $table->string('color');
         });
-        
+
         Schema::create('posts_authors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -50,8 +48,8 @@ class CreatePostsDb extends Migration
             $table->unsignedInteger('posts_id')->nullable();
             $table->foreign('posts_id')->references('id')->on('posts_data');
         });
-        
-        /**
+
+        /*
          * Foreign keys
          */
 
@@ -62,8 +60,6 @@ class CreatePostsDb extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
