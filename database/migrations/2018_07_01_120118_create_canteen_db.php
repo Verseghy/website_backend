@@ -8,8 +8,6 @@ class CreateCanteenDb extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -18,15 +16,14 @@ class CreateCanteenDb extends Migration
             $table->timestamp('date');
             $table->timestamps();
         });
-        
+
         Schema::create('canteen_menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('menu');
             $table->unsignedSmallInteger('type');
             $table->timestamps();
         });
-        
-        
+
         Schema::create('canteen_pivot_menus_data', function (Blueprint $table) {
             $table->unsignedInteger('data_id')->nullable();
             $table->foreign('data_id')->references('id')->on('canteen_data');
@@ -38,17 +35,15 @@ class CreateCanteenDb extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-            
+
         Schema::dropIfExists('canteen_data');
         Schema::dropIfExists('canteen_menus');
         Schema::dropIfExists('canteen_pivot_menus_data');
-            
+
         Schema::enableForeignKeyConstraints();
     }
 }

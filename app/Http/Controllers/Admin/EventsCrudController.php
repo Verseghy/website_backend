@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\EventsRequest as StoreRequest;
 use App\Http\Requests\EventsRequest as UpdateRequest;
 
 /**
- * Class EventsCrudController
- * @package App\Http\Controllers\Admin
- * @property-read CrudPanel $crud
+ * Class EventsCrudController.
+ *
+ * @property CrudPanel $crud
  */
 class EventsCrudController extends CrudController
 {
@@ -25,7 +24,7 @@ class EventsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Events');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/events');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/events');
         $this->crud->setEntityNameStrings('events', 'events');
 
         /*
@@ -35,60 +34,56 @@ class EventsCrudController extends CrudController
         */
 
         $this->crud->addColumn([
-            'name'=>'title',
-            'type'=>'text',
-            'label'=>'Title',
+            'name' => 'title',
+            'type' => 'text',
+            'label' => 'Title',
         ]);
 
         $this->crud->addColumn([
-            'name'=>'description',
-            'type'=>'text',
-            'label'=>'Description',
+            'name' => 'description',
+            'type' => 'text',
+            'label' => 'Description',
         ]);
-        
+
         $this->crud->addColumn([
-            'name'=>'date_from',
-            'type'=>'text',
-            'label'=>'Starts',
+            'name' => 'date_from',
+            'type' => 'text',
+            'label' => 'Starts',
         ]);
-        
+
         $this->crud->addColumn([
-            'name'=>'date_to',
-            'type'=>'text',
-            'label'=>'Ends',
-        ]);
-        
-        
-        
-        
-        $this->crud->addField([
-            'name'=>'title',
-            'type'=>'text',
-            'label'=>'Title',
+            'name' => 'date_to',
+            'type' => 'text',
+            'label' => 'Ends',
         ]);
 
         $this->crud->addField([
-            'name'=>'description',
-            'type'=>'textarea',
-            'label'=>'Description',
+            'name' => 'title',
+            'type' => 'text',
+            'label' => 'Title',
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'date',
-            'type'=>'date_range',
-            'label'=>'Starts-ends',
-            'start_name'=>'date_from',
-            'end_name'=>'date_to',
+            'name' => 'description',
+            'type' => 'textarea',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'date',
+            'type' => 'date_range',
+            'label' => 'Starts-ends',
+            'start_name' => 'date_from',
+            'end_name' => 'date_to',
             'start_default' => '2018-01-01 00:00', // default value for start_date
             'end_default' => '2018-01-01 00:00', // default value for end_date
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'color',
-            'label'=>'color',
-            'type'=>'color',
+            'name' => 'color',
+            'label' => 'color',
+            'type' => 'color',
         ]);
-        
 
         // add asterisk for fields that are required in EventsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');

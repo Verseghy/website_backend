@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LabelsRequest extends FormRequest
@@ -27,7 +26,7 @@ class LabelsRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:64',
-            'color'=> 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
+            'color' => 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
         ];
     }
 
@@ -39,7 +38,6 @@ class LabelsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -51,7 +49,6 @@ class LabelsRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

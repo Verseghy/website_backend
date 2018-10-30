@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
 
 /**
- * Class PostsCrudController
- * @package App\Http\Controllers\Admin
- * @property-read CrudPanel $crud
+ * Class PostsCrudController.
+ *
+ * @property CrudPanel $crud
  */
 class PostsCrudController extends CrudController
 {
@@ -25,7 +24,7 @@ class PostsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Posts');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/posts');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/posts');
         $this->crud->setEntityNameStrings('posts', 'posts');
 
         /*
@@ -35,52 +34,49 @@ class PostsCrudController extends CrudController
         */
 
         $this->crud->addColumn([
-            'name'=>'title',
-            'type'=>'text',
-            'label'=>'Title',
-        ]);
-        
-        $this->crud->addColumn([
-            'name'=>'color',
-            'type'=>'color',
-            'label'=>'Color',
+            'name' => 'title',
+            'type' => 'text',
+            'label' => 'Title',
         ]);
 
         $this->crud->addColumn([
-            'name'=>'index_image',
-            'type'=>'image',
-            'label'=>'Index image',
-            'disk'=>'posts_images',
-            'prefix'=>'storage/posts_images/',
+            'name' => 'color',
+            'type' => 'color',
+            'label' => 'Color',
         ]);
-        
+
         $this->crud->addColumn([
-            'name'=>'author_id',
-            'type'=>'select',
-            'label'=>'Author',
-            'entity'=>'author',
-            'attribute'=>'name',
+            'name' => 'index_image',
+            'type' => 'image',
+            'label' => 'Index image',
+            'disk' => 'posts_images',
+            'prefix' => 'storage/posts_images/',
         ]);
-        
-        
-        
-        
-        $this->crud->addField([
-            'name'=>'title',
-            'type'=>'text',
-            'label'=>'Title',
+
+        $this->crud->addColumn([
+            'name' => 'author_id',
+            'type' => 'select',
+            'label' => 'Author',
+            'entity' => 'author',
+            'attribute' => 'name',
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'description',
-            'type'=>'textarea',
-            'label'=>'Description',
+            'name' => 'title',
+            'type' => 'text',
+            'label' => 'Title',
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'content',
-            'type'=>'simplemde',
-            'label'=>'Content',
+            'name' => 'description',
+            'type' => 'textarea',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'content',
+            'type' => 'simplemde',
+            'label' => 'Content',
             'simplemdeAttributes' => [
                 'promptURLs' => true,
                 'status' => true,
@@ -88,23 +84,23 @@ class PostsCrudController extends CrudController
                 'forceSync' => true,
             ],
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'date',
-            'type'=>'date',
-            'label'=>'Date',
+            'name' => 'date',
+            'type' => 'date',
+            'label' => 'Date',
         ]);
 
         $this->crud->addField([
-            'name'=>'index_image',
-            'type'=>'upload',
-            'label'=>'Index image',
-            'upload'=>true,
-            'disk'=>'posts_images',
+            'name' => 'index_image',
+            'type' => 'upload',
+            'label' => 'Index image',
+            'upload' => true,
+            'disk' => 'posts_images',
         ]);
-        
+
         $this->crud->addField([   // SelectMultiple = n-n relationship (with pivot table)
-            'label' => "Labels",
+            'label' => 'Labels',
             'type' => 'select2_multiple',
             'name' => 'labels', // the method that defines the relationship in your Model
             'entity' => 'labels', // the method that defines the relationship in your Model
@@ -112,38 +108,37 @@ class PostsCrudController extends CrudController
             'model' => "App\Models\Posts\Labels", // foreign key model
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'author_id',
-            'type'=>'select',
-            'label'=>'Author',
-            'entity'=>'author',
-            'attribute'=>'name',
+            'name' => 'author_id',
+            'type' => 'select',
+            'label' => 'Author',
+            'entity' => 'author',
+            'attribute' => 'name',
         ]);
-        
-        
+
         $this->crud->addField([
-            'name'=>'images',
-            'type'=>'upload_multiple',
-            'label'=>'Images',
-            'upload'=>true,
-            'disk'=>'posts_images',
+            'name' => 'images',
+            'type' => 'upload_multiple',
+            'label' => 'Images',
+            'upload' => true,
+            'disk' => 'posts_images',
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'color',
-            'type'=>'color',
-            'label'=>'Color',
+            'name' => 'color',
+            'type' => 'color',
+            'label' => 'Color',
         ]);
-        
+
         $this->crud->addField([
-            'name'=>'type',
-            'type'=>'select2_from_array',
-            'label'=>'Type',
-            'options'=>[
-                1=>'No image',
-                2=>'With image',
-                3=>'Only image',
+            'name' => 'type',
+            'type' => 'select2_from_array',
+            'label' => 'Type',
+            'options' => [
+                1 => 'No image',
+                2 => 'With image',
+                3 => 'Only image',
             ],
             'allows_null' => false,
         ]);

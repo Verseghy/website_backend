@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CanteensRequest extends FormRequest
@@ -27,7 +26,7 @@ class CanteensRequest extends FormRequest
     {
         return [
            'date' => 'required|date',
-           'menus'=>'required|min:2|max:3',
+           'menus' => 'required|min:2|max:3',
         ];
     }
 
@@ -39,7 +38,6 @@ class CanteensRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -51,7 +49,6 @@ class CanteensRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

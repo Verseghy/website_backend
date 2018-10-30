@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthorsRequest extends FormRequest
@@ -27,8 +26,8 @@ class AuthorsRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description'=>'string|max:1024|nullable',
-            'image'=>'image|nullable',
+            'description' => 'string|max:1024|nullable',
+            'image' => 'image|nullable',
         ];
     }
 
@@ -40,7 +39,6 @@ class AuthorsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -52,7 +50,6 @@ class AuthorsRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

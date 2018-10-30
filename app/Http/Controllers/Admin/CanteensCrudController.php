@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CanteensRequest as StoreRequest;
 use App\Http\Requests\CanteensRequest as UpdateRequest;
 
 /**
- * Class CanteensCrudController
- * @package App\Http\Controllers\Admin
- * @property-read CrudPanel $crud
+ * Class CanteensCrudController.
+ *
+ * @property CrudPanel $crud
  */
 class CanteensCrudController extends CrudController
 {
@@ -25,7 +24,7 @@ class CanteensCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Canteens');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/canteens');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/canteens');
         $this->crud->setEntityNameStrings('canteens', 'canteens');
 
         /*
@@ -35,12 +34,11 @@ class CanteensCrudController extends CrudController
         */
 
         $this->crud->addColumn([
-            'name'=>'date',
-            'type'=>'text',
-            'label'=>'Date',
+            'name' => 'date',
+            'type' => 'text',
+            'label' => 'Date',
         ]);
 
-        
         $this->crud->addColumn([   // Select2Multiple = n-n relationship (with pivot table)
             'label' => 'Meals',
             'type' => 'select_multiple',
@@ -50,7 +48,7 @@ class CanteensCrudController extends CrudController
             'model' => "App\Models\Canteens\Menus", // foreign key model
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
-        
+
         $this->crud->addField([   // Select2Multiple = n-n relationship (with pivot table)
             'label' => 'Meals',
             'type' => 'select2_multiple',
@@ -62,9 +60,9 @@ class CanteensCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'=>'date',
-            'type'=>'date',
-            'label'=>'Date',
+            'name' => 'date',
+            'type' => 'date',
+            'label' => 'Date',
         ]);
 
         // add asterisk for fields that are required in CanteensRequest

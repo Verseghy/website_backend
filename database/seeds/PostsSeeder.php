@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use App\Models\Posts;
 use App\Models\Posts\Labels;
 use App\Models\Posts\Authors;
@@ -10,8 +9,6 @@ class PostsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
