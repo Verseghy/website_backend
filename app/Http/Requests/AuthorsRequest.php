@@ -14,7 +14,7 @@ class AuthorsRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check() && backpack_auth()->user()->can("edit posts");
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit posts');
     }
 
     /**

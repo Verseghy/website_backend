@@ -14,7 +14,7 @@ class UserStoreCrudRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check() && backpack_auth()->user()->can("edit users");
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit users');
     }
 
     /**
@@ -25,8 +25,8 @@ class UserStoreCrudRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email',
-            'name'     => 'required',
+            'email' => 'required|unique:'.config('permission.table_names.users', 'users').',email',
+            'name' => 'required',
             'password' => 'required|confirmed',
         ];
     }

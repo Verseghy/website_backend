@@ -11,7 +11,7 @@ class UserCrudController extends CrudController
 {
     use AuthDestroy;
     protected $destroyRequestClass = UpdateRequest::class;
-    
+
     public function setup()
     {
         /*
@@ -26,80 +26,80 @@ class UserCrudController extends CrudController
         // Columns.
         $this->crud->setColumns([
             [
-                'name'  => 'name',
+                'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
-                'type'  => 'text',
+                'type' => 'text',
             ],
             [
-                'name'  => 'email',
+                'name' => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
-                'type'  => 'email',
+                'type' => 'email',
             ],
             [ // n-n relationship (with pivot table)
-               'label'     => trans('backpack::permissionmanager.roles'), // Table column heading
-               'type'      => 'select_multiple',
-               'name'      => 'roles', // the method that defines the relationship in your Model
-               'entity'    => 'roles', // the method that defines the relationship in your Model
+               'label' => trans('backpack::permissionmanager.roles'), // Table column heading
+               'type' => 'select_multiple',
+               'name' => 'roles', // the method that defines the relationship in your Model
+               'entity' => 'roles', // the method that defines the relationship in your Model
                'attribute' => 'name', // foreign key attribute that is shown to user
-               'model'     => config('permission.models.role'), // foreign key model
+               'model' => config('permission.models.role'), // foreign key model
             ],
             [ // n-n relationship (with pivot table)
-               'label'     => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
-               'type'      => 'select_multiple',
-               'name'      => 'permissions', // the method that defines the relationship in your Model
-               'entity'    => 'permissions', // the method that defines the relationship in your Model
+               'label' => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
+               'type' => 'select_multiple',
+               'name' => 'permissions', // the method that defines the relationship in your Model
+               'entity' => 'permissions', // the method that defines the relationship in your Model
                'attribute' => 'name', // foreign key attribute that is shown to user
-               'model'     => config('permission.models.permission'), // foreign key model
+               'model' => config('permission.models.permission'), // foreign key model
             ],
         ]);
 
         // Fields
         $this->crud->addFields([
             [
-                'name'  => 'name',
+                'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
-                'type'  => 'text',
+                'type' => 'text',
             ],
             [
-                'name'  => 'email',
+                'name' => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
-                'type'  => 'email',
+                'type' => 'email',
             ],
             [
-                'name'  => 'password',
+                'name' => 'password',
                 'label' => trans('backpack::permissionmanager.password'),
-                'type'  => 'password',
+                'type' => 'password',
             ],
             [
-                'name'  => 'password_confirmation',
+                'name' => 'password_confirmation',
                 'label' => trans('backpack::permissionmanager.password_confirmation'),
-                'type'  => 'password',
+                'type' => 'password',
             ],
             [
             // two interconnected entities
-            'label'             => trans('backpack::permissionmanager.user_role_permission'),
+            'label' => trans('backpack::permissionmanager.user_role_permission'),
             'field_unique_name' => 'user_role_permission',
-            'type'              => 'checklist_dependency',
-            'name'              => 'roles_and_permissions', // the methods that defines the relationship in your Model
-            'subfields'         => [
+            'type' => 'checklist_dependency',
+            'name' => 'roles_and_permissions', // the methods that defines the relationship in your Model
+            'subfields' => [
                     'primary' => [
-                        'label'            => trans('backpack::permissionmanager.roles'),
-                        'name'             => 'roles', // the method that defines the relationship in your Model
-                        'entity'           => 'roles', // the method that defines the relationship in your Model
+                        'label' => trans('backpack::permissionmanager.roles'),
+                        'name' => 'roles', // the method that defines the relationship in your Model
+                        'entity' => 'roles', // the method that defines the relationship in your Model
                         'entity_secondary' => 'permissions', // the method that defines the relationship in your Model
-                        'attribute'        => 'name', // foreign key attribute that is shown to user
-                        'model'            => config('permission.models.role'), // foreign key model
-                        'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
-                        'number_columns'   => 3, //can be 1,2,3,4,6
+                        'attribute' => 'name', // foreign key attribute that is shown to user
+                        'model' => config('permission.models.role'), // foreign key model
+                        'pivot' => true, // on create&update, do you need to add/delete pivot table entries?]
+                        'number_columns' => 3, //can be 1,2,3,4,6
                     ],
                     'secondary' => [
-                        'label'          => ucfirst(trans('backpack::permissionmanager.permission_singular')),
-                        'name'           => 'permissions', // the method that defines the relationship in your Model
-                        'entity'         => 'permissions', // the method that defines the relationship in your Model
+                        'label' => ucfirst(trans('backpack::permissionmanager.permission_singular')),
+                        'name' => 'permissions', // the method that defines the relationship in your Model
+                        'entity' => 'permissions', // the method that defines the relationship in your Model
                         'entity_primary' => 'roles', // the method that defines the relationship in your Model
-                        'attribute'      => 'name', // foreign key attribute that is shown to user
-                        'model'          => config('permission.models.permission'), // foreign key model
-                        'pivot'          => true, // on create&update, do you need to add/delete pivot table entries?]
+                        'attribute' => 'name', // foreign key attribute that is shown to user
+                        'model' => config('permission.models.permission'), // foreign key model
+                        'pivot' => true, // on create&update, do you need to add/delete pivot table entries?]
                         'number_columns' => 3, //can be 1,2,3,4,6
                     ],
                 ],

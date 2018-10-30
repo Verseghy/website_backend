@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     | Backpack/PermissionManager configs.
     */
@@ -22,8 +21,7 @@ return [
     'allow_permission_create' => false,
     'allow_permission_update' => false,
     'allow_permission_delete' => false,
-    'allow_role_create'       => false,
-    'allow_role_update'       => false,
-    'allow_role_delete'       => false,
-
+    'allow_role_create' => false,
+    'allow_role_update' => false,
+    'allow_role_delete' => false,
 ];

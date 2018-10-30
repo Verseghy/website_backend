@@ -14,7 +14,7 @@ class UserUpdateCrudRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check() && backpack_auth()->user()->can("edit events");
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit events');
     }
 
     /**
@@ -25,8 +25,8 @@ class UserUpdateCrudRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required',
-            'name'     => 'required',
+            'email' => 'required',
+            'name' => 'required',
             'password' => 'confirmed',
         ];
     }

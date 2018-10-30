@@ -16,6 +16,7 @@ class MenusCrudController extends CrudController
 {
     use AuthDestroy;
     protected $destroyRequestClass = UpdateRequest::class;
+
     public function setup()
     {
         /*

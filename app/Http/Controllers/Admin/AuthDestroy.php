@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 trait AuthDestroy
 {
     public function destroy($id)
     {
-        $r = new $this->destroyRequestClass;
+        $r = new $this->destroyRequestClass();
         if ($r->authorize()) {
             parent::destroy(null);
         } else {
