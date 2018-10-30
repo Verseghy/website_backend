@@ -10,9 +10,11 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
-        (new User([
+        $user = config('backpack.base.user_model_fqn');
+        (new $user([
             'name'=>'test',
             'email'=>'test@test.test',
             'password'=>Hash::make('test'),

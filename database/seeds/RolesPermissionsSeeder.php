@@ -46,7 +46,8 @@ class RolesPermissionsSeeder extends Seeder
 
     private function seedUsers()
     {
-        $u = User::where('name', 'LIKE', 'test')->first();
+        $user = config('backpack.base.user_model_fqn');
+        $u = $user::where('name', 'LIKE', 'test')->first();
         $u->assignRole('admin');
         $u->save();
     }
