@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "1fd54523a179dd05592e6edd95ea8b12",
@@ -103,16 +103,16 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.9.9",
+            "version": "0.9.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "4405fd7d0a538a4b4d8b27066f80fbf920ca087c"
+                "reference": "60b849fae038d045c622cdfff2e407be917df31e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/4405fd7d0a538a4b4d8b27066f80fbf920ca087c",
-                "reference": "4405fd7d0a538a4b4d8b27066f80fbf920ca087c",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/60b849fae038d045c622cdfff2e407be917df31e",
+                "reference": "60b849fae038d045c622cdfff2e407be917df31e",
                 "shasum": ""
             },
             "require": {
@@ -163,20 +163,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2018-09-20T07:38:10+00:00"
+            "time": "2018-10-26T07:07:56+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.35",
+            "version": "3.4.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "828bc52caabfa487b294813fc2699691ca672537"
+                "reference": "220ae399e773c41ed4e0f75d541e9315206be3d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/828bc52caabfa487b294813fc2699691ca672537",
-                "reference": "828bc52caabfa487b294813fc2699691ca672537",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/220ae399e773c41ed4e0f75d541e9315206be3d1",
+                "reference": "220ae399e773c41ed4e0f75d541e9315206be3d1",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-09-26T14:32:04+00:00"
+            "time": "2018-10-26T09:40:33+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -3077,16 +3077,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/c79c051f5b3a46be09205c73b80b346e4153e494",
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494",
                 "shasum": ""
             },
             "require": {
@@ -3132,7 +3132,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-08-06T14:22:27+00:00"
+            "time": "2018-09-21T13:07:52+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
