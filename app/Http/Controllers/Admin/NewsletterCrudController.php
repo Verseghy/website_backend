@@ -14,6 +14,9 @@ use App\Http\Requests\NewsletterRequest as UpdateRequest;
  */
 class NewsletterCrudController extends CrudController
 {
+    use AuthDestroy;
+    protected $destroyRequestClass = UpdateRequest::class;
+
     public function setup()
     {
         /*

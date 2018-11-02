@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -10,7 +9,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        (new User([
+        $user = config('backpack.base.user_model_fqn');
+        (new $user([
             'name' => 'test',
             'email' => 'test@test.test',
             'password' => Hash::make('test'),

@@ -14,6 +14,9 @@ use App\Http\Requests\AuthorsRequest as UpdateRequest;
  */
 class AuthorsCrudController extends CrudController
 {
+    use AuthDestroy;
+    protected $destroyRequestClass = UpdateRequest::class;
+
     public function setup()
     {
         /*
