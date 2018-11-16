@@ -12,6 +12,7 @@ return PhpCsFixer\Config::create()
         '@PSR1' => true,
         '@PSR2' => true,
         '@Symfony' => true,
+        'line_ending' => false,
     ])
     ->setFinder($finder)
 ;
