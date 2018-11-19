@@ -242,16 +242,16 @@
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "3.12.5",
+            "version": "3.12.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "ae9eb32e03c6c8d05070c9f3994fdeae92747a72"
+                "reference": "6965dd05ea539565dac9489254e78657b5415c64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/ae9eb32e03c6c8d05070c9f3994fdeae92747a72",
-                "reference": "ae9eb32e03c6c8d05070c9f3994fdeae92747a72",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/6965dd05ea539565dac9489254e78657b5415c64",
+                "reference": "6965dd05ea539565dac9489254e78657b5415c64",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +313,7 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2018-09-29T07:13:26+00:00"
+            "time": "2018-10-16T06:15:57+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -2466,16 +2466,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.21.0",
+            "version": "2.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "5415d29d54d15985b8cf56fef30d7514c8608309"
+                "reference": "6b41d1d1726d432342546f9d3c79144b082812dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5415d29d54d15985b8cf56fef30d7514c8608309",
-                "reference": "5415d29d54d15985b8cf56fef30d7514c8608309",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/6b41d1d1726d432342546f9d3c79144b082812dc",
+                "reference": "6b41d1d1726d432342546f9d3c79144b082812dc",
                 "shasum": ""
             },
             "require": {
@@ -2526,7 +2526,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-09-29T04:20:17+00:00"
+            "time": "2018-11-07T22:48:36+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
