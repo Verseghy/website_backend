@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\LabelsRequest as StoreRequest;
 use App\Http\Requests\LabelsRequest as UpdateRequest;
 
 /**
- * Class LabelsCrudController
- * @package App\Http\Controllers\Admin
- * @property-read CrudPanel $crud
+ * Class LabelsCrudController.
+ *
+ * @property CrudPanel $crud
  */
 class LabelsCrudController extends CrudController
 {
+    use AuthDestroy;
+    protected $destroyRequestClass = UpdateRequest::class;
+
     public function setup()
     {
         /*
@@ -23,7 +25,7 @@ class LabelsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Posts\Labels');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/labels');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/labels');
         $this->crud->setEntityNameStrings('labels', 'labels');
 
         /*
@@ -34,27 +36,27 @@ class LabelsCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->addField([
-            'name'=>'name',
-            'type'=>'text',
-            'label'=>'Label name'
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Label name',
         ]);
-        
+
         $this->crud->addColumn([
-            'name'=>'name',
-            'type'=>'text',
-            'label'=>'Label name'
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Label name',
         ]);
 
         $this->crud->addField([
-            'name'=>'color',
-            'type'=>'color',
-            'label'=>'Label color'
+            'name' => 'color',
+            'type' => 'color',
+            'label' => 'Label color',
         ]);
-        
+
         $this->crud->addColumn([
-            'name'=>'color',
-            'type'=>'color',
-            'label'=>'Label color'
+            'name' => 'color',
+            'type' => 'color',
+            'label' => 'Label color',
         ]);
 
         // add asterisk for fields that are required in LabelsRequest

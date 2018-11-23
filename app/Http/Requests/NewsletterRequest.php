@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class NewsletterRequest extends FormRequest
@@ -15,7 +14,7 @@ class NewsletterRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit newsletter');
     }
 
     /**
@@ -40,7 +39,6 @@ class NewsletterRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -52,7 +50,6 @@ class NewsletterRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }
