@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df4872c0003bde800302b6c3016506b3",
+    "content-hash": "3bf425820248441f7c30b9778c99f33b",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3835,20 +3835,20 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "1.2.4",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "a2a743fea10320be0d810df5e0e79834eca055e4"
+                "reference": "cb6d3ebbc469a7d2ced7e37964de459db8ba021f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/a2a743fea10320be0d810df5e0e79834eca055e4",
-                "reference": "a2a743fea10320be0d810df5e0e79834eca055e4",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/cb6d3ebbc469a7d2ced7e37964de459db8ba021f",
+                "reference": "cb6d3ebbc469a7d2ced7e37964de459db8ba021f",
                 "shasum": ""
             },
             "require": {
-                "backpack/base": "^0.9.0"
+                "backpack/base": "0.9.*|1.0.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*",
@@ -3891,7 +3891,7 @@
                 "request",
                 "view"
             ],
-            "time": "2018-08-27T05:25:21+00:00"
+            "time": "2018-11-22T21:14:13+00:00"
         },
         {
             "name": "composer/xdebug-handler",
