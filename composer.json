@@ -9,6 +9,7 @@
         "backpack/crud": "^3.4",
         "backpack/permissionmanager": "^3.12",
         "barryvdh/laravel-cors": "^0.11.0",
+        "barryvdh/laravel-ide-helper": "^2.5",
         "beyondcode/laravel-self-diagnosis": "^1.0",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
