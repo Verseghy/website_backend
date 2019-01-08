@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "376fbd10547196406b878ab2a720059a",
+    "content-hash": "1dfca605f0cff5b897c9fb45729fdb5d",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -243,21 +243,21 @@
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "3.12.6",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "6965dd05ea539565dac9489254e78657b5415c64"
+                "reference": "643f9e11f72f803d8b48df551e8b592493836c95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/6965dd05ea539565dac9489254e78657b5415c64",
-                "reference": "6965dd05ea539565dac9489254e78657b5415c64",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/643f9e11f72f803d8b48df551e8b592493836c95",
+                "reference": "643f9e11f72f803d8b48df551e8b592493836c95",
                 "shasum": ""
             },
             "require": {
                 "backpack/crud": "^3.4.0",
-                "spatie/laravel-permission": "^2.12.0"
+                "spatie/laravel-permission": "2.28.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*",
@@ -314,7 +314,7 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2018-10-16T06:15:57+00:00"
+            "time": "2018-12-12T08:47:33+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -3652,16 +3652,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.29.0",
+            "version": "2.28.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "7f308806ca051fca42685e4a97a282139a6a7982"
+                "reference": "1887a5851013bf1a457f2a65477f96e98ae3f53a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/7f308806ca051fca42685e4a97a282139a6a7982",
-                "reference": "7f308806ca051fca42685e4a97a282139a6a7982",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/1887a5851013bf1a457f2a65477f96e98ae3f53a",
+                "reference": "1887a5851013bf1a457f2a65477f96e98ae3f53a",
                 "shasum": ""
             },
             "require": {
@@ -3713,7 +3713,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-12-16T00:49:22+00:00"
+            "time": "2018-12-11T02:03:59+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
