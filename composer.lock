@@ -168,16 +168,16 @@
         },
         {
             "name": "backpack/crud",
-            "version": "3.5.11",
+            "version": "3.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "5fa371fbd0a8dfc4037074b6f640572a8a4b78d9"
+                "reference": "7d6c95f64aad1a71d192c724994c36e2eb3bb297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/5fa371fbd0a8dfc4037074b6f640572a8a4b78d9",
-                "reference": "5fa371fbd0a8dfc4037074b6f640572a8a4b78d9",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/7d6c95f64aad1a71d192c724994c36e2eb3bb297",
+                "reference": "7d6c95f64aad1a71d192c724994c36e2eb3bb297",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-12-13T10:14:30+00:00"
+            "time": "2019-01-07T07:40:21+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -1149,16 +1149,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.9.1",
+            "version": "v2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6"
+                "reference": "22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
-                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9",
+                "reference": "22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9",
                 "shasum": ""
             },
             "require": {
@@ -1227,7 +1227,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-12-14T04:51:13+00:00"
+            "time": "2018-12-31T03:27:51+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2680,16 +2680,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.36.1",
+            "version": "1.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983"
+                "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
+                "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
                 "shasum": ""
             },
             "require": {
@@ -2734,7 +2734,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-22T18:23:02+00:00"
+            "time": "2018-12-28T10:07:33+00:00"
         },
         {
             "name": "nexmo/client",
@@ -4626,16 +4626,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "c0e2191e9bed845946ab3d99767513b56ca7dcd6"
+                "reference": "939fb792d73f2ce80e6ae9019d205fc480f1c9a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/c0e2191e9bed845946ab3d99767513b56ca7dcd6",
-                "reference": "c0e2191e9bed845946ab3d99767513b56ca7dcd6",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/939fb792d73f2ce80e6ae9019d205fc480f1c9a0",
+                "reference": "939fb792d73f2ce80e6ae9019d205fc480f1c9a0",
                 "shasum": ""
             },
             "require": {
@@ -4695,7 +4695,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-12-06T10:45:32+00:00"
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/var-dumper",
