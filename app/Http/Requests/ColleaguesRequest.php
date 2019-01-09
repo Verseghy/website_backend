@@ -25,23 +25,23 @@ class ColleaguesRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'jobs'=>'string|max:2048|nullable',
-            'subjects'=>'string|max:2048|nullable',
-            'roles'=>'string|max:2048|nullable',
-            'awards'=>'string|max:2048|nullable',
-            'menus'=>'required|min:2|max:3',
-            'image'=>'image|nullable',
+            'jobs' => 'string|max:2048|nullable',
+            'subjects' => 'string|max:2048|nullable',
+            'roles' => 'string|max:2048|nullable',
+            'awards' => 'string|max:2048|nullable',
+            'menus' => 'required|min:2|max:3',
+            'image' => 'image|nullable',
         ];
     }
+
     /**
-    * Get the validation attributes that apply to the request.
-    *
-    * @return array
-    */
+     * Get the validation attributes that apply to the request.
+     *
+     * @return array
+     */
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -53,7 +53,6 @@ class ColleaguesRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

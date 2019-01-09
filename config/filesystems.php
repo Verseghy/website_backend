@@ -79,10 +79,10 @@ return [
 
         'colleagues_images' => [
             'driver' => 'local',
-            'root' =>storage_path('app/public/colleagues_images'),
+            'root' => storage_path('app/public/colleagues_images'),
             'url' => 'storage/colleagues_images',
             'visibility' => 'public',
-            'url_type'  => 'publicURL',
+            'url_type' => 'publicURL',
         ],
     ],
 ];
