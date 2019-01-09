@@ -57,8 +57,7 @@ class ColleaguesCrudController extends CrudController
         $this->crud->addField([
             'name' => 'image',
             'label' => 'Profile image',
-            'type' => 'upload', // TODO: Upload
-            //'prefix'=>'storage/authors_images/'
+            'type' => 'upload',
             'upload' => true,
             'disk' => 'colleagues_images',
         ]);
