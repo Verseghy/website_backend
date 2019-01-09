@@ -166,8 +166,7 @@ class PostsCrudController extends CrudController
         $validator = Validator::make($request->all(), [
             'index_image=' => 'required',
         ]);
-        if($request->featured==true and $request->index_image==NULL)
-        {
+        if ($request->featured==true and $request->index_image==null) {
             if ($validator->fails()) {
                 //return redirect('post/create')->withErrors($validator)->withInput();
                 return "You have to add an index picture if you have selected the post to be featured";

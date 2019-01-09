@@ -34,18 +34,15 @@ class PostsController extends Controller
 
     public function listFeaturedPosts(Request $request)
     {
-
         $NUMBER_TO_RETURN = 3;
 
-        $result = self::_resolvedPosts()->where('featured','=',true)->orderBy('date','desc')->take($NUMBER_TO_RETURN)->get();
+        $result = self::_resolvedPosts()->where('featured', '=', true)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN)->get();
         $count = $result->count();
-        if($count!==$NUMBER_TO_RETURN)
-        {
+        if ($count!==$NUMBER_TO_RETURN) {
             $nonFeatured = self::_resolvedPosts()->where('featured', '=', false)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN - $count)->get();
             $result = $result->merge($nonFeatured);
         }
         return $result;
-
     }
 
     public function byAuthor(Request $request)
