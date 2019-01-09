@@ -37,7 +37,8 @@ class ColleaguesCrudController extends CrudController
             'name'=>'image',
             'label'=>'Image',
             'type'=>'image',
-            'prefix'=>'storage/authors_images/'
+            'prefix'=>'storage/colleagues_images/',
+            'disk'=>'colleagues_images',
         ]);
 
         $this->crud->addColumn([
@@ -49,16 +50,18 @@ class ColleaguesCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'=>'image',
-            'label'=>'Profile image',
-            'type'=>'image',
-            'prefix'=>'storage/authors_images/'
-        ]);
-
-        $this->crud->addField([
             'name'=>'name',
             'label'=>'Name',
             'type'=>'text',
+        ]);
+
+        $this->crud->addField([
+            'name'=>'image',
+            'label'=>'Profile image',
+            'type'=>'upload', // TODO: Upload
+            //'prefix'=>'storage/authors_images/'
+            'upload'=>true,
+            'disk'=>'colleagues_images',
         ]);
 
         $this->crud->addField([
@@ -88,16 +91,8 @@ class ColleaguesCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'=>'image',
-            'label'=>'Profile image',
-            'type'=>'upload',
-            'upload'=>true,
-            'disk'=>'authors_images',
-        ]);
-
-        $this->crud->addField([
             'name'=>'awards',
-            'label'=>'Roles',
+            'label'=>'Awards',
             'type'=>'textarea',
         ]);
 
