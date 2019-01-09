@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
-
 use App\Models\Newsletter;
 
 class NewsletterController extends Controller
 {
     public function subscribe(Request $request)
     {
-        $newsletter = new Newsletter;
+        $newsletter = new Newsletter();
 
         if (is_null($request->input('email'))) {
             return response()->json([], 400);
         }
-        
+
         $newsletter->email = $request->input('email');
 
         if (is_null($request->input('mldata'))) {
@@ -25,7 +22,7 @@ class NewsletterController extends Controller
         }
 
         $newsletter->mldata = $request->input('mldata');
-        
+
         if (!Newsletter::where('email', $request->input('email'))->get()->isEmpty()) {
             return response()->json([], 409);
         }
@@ -49,7 +46,7 @@ class NewsletterController extends Controller
         if (is_null($request->input('token'))) {
             return response()->json([], 400);
         }
-        
+
         if (Newsletter::where('email', $request->input('email'))->where('token', $request->input('token'))->delete()) {
             return response()->json([], 200);
         } else {

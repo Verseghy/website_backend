@@ -9,14 +9,14 @@ class Posts extends Model
 {
     use crudTrait;
     protected $table = 'posts_data';
-    
+
     protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content'];
-    protected $hidden = ['author_id','created_at','updated_at'];
+    protected $hidden = ['author_id', 'created_at', 'updated_at'];
+
 
     protected $casts = [
-        'images' => 'array'
+        'images' => 'array',
     ];
-
 
     public function author()
     {
@@ -27,7 +27,7 @@ class Posts extends Model
     {
         return $this->belongsToMany('App\Models\Posts\Labels', 'posts_pivot_labels_data');
     }
-    
+
     /**
      * @codeCoverageIgnore
      */
@@ -39,7 +39,7 @@ class Posts extends Model
 
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
-    
+
     /**
      * @codeCoverageIgnore
      */
@@ -47,19 +47,18 @@ class Posts extends Model
     {
         $attribute_name = 'images';
         $disk = 'posts_images';
-        $destination_path = "";
+        $destination_path = '';
 
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
     }
-    
-    
+
     public static function boot()
     {
         parent::boot();
-        
+
         // @codeCoverageIgnoreStart
         static::deleting(function (Posts $post) {
-            if (count((array)$post->images)) {
+            if (count((array) $post->images)) {
                 foreach ($post->images as $file_path) {
                     \Storage::disk('posts_images')->delete($file_path);
                 }
@@ -67,7 +66,7 @@ class Posts extends Model
             if (isset($post->index_image)) {
                 \Storage::disk('posts_images')->delete($post->index_image);
             }
-            
+
             $post->author()->dissociate();
             $post->labels()->detach();
         });
