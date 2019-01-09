@@ -32,7 +32,7 @@ class ColleaguesCrudController extends CrudController
             'label'=>'Jobs',
             'type'=>'textarea',
         ]);
-        
+
         $this->crud->addColumn([
             'name'=>'image',
             'label'=>'Image',
@@ -44,10 +44,10 @@ class ColleaguesCrudController extends CrudController
             'name'=>'category',
             'label'=>'Category',
             'type' => 'select_from_array',
-            'options' => [0 => 'Brass', 1 => 'Teachers', 2=>'lecturer', 3=>'Administrator', 4=>'Kitchen Staff', 5=>'Maintenance Staff'],
+            'options' => [0 => 'Brass', 1 => 'Teachers', 2=>'Lecturer', 3=>'Administrator', 4=>'Kitchen Staff', 5=>'Maintenance Staff'],
             'allows_null' => false,
         ]);
-        
+
         $this->crud->addField([
             'name'=>'image',
             'label'=>'Profile image',
@@ -78,7 +78,7 @@ class ColleaguesCrudController extends CrudController
             'label'=>'Roles',
             'type'=>'textarea',
         ]);
-        
+
         $this->crud->addField([
             'name'=>'category',
             'label'=>'Category',
@@ -94,7 +94,13 @@ class ColleaguesCrudController extends CrudController
             'upload'=>true,
             'disk'=>'authors_images',
         ]);
-        
+
+        $this->crud->addField([
+            'name'=>'awards',
+            'label'=>'Roles',
+            'type'=>'textarea',
+        ]);
+
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
