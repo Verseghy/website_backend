@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MenusRequest extends FormRequest
@@ -15,7 +14,7 @@ class MenusRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit canteens');
     }
 
     /**
@@ -39,7 +38,6 @@ class MenusRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -51,7 +49,6 @@ class MenusRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

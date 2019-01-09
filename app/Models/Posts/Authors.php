@@ -19,7 +19,7 @@ class Authors extends Model
     {
         return $this->hasMany('App\Models\Posts', 'id', 'author_id');
     }
-    
+
     /**
      * @codeCoverageIgnore
      */
@@ -31,11 +31,11 @@ class Authors extends Model
 
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
-    
+
     public static function boot()
     {
         parent::boot();
-        
+
         // @codeCoverageIgnoreStart
         static::deleting(function (Authors $author) {
             if (isset($author->image)) {

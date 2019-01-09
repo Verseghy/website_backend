@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use App\Models\Canteens;
 use App\Models\Canteens\Menus;
 
@@ -9,8 +8,6 @@ class CanteensSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -19,7 +16,7 @@ class CanteensSeeder extends Seeder
             $soup = Menus::where('type', '=', 0)->inRandomOrder()->first();
             $meal = Menus::where('type', '=', 1)->inRandomOrder()->first();
             $dessert = Menus::where('type', '=', 2)->inRandomOrder()->first();
-            
+
             $canteen->menus()->attach($soup);
             $canteen->menus()->attach($meal);
             $canteen->menus()->attach($dessert);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EventsRequest extends FormRequest
@@ -15,7 +14,7 @@ class EventsRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit events');
     }
 
     /**
@@ -28,8 +27,8 @@ class EventsRequest extends FormRequest
         return [
             'date_from' => 'required|date',
             'date_to' => 'required|date|after_or_equal:date_from',
-            'title'=>'required|max:255|string',
-            'description'=>'nullable|string',
+            'title' => 'required|max:255|string',
+            'description' => 'nullable|string',
             'color' => 'string|max:16|nullable',
         ];
     }
@@ -42,7 +41,6 @@ class EventsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 
@@ -54,7 +52,6 @@ class EventsRequest extends FormRequest
     public function messages()
     {
         return [
-            //
         ];
     }
 }

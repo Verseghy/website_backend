@@ -6,8 +6,6 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
@@ -17,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsletterSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ColleaguesSeeder::class);
+        $this->call(RolesPermissionsSeeder::class);
     }
 }
