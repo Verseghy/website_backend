@@ -26,7 +26,7 @@ class PostsRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'color'=> 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
+            'color' => 'required|string|min:7|max:7|regex:/(^#[0-9a-fA-F]{6}$)/u',
             'featured' => 'required|boolean',
             'description' => 'string|nullable|max:1024',
             'content' => 'string|nullable',

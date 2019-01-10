@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Validator;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
@@ -65,9 +64,9 @@ class PostsCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name'=>'featured',
-            'type'=>'boolean',
-            'label'=>'Featurable',
+            'name' => 'featured',
+            'type' => 'boolean',
+            'label' => 'Featurable',
         ]);
 
         $this->crud->addField([
@@ -170,7 +169,7 @@ class PostsCrudController extends CrudController
         ], [
             'required' => 'The :attribute field is required for featured posts!',
         ]);
-        if ($request->featured==true and $request->index_image==null) {
+        if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
@@ -184,13 +183,12 @@ class PostsCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
-
         $validator = Validator::make($request->all(), [
             'index_image' => 'required',
         ], [
             'required' => 'The :attribute field is required for featured posts!',
         ]);
-        if ($request->featured==true and $request->index_image==null) {
+        if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }

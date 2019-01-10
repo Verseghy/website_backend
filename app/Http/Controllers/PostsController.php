@@ -37,13 +37,14 @@ class PostsController extends Controller
 
         $result = self::_resolvedPosts()->where('featured', '=', true)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN)->get();
         $count = $result->count();
-        if ($count!==$NUMBER_TO_RETURN) {
+        if ($count !== $NUMBER_TO_RETURN) {
             $nonFeatured = self::_resolvedPosts()->where('featured', '=', false)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN - $count)->get();
             $result = $result->merge($nonFeatured);
         }
+
         return $result;
     }
-  
+
     public function byAuthor(Request $request)
     {
         $authorId = $request->input('id');

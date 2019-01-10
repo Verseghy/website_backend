@@ -13,7 +13,6 @@ class Posts extends Model
     protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content'];
     protected $hidden = ['author_id', 'created_at', 'updated_at'];
 
-
     protected $casts = [
         'images' => 'array',
     ];
