@@ -63,7 +63,7 @@ class PostsCrudController extends CrudController
             'entity' => 'author',
             'attribute' => 'name',
         ]);
-        
+
         $this->crud->addColumn([
             'name'=>'featured',
             'type'=>'boolean',
@@ -166,14 +166,14 @@ class PostsCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'index_image=' => 'required',
+            'index_image' => 'required',
+        ], [
+            'required' => 'The :attribute field is required for featured posts!',
         ]);
         if ($request->featured==true and $request->index_image==null) {
             if ($validator->fails()) {
-                //return redirect('post/create')->withErrors($validator)->withInput();
-                return "You have to add an index picture if you have selected the post to be featured";
+                return back()->withErrors($validator)->withInput();
             }
-            //return 400;
         }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
@@ -184,6 +184,17 @@ class PostsCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'index_image' => 'required',
+        ], [
+            'required' => 'The :attribute field is required for featured posts!',
+        ]);
+        if ($request->featured==true and $request->index_image==null) {
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
