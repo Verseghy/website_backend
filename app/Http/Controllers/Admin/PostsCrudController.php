@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Validator;
+
+// VALIDATION: change the requests to match your own file names if you need form validation
 
 /**
  * Class PostsCrudController.
@@ -62,6 +64,12 @@ class PostsCrudController extends CrudController
             'attribute' => 'name',
         ]);
 
+        $this->crud->addColumn([
+            'name' => 'featured',
+            'type' => 'boolean',
+            'label' => 'Featurable',
+        ]);
+
         $this->crud->addField([
             'name' => 'title',
             'type' => 'text',
@@ -72,6 +80,12 @@ class PostsCrudController extends CrudController
             'name' => 'description',
             'type' => 'textarea',
             'label' => 'Description',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'featured',
+            'type' => 'checkbox',
+            'label' => 'Featurable',
         ]);
 
         $this->crud->addField([
@@ -151,6 +165,16 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'index_image' => 'required',
+        ], [
+            'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
+        ]);
+        if (true == $request->featured and null == $request->index_image) {
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -160,6 +184,16 @@ class PostsCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'index_image' => 'required',
+        ], [
+            'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
+        ]);
+        if (true == $request->featured and null == $request->index_image) {
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
