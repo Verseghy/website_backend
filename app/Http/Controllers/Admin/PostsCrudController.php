@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Validator;
-// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Validator;
+
+// VALIDATION: change the requests to match your own file names if you need form validation
 
 /**
  * Class PostsCrudController.
@@ -167,7 +168,7 @@ class PostsCrudController extends CrudController
         $validator = Validator::make($request->all(), [
             'index_image' => 'required',
         ], [
-            'required' => 'The :attribute field is required for featured posts!',
+            'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
         ]);
         if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
@@ -186,7 +187,7 @@ class PostsCrudController extends CrudController
         $validator = Validator::make($request->all(), [
             'index_image' => 'required',
         ], [
-            'required' => 'The :attribute field is required for featured posts!',
+            'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
         ]);
         if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
