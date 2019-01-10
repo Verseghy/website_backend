@@ -31,6 +31,20 @@ class PostsController extends Controller
         return self::_after($request, $post, $maxDate);
     }
 
+    public function listFeaturedPosts(Request $request)
+    {
+        $NUMBER_TO_RETURN = 3;
+
+        $result = self::_resolvedPosts()->where('featured', '=', true)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN)->get();
+        $count = $result->count();
+        if ($count !== $NUMBER_TO_RETURN) {
+            $nonFeatured = self::_resolvedPosts()->where('featured', '=', false)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN - $count)->get();
+            $result = $result->merge($nonFeatured);
+        }
+
+        return $result;
+    }
+
     public function byAuthor(Request $request)
     {
         $authorId = $request->input('id');
@@ -115,6 +129,7 @@ class PostsController extends Controller
         assert(is_array($post));
 
         $parser = Parsedown::instance()->setBreaksEnabled(true)->setMarkupEscaped(true)->setUrlsLinked(false);
+
         $post['content'] = isset($post['content']) ? $parser->text($post['content']) : '';
 
         $post['index_image'] = isset($post['index_image']) ? self::_publicUrl($post['index_image']) : null;
