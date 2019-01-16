@@ -111,6 +111,7 @@ class PostsController extends Controller
         } elseif ($result instanceof Posts) {
             $result = self::_expandUrls($result);
         }
+
         return self::_after_original($request, $result, $maxDate);
     }
 
@@ -149,12 +150,12 @@ class PostsController extends Controller
     private static function _makeThumbnail($posts, $enabled = true)
     {
         $result = $posts->paginate(self::PAGESIZE);
-        if ($enabled)
-        {
-          $result = $result->makeHidden(['content']);
+        if ($enabled) {
+            $result = $result->makeHidden(['content']);
         } else {
-          $result = $result->makeHidden([]);
+            $result = $result->makeHidden([]);
         }
+
         return $result;
     }
 }
