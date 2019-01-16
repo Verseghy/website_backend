@@ -62,7 +62,7 @@ class PostsController extends Controller
     {
         $posts = self::_resolvedPosts();
 
-        return self::_after($request, $posts);
+        return self::_after($request, $posts, null, false);
     }
 
     public function byLabel(Request $request)
@@ -92,7 +92,7 @@ class PostsController extends Controller
         return self::_after($request, $posts);
     }
 
-    protected static function _after($request, $result, $maxDate = null)
+    protected static function _after($request, $result, $maxDate = null, $makeThumbnail = true)
     {
         if (is_null($maxDate)) {
             if ($result instanceof \Illuminate\Database\Eloquent\Builder) {
@@ -102,8 +102,7 @@ class PostsController extends Controller
                 if (!is_null($query)) {
                     $maxDate = $query->updated_at;
                 }
-
-                $result = self::_makeThumbnail($result);
+                $result = self::_makeThumbnail($result, $makeThumbnail);
             }
         }
         //var_dump($result);
@@ -148,8 +147,15 @@ class PostsController extends Controller
         return asset(\Storage::disk($disk)->url($file));
     }
 
-    private static function _makeThumbnail($posts)
+    private static function _makeThumbnail($posts, $enabled = true)
     {
-        return $posts->paginate(self::PAGESIZE)->makeHidden(['content']);
+        $result = $posts->paginate(self::PAGESIZE);
+        if ($enabled) {
+            $result = $result->makeHidden(['content']);
+        } else {
+            $result = $result->makeHidden([]);
+        }
+
+        return $result;
     }
 }
