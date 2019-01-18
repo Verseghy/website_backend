@@ -39,7 +39,7 @@ class CanteensController extends Controller
         $date->setIsoDate($year, $week);
 
         $start = $date->startOfWeek()->toDateString().' 00:00:00';
-        $end = $date->endOfWeek()->addDay()->toDateString().' 00:00:00';
+        $end = $date->endOfWeek()->toDateString().' 23:59:59';
 
         $canteens = Canteens::with('menus')->whereBetween('date', [$start, $end])->orderBy('date');
 
