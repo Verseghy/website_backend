@@ -4371,7 +4371,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -5025,16 +5025,16 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "cb6d3ebbc469a7d2ced7e37964de459db8ba021f"
+                "reference": "f272fb8b1a743c96aa3acfbf92c7f5d077fdabd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/cb6d3ebbc469a7d2ced7e37964de459db8ba021f",
-                "reference": "cb6d3ebbc469a7d2ced7e37964de459db8ba021f",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/f272fb8b1a743c96aa3acfbf92c7f5d077fdabd8",
+                "reference": "f272fb8b1a743c96aa3acfbf92c7f5d077fdabd8",
                 "shasum": ""
             },
             "require": {
@@ -5081,7 +5081,7 @@
                 "request",
                 "view"
             ],
-            "time": "2018-11-22T21:14:13+00:00"
+            "time": "2019-01-16T09:21:24+00:00"
         },
         {
             "name": "doctrine/annotations",
