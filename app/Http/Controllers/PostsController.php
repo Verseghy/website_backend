@@ -42,7 +42,7 @@ class PostsController extends Controller
             $result = $result->merge($nonFeatured);
         }
 
-        return $result;
+        return self::_after($request, $result);
     }
 
     public function byAuthor(Request $request)
