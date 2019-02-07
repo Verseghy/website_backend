@@ -11,17 +11,17 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => 'Backpack',
+    'project_name' => 'VFG-Website',
 
     // Menu logos
-    'logo_lg' => '<b>Back</b>pack',
-    'logo_mini' => '<b>B</b>p',
+    'logo_lg' => '<b>VFG</b>',
+    'logo_mini' => '<b>VFG</b>p',
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Cristian Tabacitu',
+    'developer_name' => 'László Baráth',
 
     // Developer website. Link in footer.
-    'developer_link' => 'http://tabacitu.ro',
+    'developer_link' => 'https://github.com/Sasszem',
 
     // Show powered by Laravel Backpack in the footer?
     'show_powered_by' => true,
