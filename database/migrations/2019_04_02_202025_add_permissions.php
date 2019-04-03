@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -11,8 +8,6 @@ class AddPermissions extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -58,11 +53,9 @@ class AddPermissions extends Migration
         $u->assignRole('admin');
         $u->save();
     }
-    
+
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -72,7 +65,7 @@ class AddPermissions extends Migration
         // is this necessary?
         app()['cache']->forget('spatie.permission.cache');
     }
-    
+
     public function removePermissions()
     {
         Permission::where('name', '=', 'edit posts')->firstOrFail()->delete();
