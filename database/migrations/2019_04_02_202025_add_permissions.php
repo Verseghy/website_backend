@@ -17,41 +17,57 @@ class AddPermissions extends Migration
         $this->makeUsers();
     }
 
-    public function makePermissions()
+    private function createPermission(string $name): void
     {
-        Permission::create(['name' => 'edit posts']);
-        Permission::create(['name' => 'edit events']);
-        Permission::create(['name' => 'edit canteens']);
-        Permission::create(['name' => 'edit users']);
-        Permission::create(['name' => 'edit newsletter']);
+        if (!Permission::where('name', '=', $name)->exists()) {
+            Permission::create(['name' => $name]);
+        }
     }
 
-    private function makeRoles()
+    public function makePermissions(): void
     {
-        $role = Role::create(['name' => 'writer']);
-        $role->givePermissionTo('edit posts');
-
-        $role = Role::create(['name' => 'secretary']);
-        $role->givePermissionTo(['edit canteens', 'edit events', 'edit newsletter']);
-
-        $role = Role::create(['name' => 'supervisor']);
-        $role->givePermissionTo(['edit posts']);
-
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
+        $this->createPermission('edit posts');
+        $this->createPermission('edit events');
+        $this->createPermission('edit canteens');
+        $this->createPermission('edit users');
+        $this->createPermission('edit newsletter');
     }
 
-    private function makeUsers()
+    private function createRole(string $name, $permissions): void
+    {
+        if (!Role::where('name', '=', $name)->exists()) {
+            Role::create(['name' => $name]);
+        }
+        $role = Role::where('name', '=', $name)->firstOrFail();
+        $role->givePermissionto($permissions);
+    }
+
+    private function makeRoles(): void
+    {
+        $this->createRole('writer', ['edit posts']);
+        $this->createRole('secretary', ['edit canteens', 'edit events', 'edit newsletter']);
+        $this->createRole('supervisor', ['edit posts']);
+        $this->createRole('admin', Permission::all());
+    }
+
+    private function createUser(string $name, string $email, string $password, string $role = null): void
     {
         $user = config('backpack.base.user_model_fqn');
-        (new $user([
-            'name' => 'test',
-            'email' => 'test@test.test',
-            'password' => Hash::make('test'),
-        ]))->save();
+        if (!$user::where('name', '=', $name)->exists()) {
+            $user::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
+        }
         $u = $user::where('name', 'LIKE', 'test')->firstOrFail();
         $u->assignRole('admin');
         $u->save();
+    }
+
+    private function makeUsers(): void
+    {
+        $this->createUser('test', 'test@test.test', 'test', 'admin');
     }
 
     /**
