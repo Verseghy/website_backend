@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\AuthorsRequest as StoreRequest;
-use App\Http\Requests\AuthorsRequest as UpdateRequest;
+use App\Http\Requests\ColleaguesReques as StoreRequest;
+use App\Http\Requests\ColleaguesReques as UpdateRequest;
 
 /**
  * Class AuthorsCrudController.
@@ -14,6 +14,9 @@ use App\Http\Requests\AuthorsRequest as UpdateRequest;
  */
 class ColleaguesCrudController extends CrudController
 {
+    use AuthDestroy;
+    protected $destroyRequestClass = UpdateRequest::class;
+    
     public function setup()
     {
         $this->crud->setModel('App\Models\Colleagues');

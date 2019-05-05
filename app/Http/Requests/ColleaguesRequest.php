@@ -13,7 +13,7 @@ class ColleaguesRequest extends FormRequest
      */
     public function authorize()
     {
-        return backpack_auth()->check();
+        return backpack_auth()->check() && backpack_auth()->user()->can('edit colleagues');
     }
 
     /**
