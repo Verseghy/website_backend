@@ -23,6 +23,7 @@ class AddColleaguesPermissions extends Migration
             Permission::create(['name' => $name]);
         }
     }
+
     /**
      * Reverse the migrations.
      */
