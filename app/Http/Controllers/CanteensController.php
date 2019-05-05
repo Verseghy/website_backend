@@ -46,6 +46,7 @@ class CanteensController extends Controller
         // order canteens by date
 
         $canteens = $canteens_query->get()->toArray();
+        $maxDate = new Carbon();
         if (0 !== count($canteens)) {
             $maxDate = $canteens_query->latest('updated_at')->first()->updated_at;
         }
@@ -58,6 +59,6 @@ class CanteensController extends Controller
             array_push($canteens_sorted, $canteen);
         }
 
-        return $canteens_sorted;
+        return self::_after($request, $canteens_sorted, $maxDate);
     }
 }
