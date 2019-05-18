@@ -41,8 +41,24 @@ class CanteensController extends Controller
         $start = $date->startOfWeek()->toDateString().' 00:00:00';
         $end = $date->endOfWeek()->toDateString().' 23:59:59';
 
-        $canteens = Canteens::with('menus')->whereBetween('date', [$start, $end])->orderBy('date');
+        $canteens_query = Canteens::with('menus')->whereBetween('date', [$start, $end])->orderBy('date');
 
-        return self::_after($request, $canteens, null);
+        // order canteens by date
+
+        $canteens = $canteens_query->get()->toArray();
+        $maxDate = new Carbon();
+        if (0 !== count($canteens)) {
+            $maxDate = $canteens_query->latest('updated_at')->first()->updated_at;
+        }
+        $canteens_sorted = array();
+        foreach ($canteens as $canteen) {
+            usort($canteen['menus'], function ($item1, $item2) {
+                return $item1['type'] <=> $item2['type'];
+            });
+
+            array_push($canteens_sorted, $canteen);
+        }
+
+        return self::_after($request, $canteens_sorted, $maxDate);
     }
 }
