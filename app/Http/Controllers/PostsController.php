@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posts;
-use Parsedown;
+use App\Markdown;
 
 class PostsController extends Controller
 {
@@ -127,7 +127,7 @@ class PostsController extends Controller
         }
         assert(is_array($post));
 
-        $parser = Parsedown::instance()->setBreaksEnabled(true)->setMarkupEscaped(true)->setUrlsLinked(false);
+        $parser = Markdown::instance()->setBreaksEnabled(true)->setMarkupEscaped(true)->setUrlsLinked(false);
 
         $post['content'] = isset($post['content']) ? $parser->text($post['content']) : '';
 
