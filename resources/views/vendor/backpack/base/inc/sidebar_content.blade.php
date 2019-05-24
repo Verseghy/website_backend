@@ -39,7 +39,9 @@
 <li><a href="{{ backpack_url('events') }}"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
 @endcan
 
+@can('edit colleagues')
 <li><a href="{{ backpack_url('colleagues') }}"><i class="fa fa-user"></i> <span>Manage Colleagues</span></a></li>
+@endcan
 
 @can('edit newsletter')
 <li><a href="{{ backpack_url('newsletter') }}"><i class="fa fa-envelope"></i> <span>Manage Newsletter</span></a></li>
