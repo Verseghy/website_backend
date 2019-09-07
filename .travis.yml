@@ -9,7 +9,7 @@ addons:
 install: composer install
 before_script:
   - cp .env.travis .env
-  - mysql -e 'CREATE DATABASE travis_test;'
+  - mysql -e 'CREATE DATABASE travis_test;GRANT ALL PRIVILEGES ON travis_test.* TO "travis"@"localhost";'
   - php artisan key:generate
 script:
   - vendor/bin/php-cs-fixer fix --dry-run
