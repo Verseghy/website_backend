@@ -1,17 +1,10 @@
 language: php
 php:
   - '7.2'
-dist: trusty
+dist: bionic
 sudo: required
-services:
-  - mysql
 addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-      - mysql-client
+  mariadb: '10.1'
 
 install: composer install
 before_script:
