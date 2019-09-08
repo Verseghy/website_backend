@@ -25,6 +25,7 @@ Route::prefix('posts')->group(function () {
     Route::get('search', 'PostsController@search');
     Route::get('listFeaturedPosts', 'PostsController@listFeaturedPosts');
     Route::get('getPostsByYearMonth', 'PostsController@byYearMonth');
+    Route::get('getCountByMonth', 'PostsController@countByMonth');
 });
 
 Route::prefix('newsletter')->group(function () {
