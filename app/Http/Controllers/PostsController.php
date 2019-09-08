@@ -117,10 +117,10 @@ class PostsController extends Controller
 
         $maxDate = $data->count() ? Carbon::parse(Posts::latest()->first()->date) : null;
         $modSince = self::_modSince($request);
-        if (isset($maxDate) && $maxDate->lte($modSince))
-        {
+        if (isset($maxDate) && $maxDate->lte($modSince)) {
             return response()->json([], 304);
         }
+
         return $data;
     }
 

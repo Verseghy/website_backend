@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Feature;
+
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\Posts;
@@ -174,7 +175,6 @@ class PostsAPITest extends TestCase
         $month = $date->month;
         $year = $date->year;
 
-
         // Valid request
         $response = $this->API($endpoint, "year=$year&month=$month");
         $this->assertValidResponse($response, $validResponse);
@@ -209,7 +209,7 @@ class PostsAPITest extends TestCase
         $month = $date->month;
         $year = $date->year;
 
-        $validResponse = array(['year' => $year, 'month'=>$month, 'count'=>1]);
+        $validResponse = array(['year' => $year, 'month' => $month, 'count' => 1]);
 
         // Valid request
         $response = $this->API($endpoint);
