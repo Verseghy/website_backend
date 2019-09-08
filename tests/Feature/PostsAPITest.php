@@ -25,6 +25,7 @@ class PostsAPITest extends TestCase
         $this->byAuthor();
         $this->search();
         $this->byYearMonth();
+        $this->countByMonth();
     }
 
     /**
@@ -195,6 +196,24 @@ class PostsAPITest extends TestCase
         $invalidMonth = $month + 1;
         $response = $this->API($endpoint, "year=$invalidYear&month=$invalidMonth");
         $this->checkResponseCode($response, 404);
+
+        $this->checkCaching($endpoint, "year=$year&month=$month");
+    }
+
+    public function countByMonth()
+    {
+        $endpoint = 'getCountByMonth';
+
+        $date = Carbon::instance($this->post->date);
+
+        $month = $date->month;
+        $year = $date->year;
+
+        $validResponse = array(['year' => $year, 'month'=>$month, 'count'=>1]);
+
+        // Valid request
+        $response = $this->API($endpoint);
+        $this->assertValidResponse($response, $validResponse);
 
         $this->checkCaching($endpoint, "year=$year&month=$month");
     }
