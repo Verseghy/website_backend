@@ -58,6 +58,20 @@ class PostsController extends Controller
         return self::_after($request, $posts);
     }
 
+    public function byYearMonth(Request $request)
+    {
+        $year = $request->input('year');
+        $month = $request->input('month');
+
+        if (is_null($year) || is_null($month)) {
+            return response()->json([], 400);
+        }
+
+        $posts = self::_resolvedPosts()->whereMonth('date', '=', $month)->whereYear('date', '=', $year);
+
+        return self::_after($request, $posts);
+    }
+
     public function listPosts(Request $request)
     {
         $posts = self::_resolvedPosts();
