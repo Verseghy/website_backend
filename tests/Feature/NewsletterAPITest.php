@@ -49,7 +49,7 @@ class NewsletterAPITest extends TestCase
         $this->checkResponseCode($response, 400);
 
         $response = $this->API($endpoint, 'email='.$this->newsletter->email.'&token=');
-        $this->checkResponseCode($response, 401);
+        $this->checkResponseCode($response, 400);
 
         $response = $this->API($endpoint, 'email=ghj@ghj.com'.'&token='.$this->newsletter->token);
         $this->checkResponseCode($response, 400);
