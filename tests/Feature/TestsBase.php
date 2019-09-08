@@ -3,10 +3,12 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 trait TestsBase
 {
     use RefreshDatabase;
+    use WithoutMiddleware;
 
     protected function API($url, $params = '', $headers = array())
     {
