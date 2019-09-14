@@ -11,13 +11,13 @@ class NewsletterController extends Controller
     {
         $newsletter = new Newsletter();
 
-        if (is_null($request->input('email'))) {
+        if (empty($request->input('email'))) {
             return response()->json([], 400);
         }
 
         $newsletter->email = $request->input('email');
 
-        if (is_null($request->input('mldata'))) {
+        if (empty($request->input('mldata'))) {
             return response()->json([], 400);
         }
 
