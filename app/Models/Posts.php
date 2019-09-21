@@ -10,8 +10,8 @@ class Posts extends Model
     use crudTrait;
     protected $table = 'posts_data';
 
-    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'type'];
-    protected $hidden = ['author_id', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'type', 'published', 'previewToken'];
+    protected $hidden = ['author_id', 'created_at', 'updated_at', 'published', 'previewToken'];
 
     protected $casts = [
         'images' => 'array',
@@ -49,6 +49,15 @@ class Posts extends Model
         $destination_path = '';
 
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+
+    public function getPreviewTokenAttribute($value)
+    {
+        if ($value===null) {
+            $value = Hash::make($this->content);
+            $this->previewToken = $value;
+        }
+        return $value;
     }
 
     public static function boot()
