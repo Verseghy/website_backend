@@ -75,6 +75,11 @@ class PostsAPITest extends TestCase
         $response = $this->API($endpoint, 'id=2');
         $this->checkResponseCode($response, 404);
 
+        // Valid request, not published resoutrce
+        $id = $this->hiddenPost->id;
+        $response = $this->API($endpoint, "id=$id");
+        $this->checkResponseCode($response, 404);
+
         $this->checkCaching($endpoint, 'id=1');
     }
 
@@ -149,6 +154,37 @@ class PostsAPITest extends TestCase
         $this->checkCaching($endpoint, "term=$searchTerm");
     }
 
+    public function getPreview() {
+        $endpoint = 'getPreview';
+
+        $validResponse = $this->hiddenPost->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray();
+        $token = $this->hiddenPost->previewToken;
+        $id = $this->hiddenPost->id;
+        // Valid request
+        $response = $this->API($endpoint, "id=$id&token=$token");
+        $this->assertValidResponse($response, $validResponse);
+
+        // Invalid request
+        // ( missing parameter )
+        $response = $this->API($endpoint, "token=$token");
+        $this->checkResponseCode($response, 400);
+
+        $response = $this->API($endpoint, '');
+        $this->checkResponseCode($response, 400);
+
+        // unauthorized request
+        // no token
+        $response = $this->API($endpoint, "id=$id");
+        $this->checkResponseCode($response, 401);
+
+        // Valid request
+        // No resource
+        $response = $this->API($endpoint, 'id=-6');
+        $this->checkResponseCode($response, 404);
+
+        $this->checkCaching($endpoint, "id=$id");
+    }
+
     public function setupDB()
     {
         factory(Authors::class)->create();
@@ -159,5 +195,13 @@ class PostsAPITest extends TestCase
 
         $this->post->labels;
         $this->post->author;
+
+        $this->hiddenPost = factory(Posts::class, 1)->create()->first();
+        $this->hiddenPost->labels()->attach($label);
+        $this->hiddenPost->save();
+
+        $this->hiddenPost->labels;
+        $this->hiddenPost->author;
+        $this->hiddenPost->published = false;
     }
 }
