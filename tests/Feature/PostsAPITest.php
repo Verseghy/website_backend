@@ -155,7 +155,8 @@ class PostsAPITest extends TestCase
         $this->checkCaching($endpoint, "term=$searchTerm");
     }
 
-    public function getPreview() {
+    public function getPreview()
+    {
         $endpoint = 'getPreview';
 
         $validResponse = $this->hiddenPost->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray();

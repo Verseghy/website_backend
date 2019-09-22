@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -17,7 +15,6 @@ class AddPostsPublishPermissions extends Migration
         $this->createPermission('publish posts');
         Role::where('name', '=', 'admin')->firstOrFail()->givePermissionTo('publish posts');
         Role::where('name', '=', 'supervisor')->firstOrFail()->givePermissionTo('publish posts');
-
     }
 
     private function createPermission(string $name): void

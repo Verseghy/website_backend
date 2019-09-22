@@ -163,15 +163,14 @@ class PostsCrudController extends CrudController
             'name' => 'published',
             'type' => 'checkbox',
             'label' => 'Published',
-            'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled'=>''],
+            'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
         ]);
 
         $this->crud->addField([   // URL
             'name' => 'previewLink',
             'label' => 'Preview link:',
-            'type' => 'link'
+            'type' => 'link',
         ]);
-
 
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
@@ -180,18 +179,15 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-
-
         $validator = Validator::make($request->all(), [
             'index_image' => 'required',
         ], [
             'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
         ]);
 
-        if (true==$request->input('published') && !auth()->user->can('publish posts')) {
-            return back()->withErrors(['msg'=>'You can not edit published posts or publish posts!'])->withInput();
+        if (true == $request->input('published') && !auth()->user->can('publish posts')) {
+            return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
-
 
         if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
@@ -220,9 +216,10 @@ class PostsCrudController extends CrudController
 
         $post = Posts::where('id', $request->input('id'))->get()->first();
 
-        if (true==$request->input('published') || $post->published) {
-            if (!auth()->user()->can('publish posts'))
-                return back()->withErrors(['msg'=>'You can not edit published posts or publish posts!'])->withInput();
+        if (true == $request->input('published') || $post->published) {
+            if (!auth()->user()->can('publish posts')) {
+                return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
+            }
         }
 
         // your additional operations before save here

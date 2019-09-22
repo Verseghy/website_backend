@@ -38,19 +38,16 @@ class PostsController extends Controller
         if (is_null($postId)) {
             return response()->json([], 400);
         }
-        
 
         $post = self::_resolvedPosts(true)->where('published', '!=', true)->where('id', '=', $postId)->get()->first();
-        
+
         if (empty($post)) {
             return response()->json([], 404);
         }
 
-    
-        if (empty($token) || $token!=$post->previewToken) {
+        if (empty($token) || $token != $post->previewToken) {
             return response()->json([], 401);
         }
-
 
         $maxDate = null;
         if (!is_null($post)) {
@@ -144,13 +141,13 @@ class PostsController extends Controller
         return self::_after_original($request, $result, $maxDate);
     }
 
-    private static function _resolvedPosts($all=false)
+    private static function _resolvedPosts($all = false)
     {
         $posts = Posts::with(['author', 'labels'])->orderBy('date', 'desc');
-        if (!$all)
-        {
+        if (!$all) {
             $posts = $posts->where('published', true);
         }
+
         return $posts;
     }
 

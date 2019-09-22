@@ -54,11 +54,12 @@ class Posts extends Model
 
     public function getPreviewTokenAttribute($value)
     {
-        if ($value===null) {
+        if (null === $value) {
             $value = base64_encode(Hash::make($this->content));
             $this->previewToken = $value;
             $this->save();
         }
+
         return $value;
     }
 
