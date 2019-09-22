@@ -158,6 +158,17 @@ class PostsCrudController extends CrudController
             'allows_null' => false,
         ]);
 
+        $this->crud->addField([
+            'name' => 'published',
+            'type' => 'checkbox',
+            'label' => 'Published',
+        ]);
+
+        $this->crud->addField([   // URL
+            'name' => 'previewLink',
+            'label' => 'Preview link:',
+            'type' => 'link'
+        ]);
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

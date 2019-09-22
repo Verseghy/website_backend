@@ -62,6 +62,17 @@ class Posts extends Model
         return $value;
     }
 
+    public function getPreviewLinkAttribute()
+    {
+        $id = $this->id;
+        $token = $this->previewToken;
+        if ($this->published) {
+            return "https://beta.verseghy-gimnazium.net/posts/$id";
+        } else {
+            return "https://beta.verseghy-gimnazium.net/posts/preview/$id&token=$token";
+        }
+    }
+
     public static function boot()
     {
         parent::boot();
