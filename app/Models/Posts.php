@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Support\Facades\Hash;
 
 class Posts extends Model
 {
@@ -54,8 +55,9 @@ class Posts extends Model
     public function getPreviewTokenAttribute($value)
     {
         if ($value===null) {
-            $value = Hash::make($this->content);
+            $value = base64_encode(Hash::make($this->content));
             $this->previewToken = $value;
+            $this->save();
         }
         return $value;
     }
