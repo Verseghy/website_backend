@@ -12,7 +12,7 @@ class PostsPublishedMigration extends Migration
     public function up()
     {
         Schema::table('posts_data', function (Blueprint $table) {
-            $table->boolean('published')->nullable();
+            $table->boolean('published')->default(false);
             $table->string('previewToken')->nullable();
         });
     }
