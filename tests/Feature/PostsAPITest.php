@@ -219,7 +219,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByYearMonth';
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
 
         $date = Carbon::instance($this->post->date);
 
