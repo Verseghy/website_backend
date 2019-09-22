@@ -40,10 +40,10 @@ class NewsletterController extends Controller
 
     public function unsubscribe(Request $request)
     {
-        if (is_null($request->input('email'))) {
+        if (empty($request->input('email'))) {
             return response()->json([], 400);
         }
-        if (is_null($request->input('token'))) {
+        if (empty($request->input('token'))) {
             return response()->json([], 400);
         }
 
