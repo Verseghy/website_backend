@@ -24,7 +24,7 @@ class PostsPublishedMigration extends Migration
     {
         Schema::table('posts_data', function (Blueprint $table) {
             $table->dropColumn('published');
-            $table->dromColumn('previewToken');
+            $table->dropColumn('previewToken');
         });
     }
 }
