@@ -24,6 +24,7 @@ Route::prefix('posts')->group(function () {
     Route::get('listPosts', 'PostsController@listPosts');
     Route::get('search', 'PostsController@search');
     Route::get('listFeaturedPosts', 'PostsController@listFeaturedPosts');
+    Route::get('getPreview', 'PostsController@getPreview');
 });
 
 Route::prefix('newsletter')->group(function () {
