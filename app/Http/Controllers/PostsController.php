@@ -117,7 +117,7 @@ class PostsController extends Controller
 
     private static function _resolvedPosts()
     {
-        return Posts::with(['author', 'labels'])->orderBy('date', 'desc');
+        return Posts::with(['author', 'labels'])->where('published', true)->orderBy('date', 'desc');
     }
 
     private static function _expandUrls($post)
