@@ -24,6 +24,7 @@ class PostsAPITest extends TestCase
         $this->byLabel();
         $this->byAuthor();
         $this->search();
+        $this->getPreview();
     }
 
     /**
@@ -177,12 +178,16 @@ class PostsAPITest extends TestCase
         $response = $this->API($endpoint, "id=$id");
         $this->checkResponseCode($response, 401);
 
+        // wrong token
+        $response = $this->API($endpoint, "id=$id&token=ASD");
+        $this->checkResponseCode($response, 401);
+
         // Valid request
         // No resource
         $response = $this->API($endpoint, 'id=-6');
         $this->checkResponseCode($response, 404);
 
-        $this->checkCaching($endpoint, "id=$id");
+        $this->checkCaching($endpoint, "id=$id&token=$token");
     }
 
     public function setupDB()
