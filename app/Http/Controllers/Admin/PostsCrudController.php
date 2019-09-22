@@ -6,6 +6,7 @@ use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Validator;
+use App\Models\Posts;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 
@@ -162,6 +163,7 @@ class PostsCrudController extends CrudController
             'name' => 'published',
             'type' => 'checkbox',
             'label' => 'Published',
+            'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled'=>''],
         ]);
 
         $this->crud->addField([   // URL
@@ -169,6 +171,8 @@ class PostsCrudController extends CrudController
             'label' => 'Preview link:',
             'type' => 'link'
         ]);
+
+
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
@@ -176,11 +180,19 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+
+
         $validator = Validator::make($request->all(), [
             'index_image' => 'required',
         ], [
             'required' => 'The :attribute field can not be \'No Image\' for a featured post!',
         ]);
+
+        if (true==$request->input('published') && !auth()->user->can('publish posts')) {
+            return back()->withErrors(['msg'=>'You can not edit published posts or publish posts!'])->withInput();
+        }
+
+
         if (true == $request->featured and null == $request->index_image) {
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
@@ -205,6 +217,14 @@ class PostsCrudController extends CrudController
                 return back()->withErrors($validator)->withInput();
             }
         }
+
+        $post = Posts::where('id', $request->input('id'))->get()->first();
+
+        if (true==$request->input('published') || $post->published) {
+            if (!auth()->user()->can('publish posts'))
+                return back()->withErrors(['msg'=>'You can not edit published posts or publish posts!'])->withInput();
+        }
+
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
