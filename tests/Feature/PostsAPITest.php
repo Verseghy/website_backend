@@ -72,7 +72,7 @@ class PostsAPITest extends TestCase
 
         // Valid request
         // No resource
-        $response = $this->API($endpoint, 'id=2');
+        $response = $this->API($endpoint, 'id=20');
         $this->checkResponseCode($response, 404);
 
         // Valid request, not published resoutrce
@@ -203,5 +203,6 @@ class PostsAPITest extends TestCase
         $this->hiddenPost->labels;
         $this->hiddenPost->author;
         $this->hiddenPost->published = false;
+        $this->hiddenPost->save();
     }
 }
