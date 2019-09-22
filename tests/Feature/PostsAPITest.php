@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\Posts;
 use App\Models\Posts\Labels;
@@ -24,6 +25,8 @@ class PostsAPITest extends TestCase
         $this->byLabel();
         $this->byAuthor();
         $this->search();
+        $this->byYearMonth();
+        $this->countByMonth();
     }
 
     /**
@@ -159,5 +162,59 @@ class PostsAPITest extends TestCase
 
         $this->post->labels;
         $this->post->author;
+    }
+
+    public function byYearMonth()
+    {
+        $endpoint = 'getPostsByYearMonth';
+
+        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at'])->toArray());
+
+        $date = Carbon::instance($this->post->date);
+
+        $month = $date->month;
+        $year = $date->year;
+
+        // Valid request
+        $response = $this->API($endpoint, "year=$year&month=$month");
+        $this->assertValidResponse($response, $validResponse);
+
+        // Invalid request
+        // ( missing parameter )
+        $response = $this->API($endpoint); // nothing
+        $this->checkResponseCode($response, 400);
+
+        $response = $this->API($endpoint, "year=$year"); // only year
+        $this->checkResponseCode($response, 400);
+
+        $response = $this->API($endpoint, "month=$month"); // only month
+        $this->checkResponseCode($response, 400);
+
+        // Valid request
+        // No resource
+        $invalidYear = $year + 1;
+        $invalidMonth = $month + 1;
+        $response = $this->API($endpoint, "year=$invalidYear&month=$invalidMonth");
+        $this->checkResponseCode($response, 404);
+
+        $this->checkCaching($endpoint, "year=$year&month=$month");
+    }
+
+    public function countByMonth()
+    {
+        $endpoint = 'getCountByMonth';
+
+        $date = Carbon::instance($this->post->date);
+
+        $month = $date->month;
+        $year = $date->year;
+
+        $validResponse = array(['year' => $year, 'month' => $month, 'count' => 1]);
+
+        // Valid request
+        $response = $this->API($endpoint);
+        $this->assertValidResponse($response, $validResponse);
+
+        $this->checkCaching($endpoint, "year=$year&month=$month");
     }
 }
