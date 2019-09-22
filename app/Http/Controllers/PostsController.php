@@ -137,6 +137,7 @@ class PostsController extends Controller
     public function countByMonth(Request $request)
     {
         $data = Posts::select(DB::raw('(COUNT(*)) as count'), DB::raw('YEAR(date) as year'), DB::raw('MONTH(date) as month'))
+        ->where('published', true)
         ->groupBy(DB::raw('year'), DB::raw('month'))
         ->orderBy('year', 'desc')->orderBy('month', 'desc')
         ->get();
