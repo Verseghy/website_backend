@@ -70,7 +70,7 @@ class Posts extends Model
         if ($this->published) {
             return "https://beta.verseghy-gimnazium.net/posts/$id";
         } else {
-            return "https://beta.verseghy-gimnazium.net/posts/preview/$id&token=$token";
+            return "https://beta.verseghy-gimnazium.net/posts/preview/$id?token=$token";
         }
     }
 
