@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Support\Facades\Hash;
 
 class Posts extends Model
 {
     use crudTrait;
     protected $table = 'posts_data';
 
-    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'type'];
-    protected $hidden = ['author_id', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'type', 'published', 'previewToken'];
+    protected $hidden = ['author_id', 'created_at', 'updated_at', 'published', 'previewToken'];
 
     protected $casts = [
         'images' => 'array',
@@ -49,6 +50,28 @@ class Posts extends Model
         $destination_path = '';
 
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+
+    public function getPreviewTokenAttribute($value)
+    {
+        if (null === $value) {
+            $value = base64_encode(Hash::make($this->content));
+            $this->previewToken = $value;
+            $this->save();
+        }
+
+        return $value;
+    }
+
+    public function getPreviewLinkAttribute()
+    {
+        $id = $this->id;
+        $token = $this->previewToken;
+        if ($this->published) {
+            return "https://beta.verseghy-gimnazium.net/posts/$id";
+        } else {
+            return "https://beta.verseghy-gimnazium.net/posts/preview/$id?token=$token";
+        }
     }
 
     public static function boot()

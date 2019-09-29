@@ -29,5 +29,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'type' => $faker->numberBetween(0, 2),
         'color' => $faker->hexColor,
         'featured' => $faker->boolean,
+        'published' => true,
     ];
 });

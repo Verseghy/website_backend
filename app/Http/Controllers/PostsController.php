@@ -33,6 +33,32 @@ class PostsController extends Controller
         return self::_after($request, $post, $maxDate);
     }
 
+    public function getPreview(Request $request)
+    {
+        $postId = $request->input('id');
+        $token = $request->input('token');
+        if (is_null($postId)) {
+            return response()->json([], 400);
+        }
+
+        $post = self::_resolvedPosts(true)->where('published', '!=', true)->where('id', '=', $postId)->get()->first();
+
+        if (empty($post)) {
+            return response()->json([], 404);
+        }
+
+        if (empty($token) || $token != $post->previewToken) {
+            return response()->json([], 401);
+        }
+
+        $maxDate = null;
+        if (!is_null($post)) {
+            $maxDate = $post->updated_at;
+        }
+
+        return self::_after($request, $post, $maxDate);
+    }
+
     public function listFeaturedPosts(Request $request)
     {
         $NUMBER_TO_RETURN = 3;
@@ -111,6 +137,7 @@ class PostsController extends Controller
     public function countByMonth(Request $request)
     {
         $data = Posts::select(DB::raw('(COUNT(*)) as count'), DB::raw('YEAR(date) as year'), DB::raw('MONTH(date) as month'))
+        ->where('published', true)
         ->groupBy(DB::raw('year'), DB::raw('month'))
         ->orderBy('year', 'desc')->orderBy('month', 'desc')
         ->get();
@@ -147,9 +174,14 @@ class PostsController extends Controller
         return self::_after_original($request, $result, $maxDate);
     }
 
-    private static function _resolvedPosts()
+    private static function _resolvedPosts($all = false)
     {
-        return Posts::with(['author', 'labels'])->orderBy('date', 'desc');
+        $posts = Posts::with(['author', 'labels'])->orderBy('date', 'desc');
+        if (!$all) {
+            $posts = $posts->where('published', true);
+        }
+
+        return $posts;
     }
 
     private static function _expandUrls($post)
