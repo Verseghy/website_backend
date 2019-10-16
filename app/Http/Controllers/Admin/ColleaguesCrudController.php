@@ -97,6 +97,8 @@ class ColleaguesCrudController extends CrudController
             'type' => 'textarea',
         ]);
 
+        $this->crud->orderBy('name');
+        
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
