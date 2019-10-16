@@ -71,23 +71,24 @@ class PostsCrudController extends CrudController
             'label' => 'Featurable',
         ]);
 
+
+        // Fields start here
+
         $this->crud->addField([
             'name' => 'title',
             'type' => 'text',
             'label' => 'Title',
+            'tab' => 'Properties',
         ]);
 
         $this->crud->addField([
             'name' => 'description',
             'type' => 'textarea',
             'label' => 'Description',
+            'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
-            'name' => 'featured',
-            'type' => 'checkbox',
-            'label' => 'Featurable',
-        ]);
+        
 
         $this->crud->addField([
             'name' => 'content',
@@ -99,12 +100,14 @@ class PostsCrudController extends CrudController
                 'spellChecker' => false,
                 'forceSync' => true,
             ],
+            'tab' => 'Content',
         ]);
 
         $this->crud->addField([
             'name' => 'date',
             'type' => 'date',
             'label' => 'Date',
+            'tab' => 'Properties',
         ]);
 
         $this->crud->addField([
@@ -113,6 +116,7 @@ class PostsCrudController extends CrudController
             'label' => 'Index image',
             'upload' => true,
             'disk' => 'posts_images',
+            'tab' => 'Images',
         ]);
 
         $this->crud->addField([   // SelectMultiple = n-n relationship (with pivot table)
@@ -123,6 +127,7 @@ class PostsCrudController extends CrudController
             'attribute' => 'name', // foreign key attribute that is shown to user
             'model' => "App\Models\Posts\Labels", // foreign key model
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+            'tab' => 'Properties',
         ]);
 
         $this->crud->addField([
@@ -131,6 +136,7 @@ class PostsCrudController extends CrudController
             'label' => 'Author',
             'entity' => 'author',
             'attribute' => 'name',
+            'tab' => 'Properties',
         ]);
 
         $this->crud->addField([
@@ -139,12 +145,14 @@ class PostsCrudController extends CrudController
             'label' => 'Images',
             'upload' => true,
             'disk' => 'posts_images',
+            'tab' => 'Images',
         ]);
 
         $this->crud->addField([
             'name' => 'color',
             'type' => 'color',
             'label' => 'Color',
+            'tab' => 'Properties',
         ]);
 
         $this->crud->addField([
@@ -157,6 +165,14 @@ class PostsCrudController extends CrudController
                 3 => 'Only image',
             ],
             'allows_null' => false,
+            'tab' => 'Images',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'featured',
+            'type' => 'checkbox',
+            'label' => 'Featurable',
+            'tab' => 'Publish',
         ]);
 
         $this->crud->addField([
@@ -164,12 +180,14 @@ class PostsCrudController extends CrudController
             'type' => 'checkbox',
             'label' => 'Published',
             'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
+            'tab' => 'Publish',
         ]);
 
         $this->crud->addField([   // URL
             'name' => 'previewLink',
             'label' => 'Preview link:',
             'type' => 'link',
+            'tab' => 'Publish',
         ]);
 
         // add asterisk for fields that are required in PostsRequest
