@@ -143,7 +143,7 @@ class PostsCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'color',
-            'type' => 'color',
+            'type' => 'color_picker',
             'label' => 'Color',
         ]);
 

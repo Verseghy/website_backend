@@ -49,7 +49,7 @@ class LabelsCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'color',
-            'type' => 'color',
+            'type' => 'color_picker',
             'label' => 'Label color',
         ]);
 
