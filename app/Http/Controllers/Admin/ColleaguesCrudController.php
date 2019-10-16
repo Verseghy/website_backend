@@ -98,7 +98,7 @@ class ColleaguesCrudController extends CrudController
         ]);
 
         $this->crud->orderBy('name');
-        
+
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
