@@ -71,7 +71,6 @@ class PostsCrudController extends CrudController
             'label' => 'Featurable',
         ]);
 
-
         // Fields start here
 
         $this->crud->addField([
@@ -87,8 +86,6 @@ class PostsCrudController extends CrudController
             'label' => 'Description',
             'tab' => 'Properties',
         ]);
-
-        
 
         $this->crud->addField([
             'name' => 'content',
