@@ -172,6 +172,16 @@ class PostsCrudController extends CrudController
             'type' => 'link',
         ]);
 
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'draft',
+            'label' => 'Draft',
+          ],
+          false,
+          function () {
+              $this->crud->addClause('where', 'published', false);
+          });
+
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
