@@ -77,7 +77,7 @@ class EventsCrudController extends CrudController
             // optional:
             'datetime_picker_options' => [
                 'format' => 'YYYY/MM/DD HH:mm',
-                'language' => 'hu'
+                'language' => 'hu',
             ],
         ]);
         $this->crud->addField([
@@ -87,7 +87,7 @@ class EventsCrudController extends CrudController
             // optional:
             'datetime_picker_options' => [
                 'format' => 'YYYY/MM/DD HH:mm',
-                'language' => 'hu'
+                'language' => 'hu',
             ],
         ]);
 
