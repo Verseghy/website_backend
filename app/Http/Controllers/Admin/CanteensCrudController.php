@@ -66,6 +66,8 @@ class CanteensCrudController extends CrudController
             'label' => 'Date',
         ]);
 
+        $this->crud->orderBy('date', 'desc');
+
         // add asterisk for fields that are required in CanteensRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

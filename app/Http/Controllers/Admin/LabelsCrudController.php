@@ -49,7 +49,7 @@ class LabelsCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'color',
-            'type' => 'color',
+            'type' => 'color_picker',
             'label' => 'Label color',
         ]);
 
@@ -58,6 +58,8 @@ class LabelsCrudController extends CrudController
             'type' => 'color',
             'label' => 'Label color',
         ]);
+
+        $this->crud->orderBy('name');
 
         // add asterisk for fields that are required in LabelsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
