@@ -83,7 +83,7 @@ class EventsCrudController extends CrudController
         $this->crud->addField([
             'name' => 'color',
             'label' => 'color',
-            'type' => 'color',
+            'type' => 'color_picker',
         ]);
 
         $this->crud->orderBy('date_from', 'desc');
