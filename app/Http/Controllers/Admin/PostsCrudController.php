@@ -102,7 +102,7 @@ class PostsCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'date',
-            'type' => 'date',
+            'type' => 'date_picker',
             'label' => 'Date',
             'tab' => 'Properties',
         ]);
@@ -186,6 +186,8 @@ class PostsCrudController extends CrudController
             'type' => 'link',
             'tab' => 'Publish',
         ]);
+
+        $this->crud->orderBy('date', 'desc');
 
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
