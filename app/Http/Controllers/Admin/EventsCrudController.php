@@ -71,19 +71,30 @@ class EventsCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name' => 'date',
-            'type' => 'date_range',
-            'label' => 'Starts-ends',
-            'start_name' => 'date_from',
-            'end_name' => 'date_to',
-            'start_default' => '2018-01-01 00:00', // default value for start_date
-            'end_default' => '2018-01-01 00:00', // default value for end_date
+            'name' => 'date_from',
+            'label' => 'Event start',
+            'type' => 'datetime_picker',
+            // optional:
+            'datetime_picker_options' => [
+                'format' => 'YYYY/MM/DD HH:mm',
+                'language' => 'hu',
+            ],
+        ]);
+        $this->crud->addField([
+            'name' => 'date_to',
+            'label' => 'Event end',
+            'type' => 'datetime_picker',
+            // optional:
+            'datetime_picker_options' => [
+                'format' => 'YYYY/MM/DD HH:mm',
+                'language' => 'hu',
+            ],
         ]);
 
         $this->crud->addField([
             'name' => 'color',
             'label' => 'color',
-            'type' => 'color',
+            'type' => 'color_picker',
         ]);
 
         $this->crud->orderBy('date_from', 'desc');
