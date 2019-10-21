@@ -172,6 +172,8 @@ class PostsCrudController extends CrudController
             'type' => 'link',
         ]);
 
+        $this->crud->orderBy('date', 'desc');
+
         // add asterisk for fields that are required in PostsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

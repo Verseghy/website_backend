@@ -62,6 +62,8 @@ class MenusCrudController extends CrudController
             'allows_null' => false,
         ]);
 
+        $this->crud->orderBy('menu');
+
         // add asterisk for fields that are required in MenusRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
