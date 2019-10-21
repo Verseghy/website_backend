@@ -103,7 +103,7 @@ class PostsCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'date',
-            'type' => 'date',
+            'type' => 'date_picker',
             'label' => 'Date',
         ]);
 
