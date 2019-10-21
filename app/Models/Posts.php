@@ -16,6 +16,7 @@ class Posts extends Model
 
     protected $casts = [
         'images' => 'array',
+        'date' => 'date',
     ];
 
     public function author()
