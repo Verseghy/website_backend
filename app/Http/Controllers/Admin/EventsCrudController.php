@@ -86,6 +86,8 @@ class EventsCrudController extends CrudController
             'type' => 'color_picker',
         ]);
 
+        $this->crud->orderBy('date_from', 'desc');
+
         // add asterisk for fields that are required in EventsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
