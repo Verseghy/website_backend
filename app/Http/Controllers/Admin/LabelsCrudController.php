@@ -59,6 +59,8 @@ class LabelsCrudController extends CrudController
             'label' => 'Label color',
         ]);
 
+        $this->crud->orderBy('name');
+
         // add asterisk for fields that are required in LabelsRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
