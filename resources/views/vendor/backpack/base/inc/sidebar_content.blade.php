@@ -18,8 +18,12 @@
 
     <ul class="treeview-menu">
         <li><a href="{{ backpack_url('posts') }}"><i class="fa fa-paragraph"></i> <span>Manage Posts</span></a></li>
+        @can('edit labels')
         <li><a href="{{ backpack_url('labels') }}"><i class="fa fa-tag"></i> <span>Manage Labels</span></a></li>
+        @endcan
+        @can('edit authors')
         <li><a href="{{ backpack_url('authors') }}"><i class="fa fa-id-card"></i> <span>Manage Authors</span></a></li>
+        @endcan
     </ul>
 </li>
 @endcan
