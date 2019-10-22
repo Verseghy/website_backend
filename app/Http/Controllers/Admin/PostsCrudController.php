@@ -196,7 +196,7 @@ class PostsCrudController extends CrudController
           function () {
               $this->crud->addClause('where', 'published', false);
           });
-      
+
         $this->crud->orderBy('date', 'desc');
 
         // add asterisk for fields that are required in PostsRequest
