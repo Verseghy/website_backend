@@ -158,8 +158,8 @@ class PostsCrudController extends CrudController
             'label' => 'Type',
             'options' => [
                 0 => 'No image',
-                1 => 'With image',
-                2 => 'Only image',
+                1 => 'Image in background',
+                2 => 'With Image',
             ],
             'allows_null' => false,
             'tab' => 'Images',
