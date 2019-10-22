@@ -187,6 +187,16 @@ class PostsCrudController extends CrudController
             'tab' => 'Publish',
         ]);
 
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'draft',
+            'label' => 'Draft',
+          ],
+          false,
+          function () {
+              $this->crud->addClause('where', 'published', false);
+          });
+
         $this->crud->orderBy('date', 'desc');
 
         // add asterisk for fields that are required in PostsRequest
