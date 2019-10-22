@@ -33,7 +33,7 @@ class PostsRequest extends FormRequest
             'index_image' => 'image|nullable',
             'author_id' => 'integer|min:1|nullable',
             'date' => 'date|nullable',
-            'type' => 'integer|min:0|max:2|nullable',
+            'type' => 'integer|min:1|max:3|nullable',
             'images' => 'nullable',
         ];
     }
