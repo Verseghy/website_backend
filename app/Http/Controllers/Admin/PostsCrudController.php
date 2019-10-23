@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Validator;
 use App\Models\Posts;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -206,7 +205,6 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-
         if (true == $request->input('published') && !auth()->user->can('publish posts')) {
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
@@ -227,7 +225,7 @@ class PostsCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         $post = Posts::where('id', $request->input('id'))->get()->first();
-        
+
         $featured = $request->has('featured') ? $request->featured : $post->featured;
         if (true == $featured) {
             $index_image = $request->has('index_image') ? $request->index_image : $post->index_image;
