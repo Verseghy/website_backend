@@ -157,9 +157,9 @@ class PostsCrudController extends CrudController
             'type' => 'select2_from_array',
             'label' => 'Type',
             'options' => [
-                1 => 'No image',
-                2 => 'With image',
-                3 => 'Only image',
+                0 => 'No image',
+                1 => 'Image in background',
+                2 => 'With Image',
             ],
             'allows_null' => false,
             'tab' => 'Images',
