@@ -132,7 +132,8 @@ class PostsController extends Controller
         $posts = self::_resolvedPosts()->where(function ($query) use ($searchTerm) {
             $query->where('content', 'like', '%'.$searchTerm.'%')
             ->orWhere('description', 'like', '%'.$searchTerm.'%')
-            ->orWhere('title', 'LIKE', "%$searchTerm%");});
+            ->orWhere('title', 'LIKE', "%$searchTerm%");
+        });
 
         return self::_after($request, $posts);
     }
