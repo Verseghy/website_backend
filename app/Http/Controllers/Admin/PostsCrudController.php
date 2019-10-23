@@ -162,6 +162,7 @@ class PostsCrudController extends CrudController
             ],
             'allows_null' => false,
             'tab' => 'Images',
+            'default' => 2,
         ]);
 
         $this->crud->addField([
