@@ -21,7 +21,7 @@ class AddFeaturedToPosts extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts_data', function (Blueprint $table) {
             $table->dropColumn('featured');
         });
     }
