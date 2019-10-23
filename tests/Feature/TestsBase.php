@@ -34,10 +34,14 @@ trait TestsBase
         $this->assertEquals($code, $response->status());
     }
 
-    protected function assertValidResponse($response, $content = array())
+    protected function assertValidResponse($response, $content = array(), bool $fragment = false)
     {
         $response->assertOk();
-        $response->assertJson($content);
+        if ($fragment) {
+            $response->assertJsonFragment($content);
+        } else {
+            $response->assertJson($content);
+        }
     }
 
     protected function checkCaching($endpoint, $params = '')

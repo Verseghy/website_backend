@@ -143,7 +143,7 @@ class PostsAPITest extends TestCase
 
         // Valid request
         $response = $this->API($endpoint, "term=$searchTerm");
-        $this->assertValidResponse($response, $validResponse);
+        $this->assertValidResponse($response, $validResponse, true);
 
         // Invalid request
         // ( missing parameter )
