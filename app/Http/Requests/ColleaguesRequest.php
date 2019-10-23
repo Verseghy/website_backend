@@ -29,7 +29,6 @@ class ColleaguesRequest extends FormRequest
             'subjects' => 'string|max:2048|nullable',
             'roles' => 'string|max:2048|nullable',
             'awards' => 'string|max:2048|nullable',
-            'menus' => 'required|min:2|max:3',
             'image' => 'image|nullable',
         ];
     }
