@@ -19,7 +19,7 @@ Route::group([
     CRUD::resource('canteens', 'CanteensCrudController');
     CRUD::resource('newsletter', 'NewsletterCrudController');
     CRUD::resource('events', 'EventsCrudController');
-    Route::get('dashboard', function() {
+    Route::get('dashboard', function () {
         return view('dashboard');
     });
 }); // this should be the absolute last line of this file
