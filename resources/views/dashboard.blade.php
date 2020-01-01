@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="box-body">
-                    <h3>Képek mérete</h3>
+                    <h3>Képek</h3>
                     <hr />
                     <p>
                         Kérjük, hogy a képek egyenként ne legyenek nagyobbak, mint 60kB. Javasoljuk a <a href="https://squoosh.app/">https://squoosh.app/</a> alkalmazás használatát.
@@ -30,6 +30,10 @@
                         Ezek után a Compress részben válasszuk ki a "MozJPEG"-et (alapértelmezetten ez van) és a quality változatásával tudunk változtatni a kép minőségén.
                         Eközben figyeljük, hogy legalul a méret ne lépje túl a 60kB méretet.
                         Ha végeztünk az optimalizált képet le tudjuk menteni a jobb alsó sarokban lévő kék mentés gombbal
+                    </p>
+                    <p>
+                        Az indexképeket erősen javasoljuk úgy választani, hogy azok fekvő képek legyenek.
+                        Az oldal megjeleníti az álló képeket is, de csak úgy, hogy levágja azt a részt ami kilóg a rendelkezésre álló helyéből.
                     </p>
                 </div>
             </div>
