@@ -10,7 +10,7 @@ trait TestsBase
     use RefreshDatabase;
     use WithoutMiddleware;
 
-    protected function API($url, $params = '', $headers = array())
+    protected function API($url, $params = '', $headers = [])
     {
         $root = $this->api;
         if ('/' !== substr($root, -1)) {
@@ -20,7 +20,7 @@ trait TestsBase
             $params = '?'.$params;
         }
 
-        $actual_headers = array();
+        $actual_headers = [];
 
         foreach ($headers as $header => $value) {
             $actual_headers['HTTP_'.$header] = $value;
@@ -34,7 +34,7 @@ trait TestsBase
         $this->assertEquals($code, $response->status());
     }
 
-    protected function assertValidResponse($response, $content = array())
+    protected function assertValidResponse($response, $content = [])
     {
         $response->assertOk();
         $response->assertJson($content);
