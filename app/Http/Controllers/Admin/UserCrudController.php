@@ -137,8 +137,6 @@ class UserCrudController extends CrudController
 
     /**
      * Handle password input fields.
-     *
-     * @param Request $request
      */
     protected function handlePasswordInput(Request $request)
     {

@@ -50,7 +50,7 @@ class CanteensController extends Controller
         if (0 !== count($canteens)) {
             $maxDate = $canteens_query->latest('updated_at')->first()->updated_at;
         }
-        $canteens_sorted = array();
+        $canteens_sorted = [];
         foreach ($canteens as $canteen) {
             usort($canteen['menus'], function ($item1, $item2) {
                 return $item1['type'] <=> $item2['type'];
