@@ -45,7 +45,7 @@ class CanteenAPITest extends TestCase
             $response = $this->API($endpoint, 'id=1');
             $this->checkResponseCode($response, 404);
         } else {
-            $validResp = array($this->meal->setHidden(['canteens', 'created_at', 'updated_at'])->toArray());
+            $validResp = [$this->meal->setHidden(['canteens', 'created_at', 'updated_at'])->toArray()];
 
             // Valid request, no data alaviable
             $response = $this->API($endpoint, 'id=1');
@@ -71,7 +71,7 @@ class CanteenAPITest extends TestCase
             $year = Carbon::now()->year;
             $week = Carbon::now()->weekOfYear;
 
-            $validResponse = array($this->canteen->setHidden(['date', 'created_at', 'updated_at'])->toArray());
+            $validResponse = [$this->canteen->setHidden(['date', 'created_at', 'updated_at'])->toArray()];
 
             // Valid request
             $response = $this->API($endpoint, "year=$year&week=$week");

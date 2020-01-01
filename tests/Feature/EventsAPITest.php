@@ -21,7 +21,7 @@ class EventsAPITest extends TestCase
     {
         $endpoint = 'getEventsByMonth';
 
-        $validResponse = array($this->event->toArray());
+        $validResponse = [$this->event->toArray()];
 
         $year = $this->date->year;
         $month = $this->date->month;

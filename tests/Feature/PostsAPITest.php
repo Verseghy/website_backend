@@ -37,7 +37,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'listPosts';
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
+        $validResponse = [$this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray()];
 
         // Valid request without parameter
         $response = $this->API($endpoint);
@@ -91,7 +91,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByLabel';
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
+        $validResponse = [$this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray()];
 
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -114,7 +114,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByAuthor';
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
+        $validResponse = [$this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray()];
 
         // Valid request
         $response = $this->API($endpoint, 'id=1');
@@ -139,7 +139,7 @@ class PostsAPITest extends TestCase
 
         $searchTerm = str_word_count($this->post->title, 1)[0];
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
+        $validResponse = [$this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray()];
 
         // Valid request
         $response = $this->API($endpoint, "term=$searchTerm");
@@ -219,7 +219,7 @@ class PostsAPITest extends TestCase
     {
         $endpoint = 'getPostsByYearMonth';
 
-        $validResponse = array($this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray());
+        $validResponse = [$this->post->setHidden(['content', 'author_id', 'index_image', 'date', 'created_at', 'updated_at', 'published', 'previewToken'])->toArray()];
 
         $date = Carbon::instance($this->post->date);
 
@@ -260,7 +260,7 @@ class PostsAPITest extends TestCase
         $month = $date->month;
         $year = $date->year;
 
-        $validResponse = array(['year' => $year, 'month' => $month, 'count' => 1]);
+        $validResponse = [['year' => $year, 'month' => $month, 'count' => 1]];
 
         // Valid request
         $response = $this->API($endpoint);
