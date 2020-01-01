@@ -30,7 +30,7 @@ class PostsRequest extends FormRequest
             'featured' => 'required|boolean',
             'description' => 'string|nullable|max:1024',
             'content' => 'string|nullable',
-            'index_image' => 'image|nullable',
+            'index_image' => 'image|nullable|max:60',
             'author_id' => 'integer|min:1|nullable',
             'date' => 'date|nullable',
             'type' => 'integer|min:0|max:2|nullable',
@@ -57,6 +57,7 @@ class PostsRequest extends FormRequest
     public function messages()
     {
         return [
+            'index_image.max' => 'Az indexkép túl nagy, maximum 60kB lehet!',
         ];
     }
 }
