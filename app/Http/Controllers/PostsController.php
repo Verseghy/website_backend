@@ -61,7 +61,7 @@ class PostsController extends Controller
 
     public function listFeaturedPosts(Request $request)
     {
-        $NUMBER_TO_RETURN = 3;
+        $NUMBER_TO_RETURN = 5;
 
         $result = self::_resolvedPosts()->where('featured', '=', true)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN)->get();
         $count = $result->count();
