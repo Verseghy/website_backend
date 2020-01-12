@@ -18,4 +18,5 @@ return [
     'allowed_methods' => ['*'],
     'exposed_headers' => [],
     'max_age' => 0,
+    'paths' => ['api/*'],
 ];
