@@ -11,9 +11,8 @@ class ColleaguesController extends Controller
     {
         $colleagues = Colleagues::orderBy('name')->get();
         $colleagues = $colleagues->toArray();
-
         usort($colleagues, function ($item1, $item2) {
-            return preg_replace('/^Dr\. /', '', $item2->name) <=> preg_replace('/^Dr\. /', '', $item1->name);
+            return preg_replace('/^Dr\. /', '', $item1['name']) <=> preg_replace('/^Dr\. /', '', $item2['name']);
         });
 
         $colleagues = array_map('self::_expandUrls', $colleagues);
