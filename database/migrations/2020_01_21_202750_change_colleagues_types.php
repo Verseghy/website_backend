@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class ChangeColleaguesTypes extends Migration
@@ -18,7 +16,7 @@ class ChangeColleaguesTypes extends Migration
         // altough no data is lost
         $rows = DB::table('colleagues_data')->get(['id', 'category']);
         foreach ($rows as $row) {
-            if ($row->category==5) {
+            if (5 == $row->category) {
                 DB::table('colleagues_data')
                     ->where('id', $row->id)
                     ->update(['category' => 4]);
@@ -38,7 +36,7 @@ class ChangeColleaguesTypes extends Migration
         // altough no data is lost
         $rows = DB::table('colleagues_data')->get(['id', 'category']);
         foreach ($rows as $row) {
-            if ($row->category==4) {
+            if (4 == $row->category) {
                 DB::table('colleagues_data')
                     ->where('id', $row->id)
                     ->update(['category' => 5]);
