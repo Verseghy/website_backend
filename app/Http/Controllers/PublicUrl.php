@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait PublicUrl
 {
     private static function _publicUrl($file, $disk = self::DISK)
