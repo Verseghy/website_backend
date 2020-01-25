@@ -47,7 +47,7 @@ class ColleaguesCrudController extends CrudController
             'name' => 'category',
             'label' => 'Category',
             'type' => 'select_from_array',
-            'options' => [0 => 'Brass', 1 => 'Teachers', 2 => 'Lecturer', 3 => 'Administrator', 4 => 'Kitchen Staff', 5 => 'Maintenance Staff'],
+            'options' => [0 => 'Brass', 1 => 'Teachers', 2 => 'Lecturer', 3 => 'Administrator', 4 => 'Maintenance Staff'],
             'allows_null' => false,
         ]);
 
@@ -87,7 +87,7 @@ class ColleaguesCrudController extends CrudController
             'name' => 'category',
             'label' => 'Category',
             'type' => 'select_from_array',
-            'options' => [0 => 'Brass', 1 => 'Teachers', 2 => 'lecturer', 3 => 'Administrator', 4 => 'Kitchen Staff', 5 => 'Maintenance Staff'],
+            'options' => [0 => 'Brass', 1 => 'Teachers', 2 => 'lecturer', 3 => 'Administrator', 4 => 'Maintenance Staff'],
             'allows_null' => false,
         ]);
 
