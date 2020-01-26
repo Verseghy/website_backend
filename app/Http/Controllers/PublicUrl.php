@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
  */
 trait PublicUrl
 {
-    protected static function _publicUrl($file, $disk = self::DISK ? self::DISK : 'public')
+    private static function _publicUrl($file, $disk = self::DISK)
     {
         return asset(\Storage::disk($disk)->url($file));
     }
