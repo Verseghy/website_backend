@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Markdown;
-use DB;
-use Carbon\Carbon;
+use App\Http\Controllers\Posts\ById;
+use App\Http\Controllers\Posts\GetPreview;
+use App\Http\Controllers\Posts\ListFeatured;
+use App\Http\Controllers\Posts\ByAuthor;
+use App\Http\Controllers\Posts\Archive;
+use App\Http\Controllers\Posts\ListPosts;
+use App\Http\Controllers\Posts\ByLabel;
+use App\Http\Controllers\Posts\Search;
 
 class PostsController extends Controller
 {
@@ -16,144 +21,14 @@ class PostsController extends Controller
     }
     const PAGESIZE = 20;
 
-    public function byId(Request $request)
-    {
-        $postId = $request->input('id');
-        if (is_null($postId)) {
-            return response()->json([], 400);
-        }
-
-        $post = self::_resolvedPosts()->where('id', '=', $postId)->get()->first();
-
-        $maxDate = null;
-        if (!is_null($post)) {
-            $maxDate = $post->updated_at;
-        }
-
-        return self::_after($request, $post, $maxDate);
-    }
-
-    public function getPreview(Request $request)
-    {
-        $postId = $request->input('id');
-        $token = $request->input('token');
-        if (is_null($postId)) {
-            return response()->json([], 400);
-        }
-
-        $post = self::_resolvedPosts(true)->where('published', '!=', true)->where('id', '=', $postId)->get()->first();
-
-        if (empty($post)) {
-            return response()->json([], 404);
-        }
-
-        if (empty($token) || $token != $post->previewToken) {
-            return response()->json([], 401);
-        }
-
-        $maxDate = null;
-        if (!is_null($post)) {
-            $maxDate = $post->updated_at;
-        }
-
-        return self::_after($request, $post, $maxDate);
-    }
-
-    public function listFeaturedPosts(Request $request)
-    {
-        $NUMBER_TO_RETURN = 5;
-
-        $result = self::_resolvedPosts()->where('featured', '=', true)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN)->get();
-        $count = $result->count();
-        if ($count !== $NUMBER_TO_RETURN) {
-            $nonFeatured = self::_resolvedPosts()->where('featured', '=', false)->orderBy('date', 'desc')->take($NUMBER_TO_RETURN - $count)->get();
-            $result = $result->merge($nonFeatured);
-        }
-
-        return self::_after($request, $result);
-    }
-
-    public function byAuthor(Request $request)
-    {
-        $authorId = $request->input('id');
-
-        if (is_null($authorId)) {
-            return response()->json([], 400);
-        }
-
-        $posts = self::_resolvedPosts()->where('author_id', '=', $authorId);
-
-        return self::_after($request, $posts);
-    }
-
-    public function byYearMonth(Request $request)
-    {
-        $year = $request->input('year');
-        $month = $request->input('month');
-
-        if (is_null($year) || is_null($month)) {
-            return response()->json([], 400);
-        }
-
-        $posts = self::_resolvedPosts()->whereMonth('date', '=', $month)->whereYear('date', '=', $year);
-
-        return self::_after($request, $posts);
-    }
-
-    public function listPosts(Request $request)
-    {
-        $posts = self::_resolvedPosts();
-
-        return self::_after($request, $posts, null, false);
-    }
-
-    public function byLabel(Request $request)
-    {
-        $labelId = $request->input('id');
-
-        if (is_null($labelId)) {
-            return response()->json([], 400);
-        }
-
-        $posts = self::_resolvedPosts()->whereHas('labels', function ($query) use ($labelId) {
-            $query->where('id', '=', $labelId);
-        });
-
-        return self::_after($request, $posts);
-    }
-
-    public function search(Request $request)
-    {
-        $searchTerm = $request->input('term');
-
-        if (is_null($searchTerm)) {
-            return response()->json([], 400);
-        }
-        $posts = self::_resolvedPosts()->where(function ($query) use ($searchTerm) {
-            $query->where('content', 'like', '%'.$searchTerm.'%')
-            ->orWhere('description', 'like', '%'.$searchTerm.'%')
-            ->orWhere('title', 'LIKE', "%$searchTerm%");
-        });
-
-        return self::_after($request, $posts);
-    }
-
-    public function countByMonth(Request $request)
-    {
-        $data = Posts::select(DB::raw('(COUNT(*)) as count'), DB::raw('YEAR(date) as year'), DB::raw('MONTH(date) as month'))
-        ->where('published', true)
-        ->groupBy(DB::raw('year'), DB::raw('month'))
-        ->orderBy('year', 'desc')->orderBy('month', 'desc')
-        ->get();
-
-        $maxDate = $data->count() ? Carbon::parse(Posts::latest()->first()->date) : null;
-        $modSince = self::_modSince($request);
-        if (isset($maxDate) && $maxDate->lte($modSince)) {
-            return response()->json([], 304);
-        }
-
-        return $data;
-    }
+    use ById;
+    use GetPreview;
+    use ListFeatured;
+    use ByAuthor;
+    use Archive;
+    use ListPosts;
+    use ByLabel;
+    use Search;
 
     protected static function _after($request, $result, $maxDate = null, $makeThumbnail = true)
     {
