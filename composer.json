@@ -12,7 +12,7 @@
         "beyondcode/laravel-self-diagnosis": "^1.0",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
-        "fruitcake/laravel-cors": "^1.0",
+        "fruitcake/laravel-cors": "^1.0 || ^2.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0"
     },
