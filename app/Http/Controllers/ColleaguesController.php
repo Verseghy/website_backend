@@ -7,6 +7,9 @@ use App\Models\Colleagues;
 
 class ColleaguesController extends Controller
 {
+    use PublicUrl;
+    const DISK = 'colleagues_images';
+
     public function listColleagues(Request $request)
     {
         $colleagues = Colleagues::orderBy('name')->get();
@@ -18,11 +21,6 @@ class ColleaguesController extends Controller
         $colleagues = array_map('self::_expandUrls', $colleagues);
 
         return $colleagues;
-    }
-
-    private static function _publicUrl($file, $disk = 'colleagues_images')
-    {
-        return asset(\Storage::disk($disk)->url($file));
     }
 
     private static function _expandUrls($colleague)
