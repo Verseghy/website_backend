@@ -6,11 +6,14 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Http\Request;
+use CRUD;
 
 class UserCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -19,12 +22,12 @@ class UserCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel(config('backpack.base.user_model_fqn'));
-        $this->crud->setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/user');
+        CRUD::setModel(config('backpack.base.user_model_fqn'));
+        CRUD::setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
+        CRUD::setRoute(config('backpack.base.route_prefix').'/user');
 
         // Columns.
-        $this->crud->setColumns([
+        CRUD::setColumns([
             [
                 'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
@@ -54,7 +57,7 @@ class UserCrudController extends CrudController
         ]);
 
         // Fields
-        $this->crud->addFields([
+        CRUD::addFields([
             [
                 'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
@@ -80,7 +83,7 @@ class UserCrudController extends CrudController
             'label' => trans('backpack::permissionmanager.user_role_permission'),
             'field_unique_name' => 'user_role_permission',
             'type' => 'checklist_dependency',
-            'name' => 'roles_and_permissions', // the methods that defines the relationship in your Model
+            'name' => ['roles', 'permissions'], // the methods that defines the relationship in your Model
             'subfields' => [
                     'primary' => [
                         'label' => trans('backpack::permissionmanager.roles'),
@@ -118,7 +121,7 @@ class UserCrudController extends CrudController
     {
         $this->handlePasswordInput($request);
 
-        return parent::storeCrud($request);
+        return $this->traitStore();
     }
 
     /**
@@ -132,7 +135,7 @@ class UserCrudController extends CrudController
     {
         $this->handlePasswordInput($request);
 
-        return parent::updateCrud($request);
+        return $this->traitUpdate();
     }
 
     /**
@@ -149,5 +152,15 @@ class UserCrudController extends CrudController
         } else {
             $request->request->remove('password');
         }
+    }
+
+    protected function setupCreateOperation()
+    {
+        CRUD::setValidation(StoreRequest::class);
+    }
+
+    protected function setupUpdateOperation()
+    {
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

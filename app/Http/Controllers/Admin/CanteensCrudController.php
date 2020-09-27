@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CanteensRequest as StoreRequest;
 use App\Http\Requests\CanteensRequest as UpdateRequest;
+use CRUD;
 
 /**
  * Class CanteensCrudController.
@@ -14,8 +15,10 @@ use App\Http\Requests\CanteensRequest as UpdateRequest;
  */
 class CanteensCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -24,9 +27,9 @@ class CanteensCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Canteens');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/canteens');
-        $this->crud->setEntityNameStrings('canteens', 'canteens');
+        CRUD::setModel('App\Models\Canteens');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/canteens');
+        CRUD::setEntityNameStrings('canteens', 'canteens');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,13 +37,13 @@ class CanteensCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'date',
             'type' => 'text',
             'label' => 'Date',
         ]);
 
-        $this->crud->addColumn([   // Select2Multiple = n-n relationship (with pivot table)
+        CRUD::addColumn([   // Select2Multiple = n-n relationship (with pivot table)
             'label' => 'Meals',
             'type' => 'select_multiple',
             'name' => 'menus', // the method that defines the relationship in your Model
@@ -50,7 +53,7 @@ class CanteensCrudController extends CrudController
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
 
-        $this->crud->addField([   // Select2Multiple = n-n relationship (with pivot table)
+        CRUD::addField([   // Select2Multiple = n-n relationship (with pivot table)
             'label' => 'Meals',
             'type' => 'select2_multiple',
             'name' => 'menus', // the method that defines the relationship in your Model
@@ -60,34 +63,26 @@ class CanteensCrudController extends CrudController
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'date',
             'type' => 'date',
             'label' => 'Date',
         ]);
 
-        $this->crud->orderBy('date', 'desc');
+        CRUD::orderBy('date', 'desc');
 
         // add asterisk for fields that are required in CanteensRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    protected function setupCreateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(StoreRequest::class);
     }
 
-    public function update(UpdateRequest $request)
+    protected function setupUpdateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

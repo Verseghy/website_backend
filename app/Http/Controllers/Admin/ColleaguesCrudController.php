@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ColleaguesRequest as StoreRequest;
 use App\Http\Requests\ColleaguesRequest as UpdateRequest;
+use CRUD;
 
 /**
  * Class AuthorsCrudController.
@@ -14,28 +15,30 @@ use App\Http\Requests\ColleaguesRequest as UpdateRequest;
  */
 class ColleaguesCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
-        $this->crud->setModel('App\Models\Colleagues');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/colleagues');
-        $this->crud->setEntityNameStrings('colleagues', 'colleagues');
+        CRUD::setModel('App\Models\Colleagues');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/colleagues');
+        CRUD::setEntityNameStrings('colleagues', 'colleagues');
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'name',
             'label' => 'Name',
             'type' => 'text',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'jobs',
             'label' => 'Jobs',
             'type' => 'textarea',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'image',
             'label' => 'Image',
             'type' => 'image',
@@ -43,7 +46,7 @@ class ColleaguesCrudController extends CrudController
             'disk' => 'colleagues_images',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'category',
             'label' => 'Category',
             'type' => 'select_from_array',
@@ -51,13 +54,13 @@ class ColleaguesCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'name',
             'label' => 'Name',
             'type' => 'text',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'image',
             'label' => 'Profile image',
             'type' => 'upload',
@@ -65,25 +68,25 @@ class ColleaguesCrudController extends CrudController
             'disk' => 'colleagues_images',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'jobs',
             'label' => 'Jobs',
             'type' => 'textarea',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'subjects',
             'label' => 'Subjects',
             'type' => 'textarea',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'roles',
             'label' => 'Roles',
             'type' => 'textarea',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'category',
             'label' => 'Category',
             'type' => 'select_from_array',
@@ -91,33 +94,25 @@ class ColleaguesCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'awards',
             'label' => 'Awards',
             'type' => 'textarea',
         ]);
 
-        $this->crud->orderBy('name');
+        CRUD::orderBy('name');
 
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    protected function setupCreateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(StoreRequest::class);
     }
 
-    public function update(UpdateRequest $request)
+    protected function setupUpdateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

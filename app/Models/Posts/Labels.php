@@ -3,7 +3,7 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
-use Backpack\CRUD\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 class Labels extends Model
 {

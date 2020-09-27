@@ -4,51 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1e499aa5074cacd5a1ded4b262b4fda",
+    "content-hash": "11fb422536d9be24f266cdfb92a74ce6",
     "packages": [
-        {
-            "name": "almasaeed2010/adminlte",
-            "version": "v2.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
-                "reference": "b3acb63ac56b13eb45b36e628b384a9a2507b50e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/b3acb63ac56b13eb45b36e628b384a9a2507b50e",
-                "reference": "b3acb63ac56b13eb45b36e628b384a9a2507b50e",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "1.*"
-            },
-            "type": "template",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Abdullah Almsaeed",
-                    "email": "abdullah@almsaeedstudio.com"
-                }
-            ],
-            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
-            "homepage": "https://adminlte.io/",
-            "keywords": [
-                "JS",
-                "admin",
-                "back-end",
-                "css",
-                "less",
-                "responsive",
-                "template",
-                "theme",
-                "web"
-            ],
-            "time": "2018-02-04T12:54:57+00:00"
-        },
         {
             "name": "asm89/stack-cors",
             "version": "1.3.0",
@@ -102,48 +59,55 @@
             "time": "2019-12-24T22:41:47+00:00"
         },
         {
-            "name": "backpack/base",
-            "version": "1.1.13",
+            "name": "backpack/crud",
+            "version": "4.0.61",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "426e56099efde930f8f8aa9aaeafd1b58a756d61"
+                "url": "https://github.com/Laravel-Backpack/CRUD.git",
+                "reference": "1977e0cc52fa7cf9547eaeadf03f5cd88402b574"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/426e56099efde930f8f8aa9aaeafd1b58a756d61",
-                "reference": "426e56099efde930f8f8aa9aaeafd1b58a756d61",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/1977e0cc52fa7cf9547eaeadf03f5cd88402b574",
+                "reference": "1977e0cc52fa7cf9547eaeadf03f5cd88402b574",
                 "shasum": ""
             },
             "require": {
-                "almasaeed2010/adminlte": "2.4.*",
                 "creativeorange/gravatar": "~1.0",
-                "laravel/framework": "5.8.*|^6.0",
+                "doctrine/dbal": "^2.5",
+                "guzzlehttp/guzzle": "^6.3",
+                "intervention/image": "^2.3",
+                "laravel/framework": "^7.0|^6.0|5.8.*",
                 "laravel/helpers": "^1.1",
-                "nesbot/carbon": "^2.14.0",
-                "prologue/alerts": "^0.4.1"
+                "nesbot/carbon": "^2.14",
+                "ocramius/package-versions": "^1.4",
+                "prologue/alerts": "^0.4.1",
+                "venturecraft/revisionable": "1.*"
             },
             "require-dev": {
-                "backpack/generators": "^1.1",
-                "laracasts/generators": "^1.1",
-                "phpunit/phpunit": "~6.0",
-                "scrutinizer/ocular": "~1.1",
-                "squizlabs/php_codesniffer": "~2.3"
+                "orchestra/database": "^5.0@dev|3.8.x-dev",
+                "orchestra/testbench": "^5.0|^3.0",
+                "phpunit/phpunit": "~8.0|~7.0",
+                "scrutinizer/ocular": "~1.7|~1.1",
+                "spatie/laravel-translatable": "^4.0|^3.1.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "4.0-dev"
                 },
                 "laravel": {
                     "providers": [
-                        "Backpack\\Base\\BaseServiceProvider"
-                    ]
+                        "Backpack\\CRUD\\BackpackServiceProvider"
+                    ],
+                    "aliases": {
+                        "CRUD": "Backpack\\CRUD\\app\\Library\\CrudPanel\\CrudPanelFacade"
+                    }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Backpack\\Base\\": "src"
+                    "Backpack\\CRUD\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -158,109 +122,49 @@
                     "role": "Creator & Maintainer"
                 }
             ],
-            "description": "Laravel Backpack's base package, which offers admin authentication and a blank admin panel using AdminLTE",
-            "homepage": "https://github.com/laravel-backpack/base",
-            "keywords": [
-                "backpack",
-                "base"
-            ],
-            "time": "2019-09-17T09:02:22+00:00"
-        },
-        {
-            "name": "backpack/crud",
-            "version": "3.6.33",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "034925f67b274ea3c0dee64fcf85f3c4d19dc3da"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/034925f67b274ea3c0dee64fcf85f3c4d19dc3da",
-                "reference": "034925f67b274ea3c0dee64fcf85f3c4d19dc3da",
-                "shasum": ""
-            },
-            "require": {
-                "backpack/base": "1.1.*",
-                "doctrine/dbal": "^2.5",
-                "guzzlehttp/guzzle": "^6.3",
-                "intervention/image": "^2.3",
-                "venturecraft/revisionable": "1.*"
-            },
-            "require-dev": {
-                "orchestra/database": "3.8.x-dev",
-                "orchestra/testbench": "^3.0",
-                "phpunit/phpunit": "~7.0",
-                "scrutinizer/ocular": "~1.1",
-                "spatie/laravel-translatable": "^3.1.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Backpack\\CRUD\\CrudServiceProvider"
-                    ],
-                    "aliases": {
-                        "CRUD": "Backpack\\CRUD\\CrudServiceProvider"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Backpack\\CRUD\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cristian Tabacitu",
-                    "email": "hello@tabacitu.ro",
-                    "homepage": "http://www.tabacitu.ro",
-                    "role": "Chief Architect & Lead Developer"
-                }
-            ],
-            "description": "Quickly build an admin interface for your Eloquent models, using Laravel 5. Build a CMS in a matter of minutes.",
+            "description": "Quickly build an admin interfaces using Laravel 7, CoreUI, Boostrap 4 and jQuery.",
             "homepage": "https://github.com/laravel-backpack/CRUD",
             "keywords": [
                 "Admin Interface",
                 "Content management system",
                 "admin panel",
+                "admin panel for laravel",
+                "backpack",
+                "base",
+                "bootstrap 4 admin panel laravel",
+                "bread",
                 "cms",
                 "content management framework",
+                "coreui for laravel",
                 "create",
                 "crud",
                 "delete",
+                "laravel admin",
                 "read",
                 "update"
             ],
-            "time": "2019-09-17T09:04:25+00:00"
+            "time": "2020-05-06T15:48:26+00:00"
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "4.0.6",
+            "version": "5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "00c089947d0b3217fd6f8d7097be8da88063653a"
+                "reference": "032051df0ed1b638c5afcc9bccc93c8162261f17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/00c089947d0b3217fd6f8d7097be8da88063653a",
-                "reference": "00c089947d0b3217fd6f8d7097be8da88063653a",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/032051df0ed1b638c5afcc9bccc93c8162261f17",
+                "reference": "032051df0ed1b638c5afcc9bccc93c8162261f17",
                 "shasum": ""
             },
             "require": {
-                "backpack/crud": "^3.4.0",
+                "backpack/crud": "^4.0.0",
                 "spatie/laravel-permission": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
+                "phpunit/phpunit": "^9.0||^7.0",
                 "scrutinizer/ocular": "~1.1"
             },
             "type": "library",
@@ -314,7 +218,7 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2019-09-04T06:39:21+00:00"
+            "time": "2020-03-05T07:55:03+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -670,143 +574,6 @@
                 }
             ],
             "time": "2020-09-09T09:46:34+00:00"
-        },
-        {
-            "name": "composer/installers",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 || ^2.0"
-            },
-            "replace": {
-                "roundcube/plugin-installer": "*",
-                "shama/baton": "*"
-            },
-            "require-dev": {
-                "composer/composer": "1.6.* || 2.0.*@dev",
-                "composer/semver": "1.0.* || 2.0.*@dev",
-                "phpunit/phpunit": "^4.8.36",
-                "sebastian/comparator": "^1.2.4",
-                "symfony/process": "^2.3"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Composer\\Installers\\Plugin",
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Composer\\Installers\\": "src/Composer/Installers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "https://composer.github.io/installers/",
-            "keywords": [
-                "Craft",
-                "Dolibarr",
-                "Eliasis",
-                "Hurad",
-                "ImageCMS",
-                "Kanboard",
-                "Lan Management System",
-                "MODX Evo",
-                "MantisBT",
-                "Mautic",
-                "Maya",
-                "OXID",
-                "Plentymarkets",
-                "Porto",
-                "RadPHP",
-                "SMF",
-                "Thelia",
-                "Whmcs",
-                "WolfCMS",
-                "agl",
-                "aimeos",
-                "annotatecms",
-                "attogram",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "cockpit",
-                "codeigniter",
-                "concrete5",
-                "croogo",
-                "dokuwiki",
-                "drupal",
-                "eZ Platform",
-                "elgg",
-                "expressionengine",
-                "fuelphp",
-                "grav",
-                "installer",
-                "itop",
-                "joomla",
-                "known",
-                "kohana",
-                "laravel",
-                "lavalite",
-                "lithium",
-                "magento",
-                "majima",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "modx",
-                "moodle",
-                "osclass",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "puppet",
-                "pxcms",
-                "reindex",
-                "roundcube",
-                "shopware",
-                "silverstripe",
-                "sydes",
-                "sylius",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "yawik",
-                "zend",
-                "zikula"
-            ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-04-07T06:57:05+00:00"
         },
         {
             "name": "composer/semver",
@@ -2936,6 +2703,67 @@
                 "php"
             ],
             "time": "2020-09-26T10:30:38+00:00"
+        },
+        {
+            "name": "ocramius/package-versions",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ocramius/PackageVersions.git",
+                "reference": "94c9d42a466c57f91390cdd49c81313264f49d85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/94c9d42a466c57f91390cdd49c81313264f49d85",
+                "reference": "94c9d42a466c57f91390cdd49c81313264f49d85",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1.0 || ^2.0",
+                "php": "^7.4.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.9.3 || ^2.0@dev",
+                "doctrine/coding-standard": "^7.0.2",
+                "ext-zip": "^1.15.0",
+                "infection/infection": "^0.15.3",
+                "phpunit/phpunit": "^9.1.1",
+                "vimeo/psalm": "^3.9.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PackageVersions\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.99.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PackageVersions\\": "src/PackageVersions"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
+            "funding": [
+                {
+                    "url": "https://github.com/Ocramius",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/ocramius/package-versions",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-06-22T14:15:44+00:00"
         },
         {
             "name": "opis/closure",
@@ -6190,23 +6018,23 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "1.2.7",
+            "version": "v2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "3fa40e5be98fa84463fcdaf60db2b73068ed184c"
+                "reference": "7011e79406919468f1c0408840741db8b4dd0876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/3fa40e5be98fa84463fcdaf60db2b73068ed184c",
-                "reference": "3fa40e5be98fa84463fcdaf60db2b73068ed184c",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/7011e79406919468f1c0408840741db8b4dd0876",
+                "reference": "7011e79406919468f1c0408840741db8b4dd0876",
                 "shasum": ""
             },
             "require": {
-                "backpack/base": "0.9.*|1.0.*|1.1.*"
+                "backpack/crud": "4.0.*"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
+                "phpunit/phpunit": "^9.0||^7.0",
                 "scrutinizer/ocular": "~1.1"
             },
             "type": "library",
@@ -6246,7 +6074,7 @@
                 "request",
                 "view"
             ],
-            "time": "2019-02-27T20:03:32+00:00"
+            "time": "2020-03-05T10:18:48+00:00"
         },
         {
             "name": "doctrine/annotations",

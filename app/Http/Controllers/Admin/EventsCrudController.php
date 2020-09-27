@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\EventsRequest as StoreRequest;
 use App\Http\Requests\EventsRequest as UpdateRequest;
+use CRUD;
 
 /**
  * Class EventsCrudController.
@@ -14,8 +15,10 @@ use App\Http\Requests\EventsRequest as UpdateRequest;
  */
 class EventsCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -24,9 +27,9 @@ class EventsCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Events');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/events');
-        $this->crud->setEntityNameStrings('events', 'events');
+        CRUD::setModel('App\Models\Events');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/events');
+        CRUD::setEntityNameStrings('events', 'events');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,43 +37,43 @@ class EventsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'title',
             'type' => 'text',
             'label' => 'Title',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'description',
             'type' => 'text',
             'label' => 'Description',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'date_from',
             'type' => 'text',
             'label' => 'Starts',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'date_to',
             'type' => 'text',
             'label' => 'Ends',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'title',
             'type' => 'text',
             'label' => 'Title',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'description',
             'type' => 'textarea',
             'label' => 'Description',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'date_from',
             'label' => 'Event start',
             'type' => 'datetime_picker',
@@ -80,7 +83,7 @@ class EventsCrudController extends CrudController
                 'language' => 'hu',
             ],
         ]);
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'date_to',
             'label' => 'Event end',
             'type' => 'datetime_picker',
@@ -91,34 +94,26 @@ class EventsCrudController extends CrudController
             ],
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'color',
             'label' => 'color',
             'type' => 'color_picker',
         ]);
 
-        $this->crud->orderBy('date_from', 'desc');
+        CRUD::orderBy('date_from', 'desc');
 
         // add asterisk for fields that are required in EventsRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    protected function setupCreateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(StoreRequest::class);
     }
 
-    public function update(UpdateRequest $request)
+    protected function setupUpdateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(UpdateRequest::class);
     }
 }
