@@ -10,7 +10,7 @@
       <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
-@endcan
+@endif
 
 @if(backpack_user()->can('edit posts'))
 <li class="treeview">
@@ -18,15 +18,15 @@
 
     <ul class="treeview-menu">
         <li><a href="{{ backpack_url('posts') }}"><i class="fa fa-paragraph"></i> <span>Manage Posts</span></a></li>
-        @can('edit labels')
+        @if(backpack_user()->can('edit labels'))
         <li><a href="{{ backpack_url('labels') }}"><i class="fa fa-tag"></i> <span>Manage Labels</span></a></li>
-        @endcan
-        @can('edit authors')
+        @endif
+        @if(backpack_user()->can('edit authors'))
         <li><a href="{{ backpack_url('authors') }}"><i class="fa fa-id-card"></i> <span>Manage Authors</span></a></li>
-        @endcan
+        @endif
     </ul>
 </li>
-@endcan
+@endif
 
 @if(backpack_user()->can('edit canteens'))
 <li class="treeview">
@@ -37,16 +37,16 @@
         <li><a href="{{ backpack_url('menus') }}"><i class="fa fa-apple"></i> <span>Menus</span></a></li>
     </ul>
 </li>
-@endcan
+@endif
 
 @if(backpack_user()->can('edit events'))
 <li><a href="{{ backpack_url('events') }}"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
-@endcan
+@endif
 
 @if(backpack_user()->can('edit colleagues'))
 <li><a href="{{ backpack_url('colleagues') }}"><i class="fa fa-user"></i> <span>Manage Colleagues</span></a></li>
-@endcan
+@endif
 
 @if(backpack_user()->can('edit newsletter'))
 <li><a href="{{ backpack_url('newsletter') }}"><i class="fa fa-envelope"></i> <span>Manage Newsletter</span></a></li>
-@endcan
+@endif
