@@ -513,4 +513,32 @@ return [
         // "zu_ZA" => "Zulu (South Africa)",
         // "zu" => "Zulu"
     ],
+
+    // stores pagination and filters in localStorage for two hours
+    // whenever the user tries to see that page, backpack loads the previous pagination and filtration
+    'persistent_table' => true,
+
+    // Here you may override the css-classes for the content section of the create view globally
+    // To override per view use $this->crud->setCreateContentClass('class-string')
+    'create_content_class' => 'col-md-8 col-md-offset-2',
+
+    // Here you may override the css-classes for the content section of the edit view globally
+    // To override per view use $this->crud->setEditContentClass('class-string')
+    'edit_content_class'   => 'col-md-8 col-md-offset-2',
+
+    // Here you may override the css-classes for the content section of the revisions timeline view globally
+    // To override per view use $this->crud->setRevisionsTimelineContentClass('class-string')
+    'revisions_timeline_content_class'   => 'col-md-10 col-md-offset-1',
+
+    // Here you may override the css-class for the content section of the list view globally
+    // To override per view use $this->crud->setListContentClass('class-string')
+    'list_content_class' => 'col-md-12',
+
+    // Here you may override the css-classes for the content section of the show view globally
+    // To override per view use $this->crud->setShowContentClass('class-string')
+    'show_content_class'   => 'col-md-8 col-md-offset-2',
+
+    // Here you may override the css-classes for the content section of the reorder view globally
+    // To override per view use $this->crud->setReorderContentClass('class-string')
+    'reorder_content_class'   => 'col-md-8 col-md-offset-2',
 ];
