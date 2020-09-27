@@ -177,7 +177,7 @@ class PostsCrudController extends CrudController
             'name' => 'published',
             'type' => 'checkbox',
             'label' => 'Published',
-            'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
+            'attributes' => $user = backpack_auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
             'tab' => 'Publish',
         ]);
 
@@ -207,7 +207,7 @@ class PostsCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-        if (true == $request->input('published') && !auth()->user->can('publish posts')) {
+        if (true == $request->input('published') && !backpack_auth()->user->can('publish posts')) {
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
@@ -237,7 +237,7 @@ class PostsCrudController extends CrudController
         }
 
         if (true == $request->input('published') || $post->published) {
-            if (!auth()->user()->can('publish posts')) {
+            if (!backpack_auth()->user()->can('publish posts')) {
                 return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
             }
         }

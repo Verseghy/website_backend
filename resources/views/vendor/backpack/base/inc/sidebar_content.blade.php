@@ -1,7 +1,7 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
 <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
-@can('edit users')
+@if(backpack_user()->can('edit users'))
 <li class="treeview">
     <a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -12,7 +12,7 @@
 </li>
 @endcan
 
-@can('edit posts')
+@if(backpack_user()->can('edit posts'))
 <li class="treeview">
     <a href="#"><i class="fa fa-align-justify"></i> <span>Posts, Labels, Authors</span> <i class="fa fa-angle-left pull-right"></i></a>
 
@@ -28,7 +28,7 @@
 </li>
 @endcan
 
-@can('edit canteens')
+@if(backpack_user()->can('edit canteens'))
 <li class="treeview">
     <a href="#"><i class="fa fa-cutlery "></i> <span>Canteen</span> <i class="fa fa-angle-left pull-right"></i></a>
 
@@ -39,14 +39,14 @@
 </li>
 @endcan
 
-@can('edit events')
+@if(backpack_user()->can('edit events'))
 <li><a href="{{ backpack_url('events') }}"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
 @endcan
 
-@can('edit colleagues')
+@if(backpack_user()->can('edit colleagues'))
 <li><a href="{{ backpack_url('colleagues') }}"><i class="fa fa-user"></i> <span>Manage Colleagues</span></a></li>
 @endcan
 
-@can('edit newsletter')
+@if(backpack_user()->can('edit newsletter'))
 <li><a href="{{ backpack_url('newsletter') }}"><i class="fa fa-envelope"></i> <span>Manage Newsletter</span></a></li>
 @endcan

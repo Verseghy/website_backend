@@ -58,7 +58,7 @@ class PostsRequest extends FormRequest
     {
         return [
             'index_image.max' => 'Az indexkép túl nagy, maximum 500kB lehet!',
-            'index_image.dimensions' => 'Az indexkép dimenziói nem megfelelőek, minimum 200px széles maximum 1000px széles lehet!'
+            'index_image.dimensions' => 'Az indexkép dimenziói nem megfelelőek, minimum 200px széles maximum 1000px széles lehet!',
         ];
     }
 }
