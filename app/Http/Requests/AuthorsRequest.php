@@ -27,7 +27,7 @@ class AuthorsRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'string|max:1024|nullable',
-            'image' => 'image|nullable',
+            'image' => 'image|nullable|max:500|dimensions:max_width=1000',
         ];
     }
 

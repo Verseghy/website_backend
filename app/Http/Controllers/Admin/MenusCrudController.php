@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\MenusRequest as StoreRequest;
 use App\Http\Requests\MenusRequest as UpdateRequest;
+use CRUD;
 
 /**
  * Class MenusCrudController.
@@ -14,8 +15,10 @@ use App\Http\Requests\MenusRequest as UpdateRequest;
  */
 class MenusCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -24,9 +27,9 @@ class MenusCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Canteens\Menus');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/menus');
-        $this->crud->setEntityNameStrings('menu', 'menus');
+        CRUD::setModel('App\Models\Canteens\Menus');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/menus');
+        CRUD::setEntityNameStrings('menu', 'menus');
 
         /*
         |--------------------------------------------------------------------------
@@ -34,13 +37,13 @@ class MenusCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'menu',
             'label' => 'Name',
             'type' => 'text',
         ]);
 
-        $this->crud->addColumn([   // select_from_array
+        CRUD::addColumn([   // select_from_array
             'name' => 'type',
             'label' => 'Type',
             'type' => 'select_from_array',
@@ -48,13 +51,13 @@ class MenusCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'menu',
             'label' => 'Name',
             'type' => 'text',
         ]);
 
-        $this->crud->addField([   // select_from_array
+        CRUD::addField([   // select_from_array
             'name' => 'type',
             'label' => 'Type',
             'type' => 'select2_from_array',
@@ -62,28 +65,20 @@ class MenusCrudController extends CrudController
             'allows_null' => false,
         ]);
 
-        $this->crud->orderBy('menu');
+        CRUD::orderBy('menu');
 
         // add asterisk for fields that are required in MenusRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    protected function setupCreateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(StoreRequest::class);
     }
 
-    public function update(UpdateRequest $request)
+    protected function setupUpdateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

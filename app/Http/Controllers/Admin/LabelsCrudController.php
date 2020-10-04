@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\LabelsRequest as StoreRequest;
 use App\Http\Requests\LabelsRequest as UpdateRequest;
+use CRUD;
 
 /**
  * Class LabelsCrudController.
@@ -14,8 +15,10 @@ use App\Http\Requests\LabelsRequest as UpdateRequest;
  */
 class LabelsCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -24,9 +27,9 @@ class LabelsCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Posts\Labels');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/labels');
-        $this->crud->setEntityNameStrings('labels', 'labels');
+        CRUD::setModel('App\Models\Posts\Labels');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/labels');
+        CRUD::setEntityNameStrings('labels', 'labels');
 
         /*
         |--------------------------------------------------------------------------
@@ -35,52 +38,44 @@ class LabelsCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'name',
             'type' => 'text',
             'label' => 'Label name',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'name',
             'type' => 'text',
             'label' => 'Label name',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'color',
             'type' => 'color_picker',
             'label' => 'Label color',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'color',
             'type' => 'color',
             'label' => 'Label color',
         ]);
 
-        $this->crud->orderBy('name');
+        CRUD::orderBy('name');
 
         // add asterisk for fields that are required in LabelsRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    protected function setupCreateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(StoreRequest::class);
     }
 
-    public function update(UpdateRequest $request)
+    protected function setupUpdateOperation()
     {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

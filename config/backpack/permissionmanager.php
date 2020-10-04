@@ -2,8 +2,19 @@
 
 return [
     /*
-    | Backpack/PermissionManager configs.
+    |--------------------------------------------------------------------------
+    | Models
+    |--------------------------------------------------------------------------
+    |
+    | Models used in the User, Role and Permission CRUDs.
+    |
     */
+
+    'models' => [
+        'user' => App\User::class,
+        'permission' => Backpack\PermissionManager\app\Models\Permission::class,
+        'role' => Backpack\PermissionManager\app\Models\Role::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -24,4 +35,12 @@ return [
     'allow_role_create' => false,
     'allow_role_update' => false,
     'allow_role_delete' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Multiple-guards functionality
+    |--------------------------------------------------------------------------
+    |
+    */
+    'multiple_guards' => false,
 ];

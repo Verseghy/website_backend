@@ -14,8 +14,9 @@ return [
     'project_name' => 'VFG-Website',
 
     // Menu logos
-    'logo_lg' => '<b>VFG</b>',
-    'logo_mini' => '<b>VFG</b>p',
+    'project_logo' => '<b>VFG</b>',
+
+    'breadcrumbs' => true,
 
     // Developer or company name. Shown in footer.
     'developer_name' => 'László Baráth',
@@ -26,14 +27,8 @@ return [
     // Show powered by Laravel Backpack in the footer?
     'show_powered_by' => true,
 
-    // The AdminLTE skin. Affects menu color and primary/secondary colors used throughout the application.
-    'skin' => 'skin-purple',
-    // Options: skin-black, skin-blue, skin-purple, skin-red, skin-yellow, skin-green, skin-blue-light, skin-black-light, skin-purple-light, skin-green-light, skin-red-light, skin-yellow-light
-
-    // Date & Datetime Format Syntax: https://github.com/jenssegers/date#usage
-    // (same as Carbon)
-    'default_date_format' => 'j F Y',
-    'default_datetime_format' => 'j F Y H:i',
+    'default_date_format' => 'Do MMMM YYYY',
+    'default_datetime_format' => 'Do MMMM YYYY, HH:mm',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,12 +73,12 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    'user_model_fqn' => \Backpack\Base\app\Models\BackpackUser::class,
+    'user_model_fqn' => App\User::class,
 
     // The classes for the middleware to check if the visitor is an admin
     // Can be a single class or an array of clases
     'middleware_class' => [
-        \Backpack\Base\app\Http\Middleware\CheckIfAdmin::class,
+        App\Http\Middleware\CheckIfAdmin::class,
     ],
 
     // Alias for that middleware
@@ -98,11 +93,11 @@ return [
 
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => null,
+    'guard' => 'backpack',
 
     // The password reset configuration for Backpack.
     // If null, the config.auth.defaults.passwords value will be used.
-    'passwords' => null,
+    'passwords' => 'backpack',
 
     // What kind of avatar will you like to show to the user?
     // Default: gravatar (automatically use the gravatar for his email)
@@ -139,4 +134,108 @@ return [
     */
 
     'license_code' => env('BACKPACK_LICENSE', false),
+
+    'overlays' => [
+        'vendor/backpack/base/backpack.bold.css',
+        'vendor/backpack/base/backpack.content.is.king.css', // opinionized borderless alternative
+    ],
+
+    // ----
+    // HEAD
+    // ----
+
+    // When clicking on the admin panel's top-left logo/name,
+    // where should the user be redirected?
+    // The string below will be passed through the url() helper.
+    // - default: '' (project root)
+    // - alternative: 'admin' (the admin's dashboard)
+    'home_link' => 'admin',
+
+    // Content of the HTML meta robots tag to prevent indexing and link following
+    'meta_robots_content' => 'noindex, nofollow',
+
+    // ------
+    // STYLES
+    // ------
+
+    // CSS files that are loaded in all pages, using Laravel's asset() helper
+    'styles' => [
+        'packages/backpack/base/css/bundle.css',
+
+        // Here's what's inside the bundle:
+        // 'packages/@digitallyhappy/backstrap/css/style.min.css',
+        // 'packages/animate.css/animate.min.css',
+        // 'packages/noty/noty.css',
+
+        // Load the fonts separately (so that you can replace them at will):
+        'packages/source-sans-pro/source-sans-pro.css',
+        'packages/line-awesome/css/line-awesome.min.css',
+
+        // Example (the fonts above, loaded from CDN instead)
+        // 'https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css',
+        // 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
+
+        // Example (load font-awesome instead of line-awesome):
+        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+    ],
+
+    // CSS files that are loaded in all pages, using Laravel's mix() helper
+    'mix_styles' => [ // file_path => manifest_directory_path
+        // 'css/app.css' => '',
+    ],
+
+    'header_class' => 'app-header navbar navbar-color bg-primary border-0',
+    'body_class' => 'app aside-menu-fixed sidebar-lg-show',
+    'sidebar_class' => 'sidebar', // add "bg-white sidebar-pills" for light sidebar
+    'footer_class' => 'app-footer',
+
+    // -------
+    // SCRIPTS
+    // -------
+
+    // JS files that are loaded in all pages, using Laravel's asset() helper
+    'scripts' => [
+        // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
+        'packages/backpack/base/js/bundle.js',
+
+        // examples (everything inside the bundle, loaded from CDN)
+        // 'https://code.jquery.com/jquery-3.4.1.min.js',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+        // 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+        // 'https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+        // 'https://unpkg.com/sweetalert/dist/sweetalert.min.js',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js'
+
+        // examples (VueJS or React)
+        // 'https://unpkg.com/vue@2.4.4/dist/vue.min.js',
+        // 'https://unpkg.com/react@16/umd/react.production.min.js',
+        // 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+    ],
+
+    // JS files that are loaded in all pages, using Laravel's mix() helper
+    'mix_scripts' => [// file_path => manifest_directory_path
+        // 'js/app.js' => '',
+    ],
+
+    // -------------
+    // CACHE-BUSTING
+    // -------------
+
+    // All JS and CSS assets defined above have this string appended as query string (?v=string).
+    // If you want to manually trigger cachebusting for all styles and scripts,
+    // append or prepent something to the string below, so that it's different.
+    'cachebusting_string' => \PackageVersions\Versions::getVersion('backpack/crud'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Theme (User Interface)
+    |--------------------------------------------------------------------------
+    */
+    // Change the view namespace in order to load a different theme than the one Backpack provides.
+    // You can create child themes yourself, by creating a view folder anywhere in your resources/views
+    // and choosing that view_namespace instead of the default one. Backpack will load a file from there
+    // if it exists, otherwise it will load it from the default namespace ("backpack::").
+
+    'view_namespace' => 'backpack::',
 ];

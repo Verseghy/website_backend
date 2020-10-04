@@ -6,6 +6,7 @@ use App\Http\Requests\PostsRequest as StoreRequest;
 use App\Http\Requests\PostsRequest as UpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Models\Posts;
+use CRUD;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 
@@ -16,8 +17,10 @@ use App\Models\Posts;
  */
 class PostsCrudController extends CrudController
 {
-    use AuthDestroy;
-    protected $destroyRequestClass = UpdateRequest::class;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     public function setup()
     {
@@ -26,9 +29,9 @@ class PostsCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Posts');
-        $this->crud->setRoute(config('backpack.base.route_prefix').'/posts');
-        $this->crud->setEntityNameStrings('posts', 'posts');
+        CRUD::setModel('App\Models\Posts');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/posts');
+        CRUD::setEntityNameStrings('posts', 'posts');
 
         /*
         |--------------------------------------------------------------------------
@@ -36,19 +39,19 @@ class PostsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'title',
             'type' => 'text',
             'label' => 'Title',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'color',
             'type' => 'color',
             'label' => 'Color',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'index_image',
             'type' => 'image',
             'label' => 'Index image',
@@ -56,7 +59,7 @@ class PostsCrudController extends CrudController
             'prefix' => 'storage/posts_images/',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'author_id',
             'type' => 'select',
             'label' => 'Author',
@@ -64,7 +67,7 @@ class PostsCrudController extends CrudController
             'attribute' => 'name',
         ]);
 
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'featured',
             'type' => 'boolean',
             'label' => 'Featurable',
@@ -72,42 +75,41 @@ class PostsCrudController extends CrudController
 
         // Fields start here
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'title',
             'type' => 'text',
             'label' => 'Title',
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'description',
             'type' => 'textarea',
             'label' => 'Description',
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'content',
-            'type' => 'simplemde',
+            'type' => 'easymde',
             'label' => 'Content',
-            'simplemdeAttributes' => [
+            'easymdeAttributes' => [
                 'promptURLs' => true,
                 'status' => true,
                 'spellChecker' => false,
                 'forceSync' => true,
             ],
-            'simplemdeAttributesRaw' => 'showIcons: ["table"]',
             'tab' => 'Content',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'date',
             'type' => 'date_picker',
             'label' => 'Date',
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'index_image',
             'type' => 'upload',
             'label' => 'Index image',
@@ -116,7 +118,7 @@ class PostsCrudController extends CrudController
             'tab' => 'Images',
         ]);
 
-        $this->crud->addField([   // SelectMultiple = n-n relationship (with pivot table)
+        CRUD::addField([   // SelectMultiple = n-n relationship (with pivot table)
             'label' => 'Labels',
             'type' => 'select2_multiple',
             'name' => 'labels', // the method that defines the relationship in your Model
@@ -127,7 +129,7 @@ class PostsCrudController extends CrudController
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'author_id',
             'type' => 'select',
             'label' => 'Author',
@@ -136,7 +138,7 @@ class PostsCrudController extends CrudController
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'images',
             'type' => 'upload_multiple',
             'label' => 'Images',
@@ -145,14 +147,14 @@ class PostsCrudController extends CrudController
             'tab' => 'Images',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'color',
             'type' => 'color_picker',
             'label' => 'Color',
             'tab' => 'Properties',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'type',
             'type' => 'select2_from_array',
             'label' => 'Type',
@@ -166,86 +168,96 @@ class PostsCrudController extends CrudController
             'default' => 2,
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'featured',
             'type' => 'checkbox',
             'label' => 'Featurable',
             'tab' => 'Publish',
         ]);
 
-        $this->crud->addField([
+        CRUD::addField([
             'name' => 'published',
             'type' => 'checkbox',
             'label' => 'Published',
-            'attributes' => $user = auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
+            'attributes' => $user = backpack_auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
             'tab' => 'Publish',
         ]);
 
-        $this->crud->addField([   // URL
+        CRUD::addField([   // URL
             'name' => 'previewLink',
             'label' => 'Preview link:',
             'type' => 'link',
             'tab' => 'Publish',
         ]);
 
-        $this->crud->addFilter([
+        CRUD::addFilter([
             'type' => 'simple',
             'name' => 'draft',
             'label' => 'Draft',
           ],
           false,
           function () {
-              $this->crud->addClause('where', 'published', false);
+              CRUD::addClause('where', 'published', false);
           });
 
-        $this->crud->orderBy('date', 'desc');
+        CRUD::orderBy('date', 'desc');
 
         // add asterisk for fields that are required in PostsRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        CRUD::setRequiredFields(StoreRequest::class, 'create');
+        CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    public function store()
     {
-        if (true == $request->input('published') && !auth()->user->can('publish posts')) {
+        if (true == CRUD::getRequest()->input('published') && !backpack_auth()->user->can('publish posts')) {
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
-        if (true == $request->featured) {
-            $index_image = $request->index_image;
+        if (true == CRUD::getRequest()->featured) {
+            $index_image = CRUD::getRequest()->index_image;
             if (is_null($index_image)) {
                 return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
             }
         }
         // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
+        $redirect_location = $this->traitStore();
         // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
+        // use $this->data['entry'] or CRUD::entry
         return $redirect_location;
     }
 
-    public function update(UpdateRequest $request)
+    public function update()
     {
-        $post = Posts::where('id', $request->input('id'))->get()->first();
+        $post = Posts::where('id', CRUD::getRequest()->input('id'))->get()->first();
 
-        $featured = $request->has('featured') ? $request->featured : $post->featured;
+        $featured = CRUD::getRequest()->has('featured') ? CRUD::getRequest()->featured : $post->featured;
         if (true == $featured) {
-            $index_image = $request->has('index_image') ? $request->index_image : $post->index_image;
+            $index_image = CRUD::getRequest()->has('index_image') ? CRUD::getRequest()->index_image : $post->index_image;
             if (is_null($index_image)) {
                 return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
             }
         }
 
-        if (true == $request->input('published') || $post->published) {
-            if (!auth()->user()->can('publish posts')) {
+        if (true == CRUD::getRequest()->input('published') || $post->published) {
+            if (!backpack_auth()->user()->can('publish posts')) {
                 return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
             }
         }
 
         // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
+        $redirect_location = $this->traitUpdate();
         // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
+        // use $this->data['entry'] or CRUD::entry
         return $redirect_location;
+    }
+
+    protected function setupCreateOperation()
+    {
+        CRUD::setValidation(StoreRequest::class);
+    }
+
+    protected function setupUpdateOperation()
+    {
+        CRUD::setValidation(UpdateRequest::class);
     }
 }

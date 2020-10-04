@@ -49,6 +49,8 @@ class CanteensRequest extends FormRequest
     public function messages()
     {
         return [
+            'menus.min' => 'Legalább két menü hozzáadása szükséges',
+            'menus.max' => 'Legfeljebb három menü hozzáadása lehetséges',
         ];
     }
 }

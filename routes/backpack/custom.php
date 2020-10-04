@@ -11,14 +11,14 @@ Route::group([
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    CRUD::resource('labels', 'LabelsCrudController');
-    CRUD::resource('authors', 'AuthorsCrudController');
-    CRUD::resource('posts', 'PostsCrudController');
-    CRUD::resource('colleagues', 'ColleaguesCrudController');
-    CRUD::resource('menus', 'MenusCrudController');
-    CRUD::resource('canteens', 'CanteensCrudController');
-    CRUD::resource('newsletter', 'NewsletterCrudController');
-    CRUD::resource('events', 'EventsCrudController');
+    Route::crud('labels', 'LabelsCrudController');
+    Route::crud('authors', 'AuthorsCrudController');
+    Route::crud('posts', 'PostsCrudController');
+    Route::crud('colleagues', 'ColleaguesCrudController');
+    Route::crud('menus', 'MenusCrudController');
+    Route::crud('canteens', 'CanteensCrudController');
+    Route::crud('newsletter', 'NewsletterCrudController');
+    Route::crud('events', 'EventsCrudController');
     Route::get('dashboard', function () {
         return view('dashboard');
     });
