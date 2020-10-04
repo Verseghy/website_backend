@@ -91,9 +91,9 @@ class PostsCrudController extends CrudController
 
         CRUD::addField([
             'name' => 'content',
-            'type' => 'simplemde',
+            'type' => 'easymde',
             'label' => 'Content',
-            'simplemdeAttributes' => [
+            'easymdeAttributes' => [
                 'promptURLs' => true,
                 'status' => true,
                 'spellChecker' => false,
@@ -208,14 +208,14 @@ class PostsCrudController extends CrudController
         CRUD::setRequiredFields(UpdateRequest::class, 'edit');
     }
 
-    public function store(StoreRequest $request)
+    public function store()
     {
-        if (true == $request->input('published') && !backpack_auth()->user->can('publish posts')) {
+        if (true == CRUD::getRequest()->input('published') && !backpack_auth()->user->can('publish posts')) {
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
-        if (true == $request->featured) {
-            $index_image = $request->index_image;
+        if (true == CRUD::getRequest()->featured) {
+            $index_image = CRUD::getRequest()->index_image;
             if (is_null($index_image)) {
                 return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
             }
@@ -227,19 +227,19 @@ class PostsCrudController extends CrudController
         return $redirect_location;
     }
 
-    public function update(UpdateRequest $request)
+    public function update()
     {
-        $post = Posts::where('id', $request->input('id'))->get()->first();
+        $post = Posts::where('id', CRUD::getRequest()->input('id'))->get()->first();
 
-        $featured = $request->has('featured') ? $request->featured : $post->featured;
+        $featured = CRUD::getRequest()->has('featured') ? CRUD::getRequest()->featured : $post->featured;
         if (true == $featured) {
-            $index_image = $request->has('index_image') ? $request->index_image : $post->index_image;
+            $index_image = CRUD::getRequest()->has('index_image') ? CRUD::getRequest()->index_image : $post->index_image;
             if (is_null($index_image)) {
                 return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
             }
         }
 
-        if (true == $request->input('published') || $post->published) {
+        if (true == CRUD::getRequest()->input('published') || $post->published) {
             if (!backpack_auth()->user()->can('publish posts')) {
                 return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
             }

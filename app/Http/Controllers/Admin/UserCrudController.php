@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
-use Illuminate\Http\Request;
-use CRUD;
+use Illuminate\Support\Facades\Hash;
 
 class UserCrudController extends CrudController
 {
@@ -17,17 +16,14 @@ class UserCrudController extends CrudController
 
     public function setup()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | BASIC CRUD INFORMATION
-        |--------------------------------------------------------------------------
-        */
-        CRUD::setModel(config('backpack.base.user_model_fqn'));
-        CRUD::setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
-        CRUD::setRoute(config('backpack.base.route_prefix').'/user');
+        $this->crud->setModel(config('backpack.permissionmanager.models.user'));
+        $this->crud->setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
+        $this->crud->setRoute(backpack_url('user'));
+    }
 
-        // Columns.
-        CRUD::setColumns([
+    public function setupListOperation()
+    {
+        $this->crud->setColumns([
             [
                 'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
@@ -39,25 +35,117 @@ class UserCrudController extends CrudController
                 'type' => 'email',
             ],
             [ // n-n relationship (with pivot table)
-               'label' => trans('backpack::permissionmanager.roles'), // Table column heading
-               'type' => 'select_multiple',
-               'name' => 'roles', // the method that defines the relationship in your Model
-               'entity' => 'roles', // the method that defines the relationship in your Model
-               'attribute' => 'name', // foreign key attribute that is shown to user
-               'model' => config('permission.models.role'), // foreign key model
+                'label' => trans('backpack::permissionmanager.roles'), // Table column heading
+                'type' => 'select_multiple',
+                'name' => 'roles', // the method that defines the relationship in your Model
+                'entity' => 'roles', // the method that defines the relationship in your Model
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'model' => config('permission.models.role'), // foreign key model
             ],
             [ // n-n relationship (with pivot table)
-               'label' => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
-               'type' => 'select_multiple',
-               'name' => 'permissions', // the method that defines the relationship in your Model
-               'entity' => 'permissions', // the method that defines the relationship in your Model
-               'attribute' => 'name', // foreign key attribute that is shown to user
-               'model' => config('permission.models.permission'), // foreign key model
+                'label' => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
+                'type' => 'select_multiple',
+                'name' => 'permissions', // the method that defines the relationship in your Model
+                'entity' => 'permissions', // the method that defines the relationship in your Model
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'model' => config('permission.models.permission'), // foreign key model
             ],
         ]);
 
-        // Fields
-        CRUD::addFields([
+        // Role Filter
+        $this->crud->addFilter(
+            [
+                'name' => 'role',
+                'type' => 'dropdown',
+                'label' => trans('backpack::permissionmanager.role'),
+            ],
+            config('permission.models.role')::all()->pluck('name', 'id')->toArray(),
+            function ($value) { // if the filter is active
+                $this->crud->addClause('whereHas', 'roles', function ($query) use ($value) {
+                    $query->where('role_id', '=', $value);
+                });
+            }
+        );
+
+        // Extra Permission Filter
+        $this->crud->addFilter(
+            [
+                'name' => 'permissions',
+                'type' => 'select2',
+                'label' => trans('backpack::permissionmanager.extra_permissions'),
+            ],
+            config('permission.models.permission')::all()->pluck('name', 'id')->toArray(),
+            function ($value) { // if the filter is active
+                $this->crud->addClause('whereHas', 'permissions', function ($query) use ($value) {
+                    $query->where('permission_id', '=', $value);
+                });
+            }
+        );
+    }
+
+    public function setupCreateOperation()
+    {
+        $this->addUserFields();
+        $this->crud->setValidation(StoreRequest::class);
+    }
+
+    public function setupUpdateOperation()
+    {
+        $this->addUserFields();
+        $this->crud->setValidation(UpdateRequest::class);
+    }
+
+    /**
+     * Store a newly created resource in the database.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $this->crud->setRequest($this->crud->validateRequest());
+        $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
+        $this->crud->unsetValidation(); // validation has already been run
+
+        return $this->traitStore();
+    }
+
+    /**
+     * Update the specified resource in the database.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update()
+    {
+        $this->crud->setRequest($this->crud->validateRequest());
+        $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
+        $this->crud->unsetValidation(); // validation has already been run
+
+        return $this->traitUpdate();
+    }
+
+    /**
+     * Handle password input fields.
+     */
+    protected function handlePasswordInput($request)
+    {
+        // Remove fields not present on the user.
+        $request->request->remove('password_confirmation');
+        $request->request->remove('roles_show');
+        $request->request->remove('permissions_show');
+
+        // Encrypt password if specified.
+        if ($request->input('password')) {
+            $request->request->set('password', Hash::make($request->input('password')));
+        } else {
+            $request->request->remove('password');
+        }
+
+        return $request;
+    }
+
+    protected function addUserFields()
+    {
+        $this->crud->addFields([
             [
                 'name' => 'name',
                 'label' => trans('backpack::permissionmanager.name'),
@@ -79,12 +167,12 @@ class UserCrudController extends CrudController
                 'type' => 'password',
             ],
             [
-            // two interconnected entities
-            'label' => trans('backpack::permissionmanager.user_role_permission'),
-            'field_unique_name' => 'user_role_permission',
-            'type' => 'checklist_dependency',
-            'name' => ['roles', 'permissions'], // the methods that defines the relationship in your Model
-            'subfields' => [
+                // two interconnected entities
+                'label' => trans('backpack::permissionmanager.user_role_permission'),
+                'field_unique_name' => 'user_role_permission',
+                'type' => 'checklist_dependency',
+                'name' => ['roles', 'permissions'],
+                'subfields' => [
                     'primary' => [
                         'label' => trans('backpack::permissionmanager.roles'),
                         'name' => 'roles', // the method that defines the relationship in your Model
@@ -108,59 +196,5 @@ class UserCrudController extends CrudController
                 ],
             ],
         ]);
-    }
-
-    /**
-     * Store a newly created resource in the database.
-     *
-     * @param StoreRequest $request - type injection used for validation using Requests
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreRequest $request)
-    {
-        $this->handlePasswordInput($request);
-
-        return $this->traitStore();
-    }
-
-    /**
-     * Update the specified resource in the database.
-     *
-     * @param UpdateRequest $request - type injection used for validation using Requests
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(UpdateRequest $request)
-    {
-        $this->handlePasswordInput($request);
-
-        return $this->traitUpdate();
-    }
-
-    /**
-     * Handle password input fields.
-     */
-    protected function handlePasswordInput(Request $request)
-    {
-        // Remove fields not present on the user.
-        $request->request->remove('password_confirmation');
-
-        // Encrypt password if specified.
-        if ($request->input('password')) {
-            $request->request->set('password', bcrypt($request->input('password')));
-        } else {
-            $request->request->remove('password');
-        }
-    }
-
-    protected function setupCreateOperation()
-    {
-        CRUD::setValidation(StoreRequest::class);
-    }
-
-    protected function setupUpdateOperation()
-    {
-        CRUD::setValidation(UpdateRequest::class);
     }
 }
