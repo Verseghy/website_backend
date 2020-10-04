@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.2.5",
+        "backpack/backupmanager": "^3.0",
         "backpack/crud": "4.1.*",
         "backpack/filemanager": "^1.1",
         "backpack/logmanager": "^4.0",

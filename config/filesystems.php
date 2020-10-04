@@ -84,5 +84,9 @@ return [
             'visibility' => 'public',
             'url_type' => 'publicURL',
         ],
+        'backups' => [
+            'driver' => 'local',
+            'root' => storage_path('app/backups'),
+        ],
     ],
 ];
