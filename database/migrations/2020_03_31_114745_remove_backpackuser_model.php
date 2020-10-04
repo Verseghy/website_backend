@@ -39,14 +39,14 @@ class RemoveBackpackuserModel extends Migration
         foreach ($userEntries as $entry) {
             DB::table($table_name)
                 ->where('role_id', $entry->role_id)
-                ->where('model_type', 'App\Models\BackpackUser')
+                ->where('model_type', 'Backpack\Base\app\Models\BackpackUser')
                 ->where('model_id', $entry->model_id)
                 ->delete();
         }
 
         // for the rest of them, we can just replace the BackpackUser model with User
         DB::table($table_name)
-            ->where('model_type', "App\Models\BackpackUser")
+            ->where('model_type', "Backpack\Base\app\Models\BackpackUser")
             ->update([
                 'model_type' => "App\User",
             ]);
