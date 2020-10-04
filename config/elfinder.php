@@ -26,7 +26,7 @@ return [
     */
     'disks' => [
         'uploads' => [
-            'URL' => url('storage/uploads'),
+            'URL' => env('APP_URL').('/storage/uploads'),
         ],
     ],
 
