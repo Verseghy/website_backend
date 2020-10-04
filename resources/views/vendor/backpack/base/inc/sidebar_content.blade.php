@@ -46,3 +46,5 @@
 @if(backpack_user()->can('edit colleagues'))
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('colleagues') }}"><i class="nav-icon fa fa-user"></i> <span>Colleagues</span></a></li>
 @endif
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('elfinder') }}\"><i class="nav-icon la la-files-o"></i> <span>{{ trans('backpack::crud.file_manager') }}</span></a></li>

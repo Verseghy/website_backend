@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.2.5",
         "backpack/crud": "4.1.*",
+        "backpack/filemanager": "^1.1",
         "backpack/permissionmanager": "^6.0.0",
         "beyondcode/laravel-self-diagnosis": "^1.0",
         "erusev/parsedown": "^1.7",
