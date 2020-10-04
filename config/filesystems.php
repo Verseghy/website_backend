@@ -88,5 +88,12 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/backups'),
         ],
+        'uploads' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/uploads'),
+            'url' => 'storage/uploads',
+            'visibility' => 'public',
+            'url_type' => 'publicURL',
+        ],
     ],
 ];
