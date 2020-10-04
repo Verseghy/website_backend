@@ -99,7 +99,6 @@ class PostsCrudController extends CrudController
                 'spellChecker' => false,
                 'forceSync' => true,
             ],
-            'easymdeAttributesRaw' => 'showIcons: ["table"]',
             'tab' => 'Content',
         ]);
 

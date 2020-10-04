@@ -46,3 +46,7 @@ Route::prefix('canteen')->group(function () {
 Route::prefix('colleagues')->group(function () {
     Route::get('listColleagues', 'ColleaguesController@listColleagues');
 });
+
+Route::prefix('pages')->group(function () {
+    Route::get('getPageBySlug', '\App\Http\Controllers\PageController@getPageBySlug');
+});
