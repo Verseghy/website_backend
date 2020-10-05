@@ -34,7 +34,6 @@ class MarkdownToHtml extends Migration
     public function down()
     {
         Schema::table('html', function (Blueprint $table) {
-            //
         });
     }
 }
