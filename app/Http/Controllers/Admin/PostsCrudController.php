@@ -91,14 +91,8 @@ class PostsCrudController extends CrudController
 
         CRUD::addField([
             'name' => 'content',
-            'type' => 'easymde',
+            'type' => 'ckeditor',
             'label' => 'Content',
-            'easymdeAttributes' => [
-                'promptURLs' => true,
-                'status' => true,
-                'spellChecker' => false,
-                'forceSync' => true,
-            ],
             'tab' => 'Content',
         ]);
 
