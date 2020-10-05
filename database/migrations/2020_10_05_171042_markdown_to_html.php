@@ -25,15 +25,4 @@ class MarkdownToHtml extends Migration
             $post->save();
         }
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('html', function (Blueprint $table) {
-        });
-    }
 }
