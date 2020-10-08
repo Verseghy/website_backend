@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3abea5dafcaccbd49a0b21b67de5151",
+    "content-hash": "a0dd6fd8be84732722420b632b120a75",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -320,6 +320,65 @@
                 "logs"
             ],
             "time": "2020-09-24T18:42:18+00:00"
+        },
+        {
+            "name": "backpack/menucrud",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Backpack/MenuCRUD.git",
+                "reference": "fd6d5f3744ef091867f286fe91ff17c965a355a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Backpack/MenuCRUD/zipball/fd6d5f3744ef091867f286fe91ff17c965a355a3",
+                "reference": "fd6d5f3744ef091867f286fe91ff17c965a355a3",
+                "shasum": ""
+            },
+            "require": {
+                "backpack/crud": "^4.1.0|^4.0.0",
+                "backpack/pagemanager": "^3.0|^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0||^7.0",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.3 || ~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Backpack\\MenuCRUD\\MenuCRUDServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backpack\\MenuCRUD\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "hello@tabacitu.ro",
+                    "homepage": "http://tabacitu.ro",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An admin panel for menu items, using Backpack\\CRUD on Laravel 6.",
+            "homepage": "https://github.com/backpack/MenuCRUD",
+            "keywords": [
+                "MenuCRUD",
+                "backpack"
+            ],
+            "time": "2020-04-24T14:30:00+00:00"
         },
         {
             "name": "backpack/pagemanager",

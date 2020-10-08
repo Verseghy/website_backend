@@ -50,3 +50,7 @@ Route::prefix('colleagues')->group(function () {
 Route::prefix('pages')->group(function () {
     Route::get('getPageBySlug', '\App\Http\Controllers\PageController@getPageBySlug');
 });
+
+Route::prefix('menu')->group(function () {
+    Route::get('getMenuItems', '\App\Http\Controllers\MenuController@getMenuItems');
+});
