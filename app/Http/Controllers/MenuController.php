@@ -22,7 +22,7 @@ class MenuController extends Controller
     {
         $data = [];
         Arr::set($data, 'name', $node->name);
-        Arr::set($data, 'slug', $node->page->slug);
+        Arr::set($data, 'slug', $node->page ? $node->page->slug : null);
         Arr::set($data, 'link', $node->link);
         Arr::set($data, 'type', $node->type);
         Arr::set($data, 'children', collect([]));
