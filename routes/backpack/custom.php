@@ -22,4 +22,5 @@ Route::group([
     Route::get('dashboard', function () {
         return view('dashboard');
     });
+    Route::crud('competition', 'CompetitionCrudController');
 }); // this should be the absolute last line of this file
