@@ -193,6 +193,11 @@ class PostsCrudController extends CrudController
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
+        $index_image = CRUD::getRequest()->index_image;
+        if (is_null($index_image)) {
+            return back()->withErrors(['msg' => 'Az indexkép kötelező'])->withInput();
+        }
+
         // your additional operations before save here
         $redirect_location = $this->traitStore();
         // your additional operations after save here
@@ -208,6 +213,11 @@ class PostsCrudController extends CrudController
             if (!backpack_auth()->user()->can('publish posts')) {
                 return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
             }
+        }
+
+        $index_image = CRUD::getRequest()->has('index_image') ? CRUD::getRequest()->index_image : $post->index_image;
+        if (is_null($index_image)) {
+            return back()->withErrors(['msg' => 'Az indexkép kötelező'])->withInput();
         }
 
         // your additional operations before save here
