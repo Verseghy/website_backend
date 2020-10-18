@@ -26,7 +26,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'content' => $faker->paragraphs($faker->numberBetween(3, 7), true),
         'author_id' => Authors::inRandomOrder()->first()->id,
         'date' => $faker->dateTime,
-        'type' => $faker->numberBetween(0, 2),
         'color' => $faker->hexColor,
         'featured' => $faker->boolean,
         'published' => true,

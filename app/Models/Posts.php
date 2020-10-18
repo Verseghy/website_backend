@@ -11,7 +11,7 @@ class Posts extends Model
     use crudTrait;
     protected $table = 'posts_data';
 
-    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'type', 'published', 'previewToken'];
+    protected $fillable = ['title', 'description', 'color', 'featured', 'index_image', 'images', 'content', 'date', 'published', 'previewToken'];
     protected $hidden = ['author_id', 'created_at', 'updated_at', 'published', 'previewToken'];
 
     protected $casts = [

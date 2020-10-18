@@ -149,20 +149,6 @@ class PostsCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name' => 'type',
-            'type' => 'select2_from_array',
-            'label' => 'Type',
-            'options' => [
-                0 => 'No image',
-                1 => 'Image in background',
-                2 => 'With Image',
-            ],
-            'allows_null' => false,
-            'tab' => 'Images',
-            'default' => 2,
-        ]);
-
-        CRUD::addField([
             'name' => 'featured',
             'type' => 'checkbox',
             'label' => 'Featurable',
@@ -207,12 +193,6 @@ class PostsCrudController extends CrudController
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
-        if (true == CRUD::getRequest()->featured) {
-            $index_image = CRUD::getRequest()->index_image;
-            if (is_null($index_image)) {
-                return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
-            }
-        }
         // your additional operations before save here
         $redirect_location = $this->traitStore();
         // your additional operations after save here
@@ -223,14 +203,6 @@ class PostsCrudController extends CrudController
     public function update()
     {
         $post = Posts::where('id', CRUD::getRequest()->input('id'))->get()->first();
-
-        $featured = CRUD::getRequest()->has('featured') ? CRUD::getRequest()->featured : $post->featured;
-        if (true == $featured) {
-            $index_image = CRUD::getRequest()->has('index_image') ? CRUD::getRequest()->index_image : $post->index_image;
-            if (is_null($index_image)) {
-                return back()->withErrors(['msg' => 'A featured post must have an index image!'])->withInput();
-            }
-        }
 
         if (true == CRUD::getRequest()->input('published') || $post->published) {
             if (!backpack_auth()->user()->can('publish posts')) {
