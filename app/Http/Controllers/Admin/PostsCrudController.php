@@ -159,7 +159,7 @@ class PostsCrudController extends CrudController
             'name' => 'published',
             'type' => 'checkbox',
             'label' => 'Published',
-            'attributes' => $user = backpack_auth()->user()->can('publish posts') ? [] : ['disabled' => ''],
+            'attributes' => $user = (backpack_auth()->check() && backpack_auth()->user()->can('publish posts')) ? [] : ['disabled' => ''],
             'tab' => 'Publish',
         ]);
 
@@ -189,7 +189,7 @@ class PostsCrudController extends CrudController
 
     public function store()
     {
-        if (true == CRUD::getRequest()->input('published') && !backpack_auth()->user->can('publish posts')) {
+        if (true == CRUD::getRequest()->input('published') && !(backpack_auth()->check() && backpack_auth()->user()->can('publish posts'))) {
             return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
         }
 
@@ -210,7 +210,7 @@ class PostsCrudController extends CrudController
         $post = Posts::where('id', CRUD::getRequest()->input('id'))->get()->first();
 
         if (true == CRUD::getRequest()->input('published') || $post->published) {
-            if (!backpack_auth()->user()->can('publish posts')) {
+            if (!(backpack_auth()->check() && backpack_auth()->user()->can('publish posts'))) {
                 return back()->withErrors(['msg' => 'You can not edit published posts or publish posts!'])->withInput();
             }
         }
