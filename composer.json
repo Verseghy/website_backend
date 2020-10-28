@@ -19,7 +19,8 @@
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.3",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/laravel-sitemap": "^5.8"
     },
     "require-dev": {
         "backpack/generators": "^3.0",
