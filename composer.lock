@@ -636,24 +636,24 @@
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
-            "version": "1.4.3",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beyondcode/laravel-self-diagnosis.git",
-                "reference": "fc663d553c945ba11608faea5666324a876369ac"
+                "reference": "b9f235747a3b06cee3cffe152deabc37dc93cca4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beyondcode/laravel-self-diagnosis/zipball/fc663d553c945ba11608faea5666324a876369ac",
-                "reference": "fc663d553c945ba11608faea5666324a876369ac",
+                "url": "https://api.github.com/repos/beyondcode/laravel-self-diagnosis/zipball/b9f235747a3b06cee3cffe152deabc37dc93cca4",
+                "reference": "b9f235747a3b06cee3cffe152deabc37dc93cca4",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^1.4",
                 "geerlingguy/ping": "^1.1",
-                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0",
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0",
                 "php": "^7.1",
-                "vlucas/phpdotenv": "~2.5|~3.3|^4.0"
+                "vlucas/phpdotenv": "~2.5|~3.3|^4.0|^5.0"
             },
             "require-dev": {
                 "larapack/dd": "^1.0",
@@ -694,7 +694,7 @@
                 "beyondcode",
                 "laravel-self-diagnosis"
             ],
-            "time": "2020-05-29T21:48:49+00:00"
+            "time": "2020-10-22T07:36:20+00:00"
         },
         {
             "name": "brick/math",
@@ -5566,20 +5566,20 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.18.1",
+            "version": "v1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
+                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f4ba089a5b6366e453971d3aad5fe8e897b37f41",
+                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=7.1"
             },
             "suggest": {
                 "ext-ctype": "For best performance"
@@ -5587,7 +5587,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.20-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5638,7 +5638,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T14:02:19+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
