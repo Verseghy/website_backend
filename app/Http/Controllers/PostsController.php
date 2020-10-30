@@ -200,6 +200,8 @@ class PostsController extends Controller
             $post['images'] = array_map(function ($f) {
                 return self::_publicUrl($f);
             }, $post['images']);
+
+            $post['images'] = array_values($post['images']);
         }
 
         return $post;
