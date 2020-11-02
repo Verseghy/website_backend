@@ -450,16 +450,16 @@
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "6.0.3",
+            "version": "6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "2cd6d24b87a3f93da8ab054bef6c1816ac699424"
+                "reference": "a21231b4ca1bce0199e778aea21109043f4c6728"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/2cd6d24b87a3f93da8ab054bef6c1816ac699424",
-                "reference": "2cd6d24b87a3f93da8ab054bef6c1816ac699424",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/a21231b4ca1bce0199e778aea21109043f4c6728",
+                "reference": "a21231b4ca1bce0199e778aea21109043f4c6728",
                 "shasum": ""
             },
             "require": {
@@ -519,7 +519,7 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2020-09-24T18:44:45+00:00"
+            "time": "2020-10-27T14:34:29+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -8044,6 +8044,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
