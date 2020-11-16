@@ -382,16 +382,16 @@
         },
         {
             "name": "backpack/pagemanager",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PageManager.git",
-                "reference": "5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f"
+                "reference": "d0d34a0e4210683c82ef28142d2fffd4fa98d46b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f",
-                "reference": "5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/d0d34a0e4210683c82ef28142d2fffd4fa98d46b",
+                "reference": "d0d34a0e4210683c82ef28142d2fffd4fa98d46b",
                 "shasum": ""
             },
             "require": {
@@ -446,7 +446,7 @@
                 "presentation website",
                 "wordpress"
             ],
-            "time": "2020-09-24T18:47:10+00:00"
+            "time": "2020-11-10T11:13:53+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -8044,6 +8044,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
