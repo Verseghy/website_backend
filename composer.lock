@@ -7165,16 +7165,16 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "v3.1.3",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "17a37c917abbee9f86d419914c1a805377018993"
+                "reference": "c95760bb32db50bd91b83511238288250d6dcd8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/17a37c917abbee9f86d419914c1a805377018993",
-                "reference": "17a37c917abbee9f86d419914c1a805377018993",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/c95760bb32db50bd91b83511238288250d6dcd8b",
+                "reference": "c95760bb32db50bd91b83511238288250d6dcd8b",
                 "shasum": ""
             },
             "require": {
@@ -7221,7 +7221,7 @@
                 "request",
                 "view"
             ],
-            "time": "2020-06-22T20:08:37+00:00"
+            "time": "2021-01-11T19:43:25+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -8044,6 +8044,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
