@@ -382,16 +382,16 @@
         },
         {
             "name": "backpack/pagemanager",
-            "version": "3.0.3",
+            "version": "3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PageManager.git",
-                "reference": "5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f"
+                "reference": "7599394b9c72a0e472a34365f6b7a3b54cebb532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f",
-                "reference": "5e5f22ed13d2ecd2f72bc0731cc29a78ebea223f",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/7599394b9c72a0e472a34365f6b7a3b54cebb532",
+                "reference": "7599394b9c72a0e472a34365f6b7a3b54cebb532",
                 "shasum": ""
             },
             "require": {
@@ -446,7 +446,7 @@
                 "presentation website",
                 "wordpress"
             ],
-            "time": "2020-09-24T18:47:10+00:00"
+            "time": "2021-02-01T10:32:38+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -954,16 +954,16 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "7.0.1",
+            "version": "7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "4e5a961965f92ef0e3c10ec4ebc073a6ab6bc4f0"
+                "reference": "b3616ff51a80f8f408879b2f41936e8b45748e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/4e5a961965f92ef0e3c10ec4ebc073a6ab6bc4f0",
-                "reference": "4e5a961965f92ef0e3c10ec4ebc073a6ab6bc4f0",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/b3616ff51a80f8f408879b2f41936e8b45748e13",
+                "reference": "b3616ff51a80f8f408879b2f41936e8b45748e13",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +971,7 @@
                 "illuminate/config": "^7.0",
                 "illuminate/database": "^7.0",
                 "illuminate/support": "^7.0",
-                "php": "^7.2.5"
+                "php": "^7.2.5|^8.0"
             },
             "require-dev": {
                 "limedeck/phpunit-detailed-printer": "^5.0",
@@ -1013,7 +1013,7 @@
                 "slug",
                 "sluggable"
             ],
-            "time": "2020-04-07T03:18:54+00:00"
+            "time": "2020-12-08T23:04:55+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -8044,6 +8044,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -10091,12 +10092,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
