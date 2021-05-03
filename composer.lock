@@ -263,16 +263,16 @@
         },
         {
             "name": "backpack/logmanager",
-            "version": "v4.0.2",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/LogManager.git",
-                "reference": "1ddc98de9f0f9aa9a3a0d338af547052e1aae522"
+                "reference": "097cf7c0a1e658040bf9fbe727c79a0547eb4a78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/1ddc98de9f0f9aa9a3a0d338af547052e1aae522",
-                "reference": "1ddc98de9f0f9aa9a3a0d338af547052e1aae522",
+                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/097cf7c0a1e658040bf9fbe727c79a0547eb4a78",
+                "reference": "097cf7c0a1e658040bf9fbe727c79a0547eb4a78",
                 "shasum": ""
             },
             "require": {
@@ -305,8 +305,8 @@
             "authors": [
                 {
                     "name": "Cristian Tabacitu",
-                    "email": "hello@tabacitu.ro",
-                    "homepage": "http://tabacitu.ro",
+                    "email": "tabacitu@backpackforlaravel.com",
+                    "homepage": "https://backpackforlaravel.com",
                     "role": "Developer"
                 }
             ],
@@ -319,7 +319,7 @@
                 "log manager",
                 "logs"
             ],
-            "time": "2020-09-24T18:42:18+00:00"
+            "time": "2021-04-15T08:47:14+00:00"
         },
         {
             "name": "backpack/menucrud",
@@ -8044,6 +8044,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -10091,12 +10092,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
