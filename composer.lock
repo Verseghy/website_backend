@@ -207,16 +207,16 @@
         },
         {
             "name": "backpack/filemanager",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/FileManager.git",
-                "reference": "f3fbea46ee3bcb0dcd753d2de8362f955008e0f7"
+                "reference": "d55ff7f5229159424427e28034fe29f7cba004d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/FileManager/zipball/f3fbea46ee3bcb0dcd753d2de8362f955008e0f7",
-                "reference": "f3fbea46ee3bcb0dcd753d2de8362f955008e0f7",
+                "url": "https://api.github.com/repos/Laravel-Backpack/FileManager/zipball/d55ff7f5229159424427e28034fe29f7cba004d9",
+                "reference": "d55ff7f5229159424427e28034fe29f7cba004d9",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
             "authors": [
                 {
                     "name": "Cristian Tabacitu",
-                    "email": "hello@tabacitu.ro",
+                    "email": "tabacitu@backpackforlaravel.com",
                     "homepage": "https://backpackforlaravel.com"
                 }
             ],
@@ -259,7 +259,7 @@
                 "filemanager",
                 "laravel"
             ],
-            "time": "2020-04-27T14:03:20+00:00"
+            "time": "2021-04-16T16:02:39+00:00"
         },
         {
             "name": "backpack/logmanager",
@@ -523,16 +523,16 @@
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/elfinder-flysystem-driver.git",
-                "reference": "1f323056495fdce019b6ef1621be697f2945c609"
+                "reference": "5a6c893dfb97e9848d7b1e5e990e943af7bc3550"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/1f323056495fdce019b6ef1621be697f2945c609",
-                "reference": "1f323056495fdce019b6ef1621be697f2945c609",
+                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/5a6c893dfb97e9848d7b1e5e990e943af7bc3550",
+                "reference": "5a6c893dfb97e9848d7b1e5e990e943af7bc3550",
                 "shasum": ""
             },
             "require": {
@@ -575,24 +575,24 @@
                 "elfinder",
                 "filesystem"
             ],
-            "time": "2017-07-08T17:59:38+00:00"
+            "time": "2019-08-31T17:57:43+00:00"
         },
         {
             "name": "barryvdh/laravel-elfinder",
-            "version": "v0.4.6",
+            "version": "v0.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-elfinder.git",
-                "reference": "d3bc80dfa61d7bf8e76747ea26615b3f51bc0780"
+                "reference": "f2a5f7d2b69b7c2f5419b0b02874b91b6d480c6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-elfinder/zipball/d3bc80dfa61d7bf8e76747ea26615b3f51bc0780",
-                "reference": "d3bc80dfa61d7bf8e76747ea26615b3f51bc0780",
+                "url": "https://api.github.com/repos/barryvdh/laravel-elfinder/zipball/f2a5f7d2b69b7c2f5419b0b02874b91b6d480c6c",
+                "reference": "f2a5f7d2b69b7c2f5419b0b02874b91b6d480c6c",
                 "shasum": ""
             },
             "require": {
-                "barryvdh/elfinder-flysystem-driver": "^0.2",
+                "barryvdh/elfinder-flysystem-driver": "^0.3",
                 "illuminate/support": "^5.5|^6|^7|^8",
                 "league/flysystem": "^1.0",
                 "league/flysystem-cached-adapter": "^1.0",
@@ -632,7 +632,7 @@
                 "laravel",
                 "tinymce"
             ],
-            "time": "2020-09-11T14:36:09+00:00"
+            "time": "2020-12-18T16:57:01+00:00"
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
@@ -1979,16 +1979,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.7.0",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/53330f47520498c0ae1f61f7e2c90f55690c06a3",
-                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2046,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2020-09-30T07:37:11+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "intervention/image",
@@ -2689,16 +2689,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.5.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "ea2fbfc988bade315acd5967e6d02274086d0f28"
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/ea2fbfc988bade315acd5967e6d02274086d0f28",
-                "reference": "ea2fbfc988bade315acd5967e6d02274086d0f28",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
                 "shasum": ""
             },
             "require": {
@@ -2706,8 +2706,9 @@
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.36",
-                "phpunit/phpunit": "^8.5.8"
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3"
             },
             "type": "library",
             "autoload": {
@@ -2736,7 +2737,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-21T18:10:53+00:00"
+            "time": "2021-01-18T20:58:21+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8044,6 +8045,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -10091,12 +10093,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
