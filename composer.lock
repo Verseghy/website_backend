@@ -60,16 +60,16 @@
         },
         {
             "name": "backpack/backupmanager",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/BackupManager.git",
-                "reference": "7e8dc4d32238befd7fe78d28c1ddb9e49779f17c"
+                "reference": "ad33731e6d6b878ee45b91e2aa4e8abd961c576a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/BackupManager/zipball/7e8dc4d32238befd7fe78d28c1ddb9e49779f17c",
-                "reference": "7e8dc4d32238befd7fe78d28c1ddb9e49779f17c",
+                "url": "https://api.github.com/repos/Laravel-Backpack/BackupManager/zipball/ad33731e6d6b878ee45b91e2aa4e8abd961c576a",
+                "reference": "ad33731e6d6b878ee45b91e2aa4e8abd961c576a",
                 "shasum": ""
             },
             "require": {
@@ -103,8 +103,8 @@
             "authors": [
                 {
                     "name": "Cristian Tabacitu",
-                    "email": "hello@tabacitu.ro",
-                    "homepage": "http://tabacitu.ro",
+                    "email": "tabacitu@backpackforlaravel.com",
+                    "homepage": "https://backpackforlaravel.com",
                     "role": "Chief Architect & Web Developer"
                 }
             ],
@@ -119,7 +119,7 @@
                 "tabacitu",
                 "updivision"
             ],
-            "time": "2020-09-24T18:44:06+00:00"
+            "time": "2021-04-14T04:12:18+00:00"
         },
         {
             "name": "backpack/crud",
@@ -4001,24 +4001,24 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.17.0",
+            "version": "2.21.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "d23bcb566443e862a8dbb6dbd5e8da03aaf98e2a"
+                "reference": "05e5955fb882008a8947c5a45146d86cfafa10d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/d23bcb566443e862a8dbb6dbd5e8da03aaf98e2a",
-                "reference": "d23bcb566443e862a8dbb6dbd5e8da03aaf98e2a",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/05e5955fb882008a8947c5a45146d86cfafa10d1",
+                "reference": "05e5955fb882008a8947c5a45146d86cfafa10d1",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "php": "^7.2|^8.0",
                 "symfony/process": "^4.2|^5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0|^8.0"
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
             },
             "type": "library",
             "autoload": {
@@ -4053,7 +4053,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-10T14:52:52+00:00"
+            "time": "2021-02-24T14:56:42+00:00"
         },
         {
             "name": "spatie/image",
@@ -4161,37 +4161,37 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "6.11.4",
+            "version": "6.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "3aea94ae9a326871b702ccc358e91683d7782666"
+                "reference": "6b2229a07d92c2bb146ad9c5223fc32e9d74830c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/3aea94ae9a326871b702ccc358e91683d7782666",
-                "reference": "3aea94ae9a326871b702ccc358e91683d7782666",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/6b2229a07d92c2bb146ad9c5223fc32e9d74830c",
+                "reference": "6b2229a07d92c2bb146ad9c5223fc32e9d74830c",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^5.8.15|^6.0|^7.0|^8.0",
-                "illuminate/contracts": "^5.8.15|^6.0|^7.0|^8.0",
-                "illuminate/events": "^5.8.15|^6.0|^7.0|^8.0",
-                "illuminate/filesystem": "^5.8.15|^6.0|^7.0|^8.0",
-                "illuminate/notifications": "^5.8.15|^6.0|^7.0|^8.0",
-                "illuminate/support": "^5.8.15|^6.0|^7.0|^8.0",
+                "ext-zip": "^1.14.0",
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/events": "^6.0|^7.0|^8.0",
+                "illuminate/filesystem": "^6.0|^7.0|^8.0",
+                "illuminate/notifications": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
                 "league/flysystem": "^1.0.49",
-                "php": "^7.3",
+                "php": "^7.3|^8.0",
                 "spatie/db-dumper": "^2.12",
                 "spatie/temporary-directory": "^1.1",
                 "symfony/finder": "^4.2|^5.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "laravel/slack-notification-channel": "^1.0",
+                "laravel/slack-notification-channel": "^2.3",
                 "league/flysystem-aws-s3-v3": "^1.0",
-                "mockery/mockery": "^1.3",
-                "orchestra/testbench": "3.8.*|4.*|5.*|6.*",
+                "mockery/mockery": "^1.4.2",
+                "orchestra/testbench": "4.*|5.*|6.*",
                 "phpunit/phpunit": "^8.4|^9.0"
             },
             "suggest": {
@@ -4235,15 +4235,15 @@
             ],
             "funding": [
                 {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
                 },
                 {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
                 }
             ],
-            "time": "2020-09-30T06:58:20+00:00"
+            "time": "2021-04-15T09:31:32+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -4434,23 +4434,23 @@
         },
         {
             "name": "spatie/temporary-directory",
-            "version": "1.2.4",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/temporary-directory.git",
-                "reference": "8efe8e61e0ca943d84341f10e51ef3a9606af932"
+                "reference": "f517729b3793bca58f847c5fd383ec16f03ffec6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/8efe8e61e0ca943d84341f10e51ef3a9606af932",
-                "reference": "8efe8e61e0ca943d84341f10e51ef3a9606af932",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/f517729b3793bca58f847c5fd383ec16f03ffec6",
+                "reference": "f517729b3793bca58f847c5fd383ec16f03ffec6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": "^7.2|^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.0|^9.0"
             },
             "type": "library",
             "autoload": {
@@ -4473,10 +4473,11 @@
             "description": "Easily create, use and destroy temporary directories",
             "homepage": "https://github.com/spatie/temporary-directory",
             "keywords": [
+                "php",
                 "spatie",
                 "temporary-directory"
             ],
-            "time": "2020-09-07T20:41:15+00:00"
+            "time": "2020-11-09T15:54:21+00:00"
         },
         {
             "name": "studio-42/elfinder",
