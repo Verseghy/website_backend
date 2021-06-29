@@ -636,24 +636,24 @@
         },
         {
             "name": "beyondcode/laravel-self-diagnosis",
-            "version": "1.4.3",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beyondcode/laravel-self-diagnosis.git",
-                "reference": "fc663d553c945ba11608faea5666324a876369ac"
+                "reference": "b9f235747a3b06cee3cffe152deabc37dc93cca4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beyondcode/laravel-self-diagnosis/zipball/fc663d553c945ba11608faea5666324a876369ac",
-                "reference": "fc663d553c945ba11608faea5666324a876369ac",
+                "url": "https://api.github.com/repos/beyondcode/laravel-self-diagnosis/zipball/b9f235747a3b06cee3cffe152deabc37dc93cca4",
+                "reference": "b9f235747a3b06cee3cffe152deabc37dc93cca4",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^1.4",
                 "geerlingguy/ping": "^1.1",
-                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0",
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0",
                 "php": "^7.1",
-                "vlucas/phpdotenv": "~2.5|~3.3|^4.0"
+                "vlucas/phpdotenv": "~2.5|~3.3|^4.0|^5.0"
             },
             "require-dev": {
                 "larapack/dd": "^1.0",
@@ -694,7 +694,7 @@
                 "beyondcode",
                 "laravel-self-diagnosis"
             ],
-            "time": "2020-05-29T21:48:49+00:00"
+            "time": "2020-10-22T07:36:20+00:00"
         },
         {
             "name": "brick/math",
