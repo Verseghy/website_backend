@@ -263,16 +263,16 @@
         },
         {
             "name": "backpack/logmanager",
-            "version": "v4.0.2",
+            "version": "v4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/LogManager.git",
-                "reference": "1ddc98de9f0f9aa9a3a0d338af547052e1aae522"
+                "reference": "10c8b6021ff1b896da617b9108741d889450a945"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/1ddc98de9f0f9aa9a3a0d338af547052e1aae522",
-                "reference": "1ddc98de9f0f9aa9a3a0d338af547052e1aae522",
+                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/10c8b6021ff1b896da617b9108741d889450a945",
+                "reference": "10c8b6021ff1b896da617b9108741d889450a945",
                 "shasum": ""
             },
             "require": {
@@ -305,8 +305,8 @@
             "authors": [
                 {
                     "name": "Cristian Tabacitu",
-                    "email": "hello@tabacitu.ro",
-                    "homepage": "http://tabacitu.ro",
+                    "email": "tabacitu@backpackforlaravel.com",
+                    "homepage": "https://backpackforlaravel.com",
                     "role": "Developer"
                 }
             ],
@@ -319,7 +319,7 @@
                 "log manager",
                 "logs"
             ],
-            "time": "2020-09-24T18:42:18+00:00"
+            "time": "2021-08-31T08:53:15+00:00"
         },
         {
             "name": "backpack/menucrud",
@@ -9503,6 +9503,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
+            "abandoned": true,
             "time": "2018-10-04T04:07:39+00:00"
         },
         {
