@@ -69,9 +69,9 @@ class Posts extends Model
         $id = $this->id;
         $token = $this->previewToken;
         if ($this->published) {
-            return "https://beta.verseghy-gimnazium.net/posts/$id";
+            return "https://verseghy-gimnazium.net/posts/$id";
         } else {
-            return "https://beta.verseghy-gimnazium.net/posts/preview/$id?token=$token";
+            return "https://verseghy-gimnazium.net/posts/preview/$id?token=$token";
         }
     }
 
