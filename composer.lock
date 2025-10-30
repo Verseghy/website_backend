@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47b23719274f36fabbff7335c84e6a71",
+    "content-hash": "57dd0092f01f95482865af31c8aa7b07",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8016,24 +8016,23 @@
         },
         {
             "name": "laracasts/generators",
-            "version": "1.2.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-                "reference": "555f1b03b6072d5d45616634fc764ccadbe76a35"
+                "reference": "0b8b3d300cc948217f7547502b6de5db6fbafa70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/555f1b03b6072d5d45616634fc764ccadbe76a35",
-                "reference": "555f1b03b6072d5d45616634fc764ccadbe76a35",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/0b8b3d300cc948217f7547502b6de5db6fbafa70",
+                "reference": "0b8b3d300cc948217f7547502b6de5db6fbafa70",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^5.8|~6.0|~7.0|~8.0",
-                "php": ">=5.4.0"
+                "illuminate/support": "~6.0|~7.0|~8.0"
             },
             "require-dev": {
-                "phpspec/phpspec": "~2.1"
+                "phpspec/phpspec": "~6.0"
             },
             "type": "library",
             "extra": {
@@ -8056,6 +8055,10 @@
                 {
                     "name": "Jeffrey Way",
                     "email": "jeffrey@laracasts.com"
+                },
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "hello@tabaciu.ro"
                 }
             ],
             "description": "Advanced Laravel generators, that include schema information.",
@@ -8063,7 +8066,7 @@
                 "generators",
                 "laravel"
             ],
-            "time": "2020-09-10T11:48:15+00:00"
+            "time": "2020-09-10T13:49:13+00:00"
         },
         {
             "name": "mockery/mockery",
