@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: website-backend
+  title: Website Backend
+  description: Laravel/Backpack admin and API, MySQL-backed with persistent storage
+  annotations:
+    github.com/project-slug: Verseghy/website_backend
+    argocd/instance-name: verseghy
+    argocd/app-selector: verseghy.net/component=backend
+    backstage.io/source-location: url:https://github.com/Verseghy/website_backend/tree/master/
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - service
+    - laravel
+    - ghcr
+  links:
+    - url: https://backend.microshift.verseghy-gimnazium.net
+      title: Backend route
+spec:
+  type: service
+  lifecycle: production
+  owner: group:verseghy
+  system: verseghy-website
+  dependsOn:
+    - resource:mysql

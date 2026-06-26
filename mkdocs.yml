@@ -1,0 +1,3 @@
+site_name: Website Backend
+plugins:
+  - techdocs-core
