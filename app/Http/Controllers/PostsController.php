@@ -13,6 +13,8 @@ class PostsController extends Controller
     {
         _after as _after_original;
     }
+    use PublicUrl;
+    const DISK = 'posts_images';
     const PAGESIZE = 20;
 
     public function byId(Request $request)
@@ -205,11 +207,6 @@ class PostsController extends Controller
         }
 
         return $post;
-    }
-
-    private static function _publicUrl($file, $disk = 'posts_images')
-    {
-        return asset(\Storage::disk($disk)->url($file));
     }
 
     private static function _makeThumbnail($posts, $enabled = true)
