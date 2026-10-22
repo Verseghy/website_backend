@@ -1,32 +1,13 @@
-# Pipelines-as-Code trigger: rebuild the backend image on every push to master.
+# Pipelines-as-Code: on push to master, run this PipelineRun in the verseghy
+# namespace to build the image via a Shipwright BuildRun.
 #
-# PAC matches this repo to the `website-backend` Repository CR in the verseghy
-# namespace (website_k8s/verseghy-website/builds/pac-repository-backend.yaml),
-# reads this file from the pushed revision, and runs it as a PipelineRun there.
+# The image must be tagged with the commit SHA ({{ revision }}): argocd-image-updater
+# only deploys tags matching ^[0-9a-f]{40}$, so an untagged (:latest) build never
+# ships.
 #
-# The single task references the cluster's maintained `openshift-client` task
-# (no hand-rolled taskSpec/image). Its SCRIPT creates a self-contained Shipwright
-# BuildRun -- the full build recipe lives inline in spec.build.spec, with
-# source.git.revision pinned to the exact pushed commit -- then `oc wait`s for it
-# to complete and reports the verdict back onto the commit as a GitHub check.
-#
-# The output image MUST be tagged with the pushed commit SHA ({{ revision }}):
-# argocd-image-updater (ImageUpdater CR in website_k8s) only considers tags
-# matching ^[0-9a-f]{40}$ when opening the deploy PR against website_k8s.
-# An untagged push lands on :latest, which the updater ignores -- the image
-# builds fine but never deploys.
-#
-# Strategy: the cluster-wide `buildah` ClusterBuildStrategy moved to a UBI 10
-# image in Builds for OpenShift 1.8.2, and RHEL 10 requires x86-64-v3 CPUs that
-# the okd4 nodes lack, so builds die at start with a glibc CPU error. We use
-# `buildah-ubi9`, a namespaced BuildStrategy in verseghy that is a copy of the
-# operator strategy on a RHEL 9 buildah image, managed in
-# website_k8s/verseghy-website/builds/buildstrategy-buildah-ubi9.yaml (the same
-# choice website_frontend/.tekton/push.yaml makes).
-#
-# Resources: composer install plus the buildah build-and-push of the ~1.2 GB
-# UBI 8 PHP image fits comfortably in the override below (1 CPU / 2Gi request,
-# 2 CPU / 4Gi limit; each node has 31.5 CPU / 62Gi allocatable).
+# Uses the buildah-ubi9 BuildStrategy because the cluster buildah strategy needs
+# x86-64-v3 CPUs the nodes lack
+# (website_k8s/verseghy-website/builds/buildstrategy-buildah-ubi9.yaml).
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
@@ -39,14 +20,13 @@ spec:
   timeouts:
     pipeline: '1h30m0s'
   taskRunTemplate:
-    # Runs in verseghy; this SA can create/get BuildRuns via ClusterRole/edit.
+    # This SA can create/get BuildRuns in verseghy via ClusterRole/edit.
     serviceAccountName: pipeline
   pipelineSpec:
     tasks:
       - name: trigger-shipwright-build
         timeout: '1h20m0s'
         taskRef:
-          # Maintained task shipped with OpenShift Pipelines; pulled in-cluster.
           resolver: cluster
           params:
             - name: kind
